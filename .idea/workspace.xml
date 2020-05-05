@@ -79,6 +79,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
+      <item itemvalue="Spring Boot.Swagger2SpringBoot" />
     </list>
   </component>
   <component name="SvnConfiguration">

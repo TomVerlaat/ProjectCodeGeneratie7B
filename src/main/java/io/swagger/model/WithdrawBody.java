@@ -90,10 +90,10 @@ public class WithdrawBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WithdrawBody body4 = (WithdrawBody) o;
-    return Objects.equals(this.account, body4.account) &&
-        Objects.equals(this.amount, body4.amount) &&
-        Objects.equals(this.userPerformingId, body4.userPerformingId);
+    WithdrawBody withdrawBody = (WithdrawBody) o;
+    return Objects.equals(this.account, withdrawBody.account) &&
+        Objects.equals(this.amount, withdrawBody.amount) &&
+        Objects.equals(this.userPerformingId, withdrawBody.userPerformingId);
   }
 
   @Override
