@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Body4
+ * Body4 Gregors test tekst
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-05T07:37:10.859Z[GMT]")
