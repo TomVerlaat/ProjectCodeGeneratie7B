@@ -2,8 +2,6 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import org.springframework.validation.annotation.Validated;
@@ -15,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-05T07:37:10.859Z[GMT]")
-public class Body4   {
+public class WithdrawBody {
   @JsonProperty("account")
   private String account = null;
 
@@ -25,7 +23,7 @@ public class Body4   {
   @JsonProperty("userPerformingId")
   private Integer userPerformingId = null;
 
-  public Body4 account(String account) {
+  public WithdrawBody account(String account) {
     this.account = account;
     return this;
   }
@@ -44,7 +42,7 @@ public class Body4   {
     this.account = account;
   }
 
-  public Body4 amount(BigDecimal amount) {
+  public WithdrawBody amount(BigDecimal amount) {
     this.amount = amount;
     return this;
   }
@@ -64,7 +62,7 @@ public class Body4   {
     this.amount = amount;
   }
 
-  public Body4 userPerformingId(Integer userPerformingId) {
+  public WithdrawBody userPerformingId(Integer userPerformingId) {
     this.userPerformingId = userPerformingId;
     return this;
   }
@@ -92,7 +90,7 @@ public class Body4   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Body4 body4 = (Body4) o;
+    WithdrawBody body4 = (WithdrawBody) o;
     return Objects.equals(this.account, body4.account) &&
         Objects.equals(this.amount, body4.amount) &&
         Objects.equals(this.userPerformingId, body4.userPerformingId);

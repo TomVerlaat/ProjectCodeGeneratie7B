@@ -20,14 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8195c789-7758-47cb-89d6-5bcb99d7f7b8" name="Default Changelist" comment="Commit">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2020_9_51_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2020_9_51_AM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/LoginBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/RegisterBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/TransactionBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/DepositBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/swagger/model/Body.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/WithdrawBody.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +95,7 @@
       <workItem from="1588664403329" duration="1333000" />
       <workItem from="1588665757262" duration="218000" />
       <workItem from="1588665990772" duration="1078000" />
-      <workItem from="1588667640068" duration="821000" />
+      <workItem from="1588667640068" duration="1395000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1588665913478</created>
@@ -109,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588665913478</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Body's hernoemd">
+      <created>1588668525609</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588668525609</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,7 +131,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit" />
+    <MESSAGE value="Body's hernoemd" />
+    <option name="LAST_COMMIT_MESSAGE" value="Body's hernoemd" />
   </component>
   <component name="WindowStateProjectService">
     <state x="618" y="118" key="#Unnamed" timestamp="1588665442820">
@@ -144,34 +147,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="689" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588666082213" />
-    <state x="400" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588668460250">
+    <state x="400" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588668680216">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="400" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588668460250" />
-    <state x="495" y="89" key="CommitChangelistDialog2" timestamp="1588667761169">
+    <state x="400" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588668680216" />
+    <state x="495" y="89" key="CommitChangelistDialog2" timestamp="1588668524348">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="495" y="89" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1588667761169" />
+    <state x="495" y="89" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1588668524348" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588665298011">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1588665298010" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1588665736354">
+    <state width="1878" height="212" key="GridCell.Tab.0.bottom" timestamp="1588669036123">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588665736354" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1588665736354">
+    <state width="1878" height="212" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588669036123" />
+    <state width="1878" height="212" key="GridCell.Tab.0.center" timestamp="1588669036122">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588665736354" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1588665736354">
+    <state width="1878" height="212" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588669036122" />
+    <state width="1878" height="212" key="GridCell.Tab.0.left" timestamp="1588669036122">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588665736354" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1588665736354">
+    <state width="1878" height="212" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588669036122" />
+    <state width="1878" height="212" key="GridCell.Tab.0.right" timestamp="1588669036122">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588665736354" />
+    <state width="1878" height="212" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588669036122" />
     <state width="1877" height="282" key="GridCell.Tab.1.bottom" timestamp="1588665736355">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -196,10 +199,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="841" y="240" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588664997393" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588665891705">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1588668544842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588665891705" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1588668544842" />
     <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588667068908">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
