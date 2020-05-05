@@ -2,11 +2,9 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
+
 import javax.validation.constraints.*;
 
 /**
@@ -14,7 +12,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-05T07:37:10.859Z[GMT]")
-public class Body1   {
+public class RegisterBody {
   @JsonProperty("username")
   private String username = null;
 
@@ -30,7 +28,7 @@ public class Body1   {
   @JsonProperty("bsn")
   private Integer bsn = null;
 
-  public Body1 username(String username) {
+  public RegisterBody username(String username) {
     this.username = username;
     return this;
   }
@@ -49,7 +47,7 @@ public class Body1   {
     this.username = username;
   }
 
-  public Body1 password(String password) {
+  public RegisterBody password(String password) {
     this.password = password;
     return this;
   }
@@ -68,7 +66,7 @@ public class Body1   {
     this.password = password;
   }
 
-  public Body1 email(String email) {
+  public RegisterBody email(String email) {
     this.email = email;
     return this;
   }
@@ -87,7 +85,7 @@ public class Body1   {
     this.email = email;
   }
 
-  public Body1 birthdate(String birthdate) {
+  public RegisterBody birthdate(String birthdate) {
     this.birthdate = birthdate;
     return this;
   }
@@ -106,7 +104,7 @@ public class Body1   {
     this.birthdate = birthdate;
   }
 
-  public Body1 bsn(Integer bsn) {
+  public RegisterBody bsn(Integer bsn) {
     this.bsn = bsn;
     return this;
   }
@@ -134,7 +132,7 @@ public class Body1   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Body1 body1 = (Body1) o;
+    RegisterBody body1 = (RegisterBody) o;
     return Objects.equals(this.username, body1.username) &&
         Objects.equals(this.password, body1.password) &&
         Objects.equals(this.email, body1.email) &&

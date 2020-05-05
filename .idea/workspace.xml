@@ -20,8 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8195c789-7758-47cb-89d6-5bcb99d7f7b8" name="Default Changelist" comment="Commit">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2020_9_51_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2020_9_51_AM__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swagger-spring.iml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger-spring.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/LoginBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/RegisterBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/TransactionBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Body3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/DepositBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/io/swagger/model/Body.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +63,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
@@ -77,7 +84,6 @@
     </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
-      <item itemvalue="Spring Boot.Swagger2SpringBoot" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -94,6 +100,7 @@
       <workItem from="1588664403329" duration="1333000" />
       <workItem from="1588665757262" duration="218000" />
       <workItem from="1588665990772" duration="1078000" />
+      <workItem from="1588667640068" duration="821000" />
     </task>
     <task id="LOCAL-00001" summary="Commit">
       <created>1588665913478</created>
@@ -137,6 +144,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="689" y="310" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588666082213" />
+    <state x="400" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588668460250">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="400" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1588668460250" />
+    <state x="495" y="89" key="CommitChangelistDialog2" timestamp="1588667761169">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="495" y="89" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1588667761169" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1588665298011">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

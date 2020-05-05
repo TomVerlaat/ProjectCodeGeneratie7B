@@ -2,8 +2,6 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import org.springframework.validation.annotation.Validated;
@@ -15,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-05T07:37:10.859Z[GMT]")
-public class Body3   {
+public class DepositBody {
   @JsonProperty("account")
   private String account = null;
 
@@ -25,7 +23,7 @@ public class Body3   {
   @JsonProperty("userPerformingId")
   private Integer userPerformingId = null;
 
-  public Body3 account(String account) {
+  public DepositBody account(String account) {
     this.account = account;
     return this;
   }
@@ -44,7 +42,7 @@ public class Body3   {
     this.account = account;
   }
 
-  public Body3 amount(BigDecimal amount) {
+  public DepositBody amount(BigDecimal amount) {
     this.amount = amount;
     return this;
   }
@@ -64,7 +62,7 @@ public class Body3   {
     this.amount = amount;
   }
 
-  public Body3 userPerformingId(Integer userPerformingId) {
+  public DepositBody userPerformingId(Integer userPerformingId) {
     this.userPerformingId = userPerformingId;
     return this;
   }
@@ -92,7 +90,7 @@ public class Body3   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Body3 body3 = (Body3) o;
+    DepositBody body3 = (DepositBody) o;
     return Objects.equals(this.account, body3.account) &&
         Objects.equals(this.amount, body3.amount) &&
         Objects.equals(this.userPerformingId, body3.userPerformingId);
