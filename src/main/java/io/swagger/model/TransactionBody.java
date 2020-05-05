@@ -2,8 +2,6 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import org.springframework.validation.annotation.Validated;
@@ -15,7 +13,7 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-05T07:37:10.859Z[GMT]")
-public class Body2   {
+public class TransactionBody {
   @JsonProperty("timestamp")
   private String timestamp = null;
 
@@ -31,7 +29,7 @@ public class Body2   {
   @JsonProperty("userPerformingId")
   private Integer userPerformingId = null;
 
-  public Body2 timestamp(String timestamp) {
+  public TransactionBody timestamp(String timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -50,7 +48,7 @@ public class Body2   {
     this.timestamp = timestamp;
   }
 
-  public Body2 accountFrom(String accountFrom) {
+  public TransactionBody accountFrom(String accountFrom) {
     this.accountFrom = accountFrom;
     return this;
   }
@@ -69,7 +67,7 @@ public class Body2   {
     this.accountFrom = accountFrom;
   }
 
-  public Body2 accountTo(String accountTo) {
+  public TransactionBody accountTo(String accountTo) {
     this.accountTo = accountTo;
     return this;
   }
@@ -88,7 +86,7 @@ public class Body2   {
     this.accountTo = accountTo;
   }
 
-  public Body2 amount(BigDecimal amount) {
+  public TransactionBody amount(BigDecimal amount) {
     this.amount = amount;
     return this;
   }
@@ -108,7 +106,7 @@ public class Body2   {
     this.amount = amount;
   }
 
-  public Body2 userPerformingId(Integer userPerformingId) {
+  public TransactionBody userPerformingId(Integer userPerformingId) {
     this.userPerformingId = userPerformingId;
     return this;
   }
@@ -136,7 +134,7 @@ public class Body2   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Body2 body2 = (Body2) o;
+    TransactionBody body2 = (TransactionBody) o;
     return Objects.equals(this.timestamp, body2.timestamp) &&
         Objects.equals(this.accountFrom, body2.accountFrom) &&
         Objects.equals(this.accountTo, body2.accountTo) &&

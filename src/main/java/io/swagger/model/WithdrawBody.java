@@ -2,8 +2,6 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import org.springframework.validation.annotation.Validated;
@@ -11,11 +9,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Body3
+ * Body4 Gregors test tekst
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-05T07:37:10.859Z[GMT]")
-public class Body3   {
+public class WithdrawBody {
   @JsonProperty("account")
   private String account = null;
 
@@ -25,7 +23,7 @@ public class Body3   {
   @JsonProperty("userPerformingId")
   private Integer userPerformingId = null;
 
-  public Body3 account(String account) {
+  public WithdrawBody account(String account) {
     this.account = account;
     return this;
   }
@@ -44,16 +42,16 @@ public class Body3   {
     this.account = account;
   }
 
-  public Body3 amount(BigDecimal amount) {
+  public WithdrawBody amount(BigDecimal amount) {
     this.amount = amount;
     return this;
   }
 
   /**
-   * The amount of money which is deposited
+   * The amount of money which is withdrawed
    * @return amount
   **/
-  @ApiModelProperty(example = "19.95", value = "The amount of money which is deposited")
+  @ApiModelProperty(example = "19.95", value = "The amount of money which is withdrawed")
   
     @Valid
     public BigDecimal getAmount() {
@@ -64,7 +62,7 @@ public class Body3   {
     this.amount = amount;
   }
 
-  public Body3 userPerformingId(Integer userPerformingId) {
+  public WithdrawBody userPerformingId(Integer userPerformingId) {
     this.userPerformingId = userPerformingId;
     return this;
   }
@@ -92,10 +90,10 @@ public class Body3   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Body3 body3 = (Body3) o;
-    return Objects.equals(this.account, body3.account) &&
-        Objects.equals(this.amount, body3.amount) &&
-        Objects.equals(this.userPerformingId, body3.userPerformingId);
+    WithdrawBody withdrawBody = (WithdrawBody) o;
+    return Objects.equals(this.account, withdrawBody.account) &&
+        Objects.equals(this.amount, withdrawBody.amount) &&
+        Objects.equals(this.userPerformingId, withdrawBody.userPerformingId);
   }
 
   @Override
@@ -106,7 +104,7 @@ public class Body3   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Body3 {\n");
+    sb.append("class Body4 {\n");
     
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
