@@ -12,14 +12,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * User
+ * Body5
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
-public class User   {
-  @JsonProperty("id")
-  private Long id = null;
-
+public class Body5   {
   @JsonProperty("username")
   private String username = null;
 
@@ -56,9 +53,7 @@ public class User   {
   public enum TypeEnum {
     CUSTOMER("Customer"),
     
-    EMPLOYEE("Employee"),
-    
-    BANK("Bank");
+    EMPLOYEE("Employee");
 
     private String value;
 
@@ -85,29 +80,7 @@ public class User   {
   @JsonProperty("type")
   private TypeEnum type = null;
 
-  @JsonProperty("active")
-  private Boolean active = null;
-
-  public User id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(example = "10000000001", value = "")
-  
-    public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public User username(String username) {
+  public Body5 username(String username) {
     this.username = username;
     return this;
   }
@@ -116,9 +89,8 @@ public class User   {
    * Get username
    * @return username
   **/
-  @ApiModelProperty(example = "MaxVerstappen", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "MaxVerstappen", value = "")
+  
     public String getUsername() {
     return username;
   }
@@ -127,7 +99,7 @@ public class User   {
     this.username = username;
   }
 
-  public User password(String password) {
+  public Body5 password(String password) {
     this.password = password;
     return this;
   }
@@ -136,9 +108,8 @@ public class User   {
    * Get password
    * @return password
   **/
-  @ApiModelProperty(example = "Password123", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "Password123", value = "")
+  
     public String getPassword() {
     return password;
   }
@@ -147,7 +118,7 @@ public class User   {
     this.password = password;
   }
 
-  public User firstName(String firstName) {
+  public Body5 firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -156,9 +127,8 @@ public class User   {
    * Get firstName
    * @return firstName
   **/
-  @ApiModelProperty(example = "Max", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "Max", value = "")
+  
     public String getFirstName() {
     return firstName;
   }
@@ -167,7 +137,7 @@ public class User   {
     this.firstName = firstName;
   }
 
-  public User lastName(String lastName) {
+  public Body5 lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -176,9 +146,8 @@ public class User   {
    * Get lastName
    * @return lastName
   **/
-  @ApiModelProperty(example = "Verstappen", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "Verstappen", value = "")
+  
     public String getLastName() {
     return lastName;
   }
@@ -187,7 +156,7 @@ public class User   {
     this.lastName = lastName;
   }
 
-  public User email(String email) {
+  public Body5 email(String email) {
     this.email = email;
     return this;
   }
@@ -196,9 +165,8 @@ public class User   {
    * Get email
    * @return email
   **/
-  @ApiModelProperty(example = "verstappen@jumbo.nl", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "verstappen@jumbo.nl", value = "")
+  
     public String getEmail() {
     return email;
   }
@@ -207,7 +175,7 @@ public class User   {
     this.email = email;
   }
 
-  public User birthdate(LocalDate birthdate) {
+  public Body5 birthdate(LocalDate birthdate) {
     this.birthdate = birthdate;
     return this;
   }
@@ -216,9 +184,8 @@ public class User   {
    * Get birthdate
    * @return birthdate
   **/
-  @ApiModelProperty(example = "Sun Nov 16 00:00:00 GMT 10", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "Sun Nov 16 00:00:00 GMT 10", value = "")
+  
     @Valid
     public LocalDate getBirthdate() {
     return birthdate;
@@ -228,7 +195,7 @@ public class User   {
     this.birthdate = birthdate;
   }
 
-  public User address(String address) {
+  public Body5 address(String address) {
     this.address = address;
     return this;
   }
@@ -237,9 +204,8 @@ public class User   {
    * Get address
    * @return address
   **/
-  @ApiModelProperty(example = "Alphenlaat 42", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "Alphenlaat 42", value = "")
+  
     public String getAddress() {
     return address;
   }
@@ -248,7 +214,7 @@ public class User   {
     this.address = address;
   }
 
-  public User postalcode(String postalcode) {
+  public Body5 postalcode(String postalcode) {
     this.postalcode = postalcode;
     return this;
   }
@@ -267,7 +233,7 @@ public class User   {
     this.postalcode = postalcode;
   }
 
-  public User city(String city) {
+  public Body5 city(String city) {
     this.city = city;
     return this;
   }
@@ -276,9 +242,8 @@ public class User   {
    * Get city
    * @return city
   **/
-  @ApiModelProperty(example = "Zandvoort", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "Zandvoort", value = "")
+  
     public String getCity() {
     return city;
   }
@@ -287,7 +252,7 @@ public class User   {
     this.city = city;
   }
 
-  public User phoneNumber(String phoneNumber) {
+  public Body5 phoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -296,9 +261,8 @@ public class User   {
    * Get phoneNumber
    * @return phoneNumber
   **/
-  @ApiModelProperty(example = "069876543210", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "069876543210", value = "")
+  
     public String getPhoneNumber() {
     return phoneNumber;
   }
@@ -307,7 +271,7 @@ public class User   {
     this.phoneNumber = phoneNumber;
   }
 
-  public User type(TypeEnum type) {
+  public Body5 type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -316,35 +280,14 @@ public class User   {
    * Get type
    * @return type
   **/
-  @ApiModelProperty(example = "Customer", required = true, value = "")
-      @NotNull
-
+  @ApiModelProperty(example = "Customer", value = "")
+  
     public TypeEnum getType() {
     return type;
   }
 
   public void setType(TypeEnum type) {
     this.type = type;
-  }
-
-  public User active(Boolean active) {
-    this.active = active;
-    return this;
-  }
-
-  /**
-   * Get active
-   * @return active
-  **/
-  @ApiModelProperty(example = "true", required = true, value = "")
-      @NotNull
-
-    public Boolean isActive() {
-    return active;
-  }
-
-  public void setActive(Boolean active) {
-    this.active = active;
   }
 
 
@@ -356,33 +299,30 @@ public class User   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    User user = (User) o;
-    return Objects.equals(this.id, user.id) &&
-        Objects.equals(this.username, user.username) &&
-        Objects.equals(this.password, user.password) &&
-        Objects.equals(this.firstName, user.firstName) &&
-        Objects.equals(this.lastName, user.lastName) &&
-        Objects.equals(this.email, user.email) &&
-        Objects.equals(this.birthdate, user.birthdate) &&
-        Objects.equals(this.address, user.address) &&
-        Objects.equals(this.postalcode, user.postalcode) &&
-        Objects.equals(this.city, user.city) &&
-        Objects.equals(this.phoneNumber, user.phoneNumber) &&
-        Objects.equals(this.type, user.type) &&
-        Objects.equals(this.active, user.active);
+    Body5 body5 = (Body5) o;
+    return Objects.equals(this.username, body5.username) &&
+        Objects.equals(this.password, body5.password) &&
+        Objects.equals(this.firstName, body5.firstName) &&
+        Objects.equals(this.lastName, body5.lastName) &&
+        Objects.equals(this.email, body5.email) &&
+        Objects.equals(this.birthdate, body5.birthdate) &&
+        Objects.equals(this.address, body5.address) &&
+        Objects.equals(this.postalcode, body5.postalcode) &&
+        Objects.equals(this.city, body5.city) &&
+        Objects.equals(this.phoneNumber, body5.phoneNumber) &&
+        Objects.equals(this.type, body5.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, password, firstName, lastName, email, birthdate, address, postalcode, city, phoneNumber, type, active);
+    return Objects.hash(username, password, firstName, lastName, email, birthdate, address, postalcode, city, phoneNumber, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class User {\n");
+    sb.append("class Body5 {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
@@ -394,7 +334,6 @@ public class User   {
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -23,23 +23,21 @@ import java.util.List;
 import java.util.Map;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 @Controller
-public class LoginApiController implements LoginApi {
+public class LogoutApiController implements LogoutApi {
 
-    private static final Logger log = LoggerFactory.getLogger(LoginApiController.class);
+    private static final Logger log = LoggerFactory.getLogger(LogoutApiController.class);
 
     private final ObjectMapper objectMapper;
 
     private final HttpServletRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public LoginApiController(ObjectMapper objectMapper, HttpServletRequest request) {
+    public LogoutApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
         this.request = request;
     }
 
-    public ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username
-,@ApiParam(value = "") @RequestParam(value="password", required=false)  String password
-) {
+    public ResponseEntity<Void> logout() {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }

@@ -23,21 +23,19 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
-@Api(value = "Login", description = "the Login API")
-public interface LoginApi {
+@Api(value = "Logout", description = "the Logout API")
+public interface LogoutApi {
 
-    @ApiOperation(value = "Login", nickname = "login", notes = "Get sessiontoken", tags={ "Security", })
+    @ApiOperation(value = "Logout", nickname = "logout", notes = "Delete sessiontoken", authorizations = {
+        @Authorization(value = "ApiKeyAuth")    }, tags={ "Security", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Logged in!"),
+        @ApiResponse(code = 200, message = "Logged out!"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
-    @RequestMapping(value = "/Login",
+    @RequestMapping(value = "/Logout",
         produces = { "application/json" }, 
-        consumes = { "application/x-www-form-urlencoded" },
-        method = RequestMethod.POST)
-    ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username
-,@ApiParam(value = "") @RequestParam(value="password", required=false)  String password
-);
+        method = RequestMethod.DELETE)
+    ResponseEntity<Void> logout();
 
 }

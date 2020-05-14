@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
+import io.swagger.model.AccountBalance;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -15,28 +15,25 @@ import javax.validation.constraints.*;
  * Account
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-05T07:37:10.859Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 public class Account   {
   @JsonProperty("id")
-  private Integer id = null;
+  private Long id = null;
 
-  @JsonProperty("IBAN")
-  private String IBAN = null;
-
-  @JsonProperty("balance")
-  private BigDecimal balance = null;
+  @JsonProperty("userId")
+  private Long userId = null;
 
   /**
-   * This describes if the account is a current account or a savings account
+   * Gets or Sets type
    */
-  public enum AccountTypeEnum {
-    CURRENT("current"),
+  public enum TypeEnum {
+    SAVINGS("Savings"),
     
-    SAVINGS("savings");
+    CURRENT("Current");
 
     private String value;
 
-    AccountTypeEnum(String value) {
+    TypeEnum(String value) {
       this.value = value;
     }
 
@@ -47,8 +44,8 @@ public class Account   {
     }
 
     @JsonCreator
-    public static AccountTypeEnum fromValue(String text) {
-      for (AccountTypeEnum b : AccountTypeEnum.values()) {
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -56,106 +53,185 @@ public class Account   {
       return null;
     }
   }
-  @JsonProperty("accountType")
-  private AccountTypeEnum accountType = null;
+  @JsonProperty("type")
+  private TypeEnum type = null;
 
-  @JsonProperty("accountOwner")
-  private Integer accountOwner = null;
+  /**
+   * Gets or Sets currency
+   */
+  public enum CurrencyEnum {
+    EUR("EUR");
 
-  public Account id(Integer id) {
+    private String value;
+
+    CurrencyEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CurrencyEnum fromValue(String text) {
+      for (CurrencyEnum b : CurrencyEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+  @JsonProperty("currency")
+  private CurrencyEnum currency = null;
+
+  @JsonProperty("balance")
+  private AccountBalance balance = null;
+
+  @JsonProperty("active")
+  private Boolean active = null;
+
+  @JsonProperty("iban")
+  private String iban = null;
+
+  public Account id(Long id) {
     this.id = id;
     return this;
   }
 
   /**
-   * An unique ID every account gets
+   * Get id
    * @return id
   **/
-  @ApiModelProperty(example = "0", value = "An unique ID every account gets")
+  @ApiModelProperty(example = "10000000001", value = "")
   
-    public Integer getId() {
+    public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public Account IBAN(String IBAN) {
-    this.IBAN = IBAN;
+  public Account userId(Long userId) {
+    this.userId = userId;
     return this;
   }
 
   /**
-   * The IBAN number every account gets to transfer money, known by the owner of the account
-   * @return IBAN
+   * Get userId
+   * @return userId
   **/
-  @ApiModelProperty(example = "NL01INHO0000000001", value = "The IBAN number every account gets to transfer money, known by the owner of the account")
-  
-  @Pattern(regexp="^NL\\d{2}INHO0\\d{9}$")   public String getIBAN() {
-    return IBAN;
+  @ApiModelProperty(example = "10000000002", required = true, value = "")
+      @NotNull
+
+    public Long getUserId() {
+    return userId;
   }
 
-  public void setIBAN(String IBAN) {
-    this.IBAN = IBAN;
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
-  public Account balance(BigDecimal balance) {
+  public Account type(TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Get type
+   * @return type
+  **/
+  @ApiModelProperty(example = "Savings", required = true, value = "")
+      @NotNull
+
+    public TypeEnum getType() {
+    return type;
+  }
+
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  public Account currency(CurrencyEnum currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * Get currency
+   * @return currency
+  **/
+  @ApiModelProperty(example = "EUR", required = true, value = "")
+      @NotNull
+
+    public CurrencyEnum getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(CurrencyEnum currency) {
+    this.currency = currency;
+  }
+
+  public Account balance(AccountBalance balance) {
     this.balance = balance;
     return this;
   }
 
   /**
-   * balance in EU
+   * Get balance
    * @return balance
   **/
-  @ApiModelProperty(example = "0", value = "balance in EU")
+  @ApiModelProperty(value = "")
   
     @Valid
-    public BigDecimal getBalance() {
+    public AccountBalance getBalance() {
     return balance;
   }
 
-  public void setBalance(BigDecimal balance) {
+  public void setBalance(AccountBalance balance) {
     this.balance = balance;
   }
 
-  public Account accountType(AccountTypeEnum accountType) {
-    this.accountType = accountType;
+  public Account active(Boolean active) {
+    this.active = active;
     return this;
   }
 
   /**
-   * This describes if the account is a current account or a savings account
-   * @return accountType
+   * Get active
+   * @return active
   **/
-  @ApiModelProperty(example = "current", value = "This describes if the account is a current account or a savings account")
-  
-    public AccountTypeEnum getAccountType() {
-    return accountType;
+  @ApiModelProperty(example = "true", required = true, value = "")
+      @NotNull
+
+    public Boolean isActive() {
+    return active;
   }
 
-  public void setAccountType(AccountTypeEnum accountType) {
-    this.accountType = accountType;
+  public void setActive(Boolean active) {
+    this.active = active;
   }
 
-  public Account accountOwner(Integer accountOwner) {
-    this.accountOwner = accountOwner;
+  public Account iban(String iban) {
+    this.iban = iban;
     return this;
   }
 
   /**
-   * Has an integer which specifies the ID of the account owner
-   * @return accountOwner
+   * Get iban
+   * @return iban
   **/
-  @ApiModelProperty(example = "0", value = "Has an integer which specifies the ID of the account owner")
+  @ApiModelProperty(example = "NLxxINHO0xxxxxxxxx", value = "")
   
-    public Integer getAccountOwner() {
-    return accountOwner;
+    public String getIban() {
+    return iban;
   }
 
-  public void setAccountOwner(Integer accountOwner) {
-    this.accountOwner = accountOwner;
+  public void setIban(String iban) {
+    this.iban = iban;
   }
 
 
@@ -169,15 +245,17 @@ public class Account   {
     }
     Account account = (Account) o;
     return Objects.equals(this.id, account.id) &&
-        Objects.equals(this.IBAN, account.IBAN) &&
+        Objects.equals(this.userId, account.userId) &&
+        Objects.equals(this.type, account.type) &&
+        Objects.equals(this.currency, account.currency) &&
         Objects.equals(this.balance, account.balance) &&
-        Objects.equals(this.accountType, account.accountType) &&
-        Objects.equals(this.accountOwner, account.accountOwner);
+        Objects.equals(this.active, account.active) &&
+        Objects.equals(this.iban, account.iban);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, IBAN, balance, accountType, accountOwner);
+    return Objects.hash(id, userId, type, currency, balance, active, iban);
   }
 
   @Override
@@ -186,10 +264,12 @@ public class Account   {
     sb.append("class Account {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    IBAN: ").append(toIndentedString(IBAN)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    balance: ").append(toIndentedString(balance)).append("\n");
-    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
-    sb.append("    accountOwner: ").append(toIndentedString(accountOwner)).append("\n");
+    sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    iban: ").append(toIndentedString(iban)).append("\n");
     sb.append("}");
     return sb.toString();
   }
