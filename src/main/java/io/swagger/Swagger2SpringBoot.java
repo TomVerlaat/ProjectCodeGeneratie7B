@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,19 +20,21 @@ import java.util.List;
 @ComponentScan(basePackages = { "io.swagger", "io.swagger.api" , "io.swagger.configuration"})
 public class Swagger2SpringBoot implements CommandLineRunner {
 
-    //private TransactionRepository transactionRepository;
+    private TransactionRepository transactionRepository;
 
     @Override
     public void run(String... arg0) throws Exception {
-        List<Transaction> transactions = Arrays.asList(
-                new Transaction(50.00)
-        );
 
-        /*
-        transactions.forEach(transactionRepository::save);
-        transactionRepository.findAll().forEach(System.out::println);
-         */
+        List<Transaction> transactions = new ArrayList<>();
 
+        Transaction transaction1 = new Transaction();
+        transaction1.setId((long) 1);
+        transactions.add(transaction1);
+        //Long id = transaction1.getId();
+        //System.out.println(id);
+
+        //transactions.forEach(transactionRepository::save);
+        //transactionRepository.findAll().forEach(System.out::println);
 
         if (arg0.length > 0 && arg0[0].equals("exitcode")) {
             throw new ExitException();

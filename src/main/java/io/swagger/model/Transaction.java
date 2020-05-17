@@ -44,11 +44,6 @@ public class Transaction   {
   @JsonProperty("userPerformingId")
   private Long userPerformingId = null;
 
-  public Transaction(double amount)
-  {
-    this.amount = amount;
-  }
-
   /**
    * Gets or Sets transactionType
    */
