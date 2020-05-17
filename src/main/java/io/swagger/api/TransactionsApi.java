@@ -5,7 +5,7 @@
  */
 package io.swagger.api;
 
-import io.swagger.Service.TransactionService;
+//import io.swagger.Service.TransactionService;
 import io.swagger.model.Body1;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;

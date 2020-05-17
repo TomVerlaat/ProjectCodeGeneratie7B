@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.Service.TransactionService;
+//import io.swagger.Service.TransactionService;
 import io.swagger.model.Body1;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;
@@ -30,7 +30,7 @@ import java.util.Map;
 @Controller
 public class TransactionsApiController implements TransactionsApi {
 
-    private TransactionService transactionService;
+    //private TransactionService transactionService;
 
     private static final Logger log = LoggerFactory.getLogger(TransactionsApiController.class);
 
@@ -57,10 +57,15 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
     public ResponseEntity showAccountTransactions(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") Integer iban) {
-                    List<Transaction> transactions = transactionService.getAllTransactions();
+                    /*List<Transaction> transactions = transactionService.getAllTransactions();
                     return ResponseEntity
                             .status(200)
                             .body(transactions);
+                     */
+
+        return ResponseEntity
+                .status(200)
+                .body(null);
     }
 
 

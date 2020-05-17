@@ -1,5 +1,6 @@
 package io.swagger;
 
+//import io.swagger.dao.TransactionRepository;
 import io.swagger.dao.TransactionRepository;
 import io.swagger.model.Transaction;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +19,7 @@ import java.util.List;
 @ComponentScan(basePackages = { "io.swagger", "io.swagger.api" , "io.swagger.configuration"})
 public class Swagger2SpringBoot implements CommandLineRunner {
 
-    private TransactionRepository transactionRepository;
+    //private TransactionRepository transactionRepository;
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -26,9 +27,11 @@ public class Swagger2SpringBoot implements CommandLineRunner {
                 new Transaction(50.00)
         );
 
-        /*transactions.forEach(transactionRepository::save);
+        /*
+        transactions.forEach(transactionRepository::save);
         transactionRepository.findAll().forEach(System.out::println);
          */
+
 
         if (arg0.length > 0 && arg0[0].equals("exitcode")) {
             throw new ExitException();
