@@ -5,6 +5,7 @@
  */
 package io.swagger.api;
 
+import io.swagger.Service.TransactionService;
 import io.swagger.model.Body1;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;
@@ -32,7 +33,7 @@ public interface TransactionsApi {
 
     @ApiOperation(value = "Deposit", nickname = "depositTransaction", notes = "Creates new transaction", authorizations = {
         @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 201, message = "item created"),
         @ApiResponse(code = 400, message = "invalid input, object invalid"),
         @ApiResponse(code = 409, message = "an existing item already exists") })
@@ -45,7 +46,7 @@ public interface TransactionsApi {
 
     @ApiOperation(value = "Create New Transaction", nickname = "newTransaction", notes = "Creates new transaction", authorizations = {
         @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(code = 201, message = "item created"),
         @ApiResponse(code = 400, message = "invalid input, object invalid"),
         @ApiResponse(code = 409, message = "an existing item already exists") })
@@ -57,16 +58,17 @@ public interface TransactionsApi {
 
 
     @ApiOperation(value = "Gets all Transactions of account", nickname = "showAccountTransactions", notes = "Creates new transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Transaction", response = Transaction.class, responseContainer = "List"),
-        @ApiResponse(code = 400, message = "bad request", response = String.class),
-        @ApiResponse(code = 401, message = "API key is missing or invalid"),
-        @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Transaction", response = Transaction.class, responseContainer = "List"),
+            @ApiResponse(code = 400, message = "bad request", response = String.class),
+            @ApiResponse(code = 401, message = "API key is missing or invalid"),
+            @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
     @RequestMapping(value = "/Transactions/{iban}",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
+            produces = { "application/json" },
+            method = RequestMethod.GET)
     ResponseEntity<List<Transaction>> showAccountTransactions(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") Integer iban
-);
+    );
+
 
 
     @ApiOperation(value = "Get Transaction details", nickname = "showTransaction", notes = "Creates new transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })

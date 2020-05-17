@@ -1,5 +1,6 @@
 package io.swagger.api;
 
+import io.swagger.Service.TransactionService;
 import io.swagger.model.Body1;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;
@@ -29,6 +30,8 @@ import java.util.Map;
 @Controller
 public class TransactionsApiController implements TransactionsApi {
 
+    private TransactionService transactionService;
+
     private static final Logger log = LoggerFactory.getLogger(TransactionsApiController.class);
 
     private final ObjectMapper objectMapper;
@@ -53,20 +56,13 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<Transaction>> showAccountTransactions(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") Integer iban
-) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Transaction>>(objectMapper.readValue("[ {\n  \"transactionType\" : \"Deposit\",\n  \"accountTo\" : \"NL01INHO0000000000\",\n  \"amount\" : 100,\n  \"userPerformingId\" : 10000000001,\n  \"description\" : \"Money for your new RB-17\",\n  \"id\" : 10000000001,\n  \"accountFrom\" : \"NL01INHO0000000000\",\n  \"timestamp\" : \"2020-05-07T12:32:28Z\"\n}, {\n  \"transactionType\" : \"Deposit\",\n  \"accountTo\" : \"NL01INHO0000000000\",\n  \"amount\" : 100,\n  \"userPerformingId\" : 10000000001,\n  \"description\" : \"Money for your new RB-17\",\n  \"id\" : 10000000001,\n  \"accountFrom\" : \"NL01INHO0000000000\",\n  \"timestamp\" : \"2020-05-07T12:32:28Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Transaction>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_IMPLEMENTED);
+    public ResponseEntity showAccountTransactions(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") Integer iban) {
+                    List<Transaction> transactions = transactionService.getAllTransactions();
+                    return ResponseEntity
+                            .status(200)
+                            .body(transactions);
     }
+
 
     public ResponseEntity<List<Transaction>> showTransaction(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
 ) {
