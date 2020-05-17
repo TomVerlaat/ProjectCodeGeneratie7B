@@ -63,10 +63,10 @@ public interface TransactionsApi {
             @ApiResponse(code = 400, message = "bad request", response = String.class),
             @ApiResponse(code = 401, message = "API key is missing or invalid"),
             @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
-    @RequestMapping(value = "/Transactions/{iban}",
+    @RequestMapping(value = "/Transactions",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List<Transaction>> showAccountTransactions(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") Integer iban
+    ResponseEntity<List<Transaction>> showAccountTransactions(
     );
 
 

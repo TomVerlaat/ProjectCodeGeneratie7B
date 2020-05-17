@@ -1,6 +1,7 @@
 package io.swagger.api;
 
 //import io.swagger.Service.TransactionService;
+import io.swagger.Service.TransactionService;
 import io.swagger.model.Body1;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,8 @@ import java.util.Map;
 @Controller
 public class TransactionsApiController implements TransactionsApi {
 
-    //private TransactionService transactionService;
+    @Autowired
+    private TransactionService transactionService;
 
     private static final Logger log = LoggerFactory.getLogger(TransactionsApiController.class);
 
@@ -56,16 +59,11 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity showAccountTransactions(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") Integer iban) {
-                    /*List<Transaction> transactions = transactionService.getAllTransactions();
+    public ResponseEntity showAccountTransactions() {
+                    List<Transaction> transactions = transactionService.getAllTransactions();
                     return ResponseEntity
                             .status(200)
                             .body(transactions);
-                     */
-
-        return ResponseEntity
-                .status(200)
-                .body(null);
     }
 
 
