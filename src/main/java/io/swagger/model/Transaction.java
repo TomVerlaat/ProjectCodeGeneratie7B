@@ -44,6 +44,19 @@ public class Transaction   {
   @JsonProperty("userPerformingId")
   private Long userPerformingId = null;
 
+  public Transaction(Long id, OffsetDateTime timestamp, String accountFrom, String accountTo, Double amount, String description, Long userPerformingId) {
+    setId(id);
+    setTimestamp(timestamp);
+    setAccountFrom(accountFrom);
+    setAccountTo(accountTo);
+    setAmount(amount);
+    setDescription(description);
+    setUserPerformingId(userPerformingId);
+  }
+
+  public Transaction() {
+  }
+
   /**
    * Gets or Sets transactionType
    */
