@@ -44,6 +44,7 @@ public class Transaction   {
   @JsonProperty("userPerformingId")
   private Long userPerformingId = null;
 
+  //Constructor
   public Transaction(Long id, OffsetDateTime timestamp, String accountFrom, String accountTo, Double amount, String description, Long userPerformingId) {
     setId(id);
     setTimestamp(timestamp);
