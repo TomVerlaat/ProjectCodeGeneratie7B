@@ -1,7 +1,9 @@
 package io.swagger;
 
 //import io.swagger.dao.TransactionRepository;
+import io.swagger.dao.AccountRepository;
 import io.swagger.dao.TransactionRepository;
+import io.swagger.model.Account;
 import io.swagger.model.Transaction;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
@@ -24,6 +26,8 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
     @Autowired
     private TransactionRepository transactionRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -38,6 +42,16 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         transactionRepository.findAll().forEach(System.out::println);
 
         //transactionRepository.save(transaction1);
+
+
+        List<Account> accounts = new ArrayList<>();
+        Account account1 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000001", Account.TypeEnum.CURRENT,1);
+        Account account2 = new Account(600, Account.CurrencyEnum.EUR, "NL01INHO03119837070", Account.TypeEnum.SAVINGS,2);
+        accounts.add(account1);
+        accounts.add(account2);
+
+        accounts.forEach(accountRepository::save);
+        accountRepository.findAll().forEach(System.out::println);
 
         if (arg0.length > 0 && arg0[0].equals("exitcode")) {
             throw new ExitException();

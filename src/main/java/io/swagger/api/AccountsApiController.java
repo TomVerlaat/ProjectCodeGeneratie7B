@@ -1,11 +1,13 @@
 package io.swagger.api;
 
+import io.swagger.Service.AccountService;
 import io.swagger.model.Account;
 import io.swagger.model.Body;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,9 @@ import java.util.Map;
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 @Controller
 public class AccountsApiController implements AccountsApi {
+
+    @Autowired
+    private AccountService accountService;
 
     private static final Logger log = LoggerFactory.getLogger(AccountsApiController.class);
 
@@ -81,6 +86,7 @@ public class AccountsApiController implements AccountsApi {
         return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+    /*
     public ResponseEntity<List<Account>> getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Integer limit
 ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName
 ) {
@@ -95,6 +101,14 @@ public class AccountsApiController implements AccountsApi {
         }
 
         return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);
+    }*/
+
+    public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Integer limit
+            ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){
+        List<Account> accounts = accountService.getAllAccounts();
+        return ResponseEntity
+                .status(200)
+                .body(accounts);
     }
 
 }
