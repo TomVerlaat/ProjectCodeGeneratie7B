@@ -15,6 +15,16 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 public class AccountBalance   {
+  public AccountBalance(){
+
+  }
+
+  public AccountBalance(long id, long accountId, double balance){
+    setId(id);
+    setAccountId(accountId);
+    setBalance(balance);
+  }
+
   @JsonProperty("id")
   private Long id = null;
 

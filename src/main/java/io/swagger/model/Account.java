@@ -6,17 +6,33 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.model.AccountBalance;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * Account
  */
+@Entity
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 public class Account   {
+  public Account(){}
+
+  public Account(double balance, CurrencyEnum currency, String iban, TypeEnum type, long userId){
+    setActive(true);
+    setBalance(balance);
+    setCurrency(currency);
+    setIban(iban);
+    setType(type);
+    setUserId(userId);
+  }
+
+  @Id
+  @SequenceGenerator(name = "account_seq", initialValue = 1000001)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq")
   @JsonProperty("id")
   private Long id = null;
 
@@ -88,7 +104,7 @@ public class Account   {
   private CurrencyEnum currency = null;
 
   @JsonProperty("balance")
-  private AccountBalance balance = null;
+  private Double balance = null;
 
   @JsonProperty("active")
   private Boolean active = null;
@@ -175,7 +191,7 @@ public class Account   {
     this.currency = currency;
   }
 
-  public Account balance(AccountBalance balance) {
+  public Account balance(double balance) {
     this.balance = balance;
     return this;
   }
@@ -187,11 +203,11 @@ public class Account   {
   @ApiModelProperty(value = "")
   
     @Valid
-    public AccountBalance getBalance() {
+    public Double getBalance() {
     return balance;
   }
 
-  public void setBalance(AccountBalance balance) {
+  public void setBalance(double balance) {
     this.balance = balance;
   }
 
