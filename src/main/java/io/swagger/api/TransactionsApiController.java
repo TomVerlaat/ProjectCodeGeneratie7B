@@ -59,7 +59,7 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity showAccountTransactions() {
+    public ResponseEntity getAllTransactions() {
                     List<Transaction> transactions = transactionService.getAllTransactions();
                     return ResponseEntity
                             .status(200)
