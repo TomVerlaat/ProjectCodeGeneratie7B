@@ -71,16 +71,16 @@ public interface TransactionsApi {
 
 
 
-    @ApiOperation(value = "Get Transaction details", nickname = "showTransaction", notes = "Creates new transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
+    @ApiOperation(value = "Get Transaction details", nickname = "getTransactionById", notes = "Gets particular transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Transaction", response = Transaction.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
-    @RequestMapping(value = "/Transactions/{transactionid}",
+    @RequestMapping(value = "/Transactions/{id}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Transaction>> showTransaction(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
+    ResponseEntity<Transaction> getTransactionById(@PathVariable("id") Long id
 );
 
 

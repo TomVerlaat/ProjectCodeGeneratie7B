@@ -10,5 +10,7 @@ import java.util.List;
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
     List<Transaction> getAllByUserPerformingId(double value);
+
+    Transaction getById(Long value);
 }
 

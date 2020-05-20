@@ -19,4 +19,8 @@ public TransactionService() {
     public List<Transaction> getAllTransactions() {
         return (List<Transaction>) transactionRepository.findAll();
     }
+
+    public Transaction getTransactionById(Long id) {
+        return transactionRepository.getById(id);
+    }
 }

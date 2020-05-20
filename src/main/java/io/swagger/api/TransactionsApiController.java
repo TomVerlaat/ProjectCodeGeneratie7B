@@ -67,7 +67,8 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
-    public ResponseEntity<List<Transaction>> showTransaction(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
+    /*
+    public ResponseEntity<List<Transaction>> getTransactionById(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
@@ -80,6 +81,15 @@ public class TransactionsApiController implements TransactionsApi {
         }
 
         return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_IMPLEMENTED);
+    }
+     */
+
+    public ResponseEntity<Transaction> getTransactionById(@PathVariable("id") Long id)
+    {
+        Transaction transactions = transactionService.getTransactionById(id);
+        return ResponseEntity
+                .status(200)
+                .body(transactions);
     }
 
     public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
