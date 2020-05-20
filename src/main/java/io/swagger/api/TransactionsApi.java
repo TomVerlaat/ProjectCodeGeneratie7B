@@ -66,12 +66,12 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List<Transaction>> showAccountTransactions(
+    ResponseEntity<List<Transaction>> getAllTransactions(
     );
 
 
 
-    @ApiOperation(value = "Get Transaction details", nickname = "showTransaction", notes = "Creates new transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
+    @ApiOperation(value = "Get Transaction details", nickname = "getTransactionDetails", notes = "Gets single transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Transaction", response = Transaction.class, responseContainer = "List"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
@@ -80,7 +80,7 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions/{transactionid}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Transaction>> showTransaction(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
+    ResponseEntity<List<Transaction>> getTransactionDetails(@ApiParam(value = "Enter Transaction ID",required=true) @PathVariable("id") Integer id
 );
 
 
