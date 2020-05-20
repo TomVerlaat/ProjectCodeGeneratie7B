@@ -57,7 +57,7 @@ public interface TransactionsApi {
 );
 
 
-    @ApiOperation(value = "Gets all Transactions of account", nickname = "Get all transactions", notes = "gets transactions", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
+    @ApiOperation(value = "Get all Transactions", nickname = "Get all transactions", notes = "gets transactions", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Transaction", response = Transaction.class, responseContainer = "List"),
             @ApiResponse(code = 400, message = "bad request", response = String.class),

@@ -84,13 +84,17 @@ public class TransactionsApiController implements TransactionsApi {
     }
      */
 
-    public ResponseEntity<Transaction> getTransactionById(@PathVariable("id") Long id)
+
+
+    public ResponseEntity<Transaction> getTransactionById(@ApiParam(value = "Transaction ID",required=true) @PathVariable("id") Long id)
     {
         Transaction transactions = transactionService.getTransactionById(id);
         return ResponseEntity
                 .status(200)
                 .body(transactions);
     }
+
+
 
     public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
 ) {
