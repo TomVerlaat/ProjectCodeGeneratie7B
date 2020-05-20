@@ -45,7 +45,8 @@ public class Transaction   {
   private Long userPerformingId = null;
 
   //Constructor
-  public Transaction(OffsetDateTime timestamp, String accountFrom, String accountTo, Double amount, String description, Long userPerformingId) {
+  public Transaction(Long id, OffsetDateTime timestamp, String accountFrom, String accountTo, Double amount, String description, Long userPerformingId) {
+    setId(id);
     setTimestamp(timestamp);
     setAccountFrom(accountFrom);
     setAccountTo(accountTo);

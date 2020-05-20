@@ -59,7 +59,7 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity getAllTransactions() {
+    public ResponseEntity showAccountTransactions() {
                     List<Transaction> transactions = transactionService.getAllTransactions();
                     return ResponseEntity
                             .status(200)
@@ -67,8 +67,7 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
-    /*
-    public ResponseEntity<List<Transaction>> getTransactionDetails(@ApiParam(value = "Enter Transaction ID",required=true) @PathVariable("id") Integer transactionid
+    public ResponseEntity<List<Transaction>> showTransaction(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
@@ -82,22 +81,6 @@ public class TransactionsApiController implements TransactionsApi {
 
         return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_IMPLEMENTED);
     }
-     */
-
-
-
-    public ResponseEntity<List<Transaction>> getTransactionDetails(@ApiParam(value = "Enter Transaction ID",required=true) @PathVariable("id") Integer id
-    ) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-                List<Transaction> transactions = transactionService.getTransactionDetails((long)id);
-                return ResponseEntity
-                        .status(200)
-                        .body(transactions);
-        }
-        return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
 
     public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
 ) {

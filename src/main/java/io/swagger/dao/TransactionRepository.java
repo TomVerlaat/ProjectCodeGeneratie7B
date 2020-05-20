@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, Long> {
 
-    List<Transaction> getAllById(double value);
+    List<Transaction> getAllByUserPerformingId(double value);
 }
 
