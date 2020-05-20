@@ -28,4 +28,9 @@ public TransactionService() {
     {
         return transactionRepository.getByAccountFrom(iban);
     }
+
+    public void addTransaction(Transaction transaction)
+    {
+        transactionRepository.save(transaction);
+    }
 }
