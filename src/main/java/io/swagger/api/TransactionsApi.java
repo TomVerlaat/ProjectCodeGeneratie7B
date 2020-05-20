@@ -83,6 +83,18 @@ public interface TransactionsApi {
     ResponseEntity<Transaction> getTransactionById(@PathVariable("id") Long id
 );
 
+    @ApiOperation(value = "Get all transaction from  account Iban", nickname = "getTransactionByIBAN", notes = "Get alll transaction from IBAN", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Transaction", response = Transaction.class, responseContainer = "List"),
+            @ApiResponse(code = 400, message = "bad request", response = String.class),
+            @ApiResponse(code = 401, message = "API key is missing or invalid"),
+            @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
+    @RequestMapping(value = "/Transactions/all/{iban}",
+            produces = { "application/json" },
+            method = RequestMethod.GET)
+    ResponseEntity<List<Transaction>> getTransactionByIBAN(@PathVariable("iban") String iban
+    );
+
 
     @ApiOperation(value = "Withdraw", nickname = "witdhrawTransaction", notes = "Creates new transaction", authorizations = {
         @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })

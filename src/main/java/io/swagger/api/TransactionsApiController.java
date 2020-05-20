@@ -94,6 +94,14 @@ public class TransactionsApiController implements TransactionsApi {
                 .body(transactions);
     }
 
+    public ResponseEntity <List<Transaction>> getTransactionByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
+    {
+        List <Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
+        return ResponseEntity
+                .status(200)
+                .body(transactions);
+    }
+
 
 
     public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body

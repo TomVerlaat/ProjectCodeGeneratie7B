@@ -34,9 +34,11 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
         List<Transaction> transactions = new ArrayList<>();
         Transaction transaction1 = new Transaction(OffsetDateTime.now(),"NL01INHO00000000001","NL01INHO00000000002",100.00,"Money for Fiat Multipla",1L);
-        Transaction transaction2 = new Transaction(OffsetDateTime.now(),"NL01INHO00000000002","NL01INHO00000000001",175.00,"Nieuwe Game",2L);
+        Transaction transaction2 = new Transaction(OffsetDateTime.now(),"NL01INHO00000000001","NL01INHO00000000002",49.95,"Benzine Fiat multipla",1L);
+        Transaction transaction3 = new Transaction(OffsetDateTime.now(),"NL01INHO00000000002","NL01INHO00000000001",175.00,"Nieuwe Game",2L);
         transactions.add(transaction1);
         transactions.add(transaction2);
+        transactions.add(transaction3);
         //Long id = transaction1.getId();
         //System.out.println(id);
 

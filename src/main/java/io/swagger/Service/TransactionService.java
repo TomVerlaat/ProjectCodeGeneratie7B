@@ -23,4 +23,9 @@ public TransactionService() {
     public Transaction getTransactionById(Long id) {
         return transactionRepository.getById(id);
     }
+
+    public List<Transaction> GetTransactionsFromIban(String iban)
+    {
+        return transactionRepository.getByAccountFrom(iban);
+    }
 }
