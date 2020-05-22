@@ -32,9 +32,14 @@ public class Swagger2SpringBoot implements CommandLineRunner {
     @Override
     public void run(String... arg0) throws Exception {
 
+
         List<Transaction> transactions = new ArrayList<>();
-        Transaction transaction1 = new Transaction(5L,OffsetDateTime.now(),"NL01INHO00000000001","NL01INHO00000000002",100.00,"Money for Fiat Multipla",1L);
+        Transaction transaction1 = new Transaction(OffsetDateTime.now(),"NL01INHO00000000001","NL01INHO00000000002",100.00,"Money for Fiat Multipla",1L);
+        Transaction transaction2 = new Transaction(OffsetDateTime.now(),"NL01INHO00000000001","NL01INHO00000000002",49.95,"Benzine Fiat multipla",1L);
+        Transaction transaction3 = new Transaction(OffsetDateTime.now(),"NL01INHO00000000002","NL01INHO00000000001",175.00,"Nieuwe Game",2L);
         transactions.add(transaction1);
+        transactions.add(transaction2);
+        transactions.add(transaction3);
         //Long id = transaction1.getId();
         //System.out.println(id);
 
@@ -42,6 +47,7 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         transactionRepository.findAll().forEach(System.out::println);
 
         //transactionRepository.save(transaction1);
+
 
 
         List<Account> accounts = new ArrayList<>();

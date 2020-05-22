@@ -2,7 +2,6 @@ package io.swagger.api;
 
 //import io.swagger.Service.TransactionService;
 import io.swagger.Service.TransactionService;
-import io.swagger.model.Body1;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;
 import io.swagger.model.Transaction;
@@ -14,20 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.*;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 @Controller
 public class TransactionsApiController implements TransactionsApi {
@@ -47,19 +39,28 @@ public class TransactionsApiController implements TransactionsApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> depositTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body2 body
-) {
+    public ResponseEntity<Void> depositTransaction(@ApiParam(value = "") @Valid @RequestBody Body2 body
+    ) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
+    /*
     public ResponseEntity<Void> newTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body1 body
 ) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
+     */
 
-    public ResponseEntity showAccountTransactions() {
+    public ResponseEntity newTransaction(@RequestBody Transaction transaction)
+    {
+        transactionService.addTransaction(transaction);
+        return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+    }
+
+
+    public ResponseEntity getAllTransactions() {
                     List<Transaction> transactions = transactionService.getAllTransactions();
                     return ResponseEntity
                             .status(200)
@@ -67,7 +68,8 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
-    public ResponseEntity<List<Transaction>> showTransaction(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
+    /*
+    public ResponseEntity<List<Transaction>> getTransactionById(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
 ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
@@ -81,6 +83,27 @@ public class TransactionsApiController implements TransactionsApi {
 
         return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_IMPLEMENTED);
     }
+     */
+
+
+
+    public ResponseEntity<Transaction> getTransactionById(@ApiParam(value = "Transaction ID",required=true) @PathVariable("id") Long id)
+    {
+        Transaction transactions = transactionService.getTransactionById(id);
+        return ResponseEntity
+                .status(200)
+                .body(transactions);
+    }
+
+    public ResponseEntity <List<Transaction>> getTransactionByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
+    {
+        List <Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
+        return ResponseEntity
+                .status(200)
+                .body(transactions);
+    }
+
+
 
     public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
 ) {
