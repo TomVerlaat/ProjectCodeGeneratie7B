@@ -45,16 +45,18 @@ public class Transaction   {
   private Long userPerformingId = null;
 
   //Constructor
-  public Transaction(OffsetDateTime timestamp, String accountFrom, String accountTo, Double amount, String description, Long userPerformingId) {
-    setTimestamp(timestamp);
+  public Transaction(String accountFrom, String accountTo, Double amount, String description, Long userPerformingId, TransactionTypeEnum transactionType) {
+    setTimestamp(OffsetDateTime.now());
     setAccountFrom(accountFrom);
     setAccountTo(accountTo);
     setAmount(amount);
     setDescription(description);
     setUserPerformingId(userPerformingId);
+    setTransactionType(transactionType);
   }
 
   public Transaction() {
+    setTimestamp(OffsetDateTime.now());
   }
 
   /**
@@ -65,7 +67,9 @@ public class Transaction   {
     
     WITHDRAWAL("Withdrawal"),
     
-    TRANSFER("Transfer");
+    TRANSFER("Transfer"),
+
+    PAYMENT("Payment");
 
     private String value;
 

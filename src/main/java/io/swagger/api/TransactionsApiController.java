@@ -4,6 +4,7 @@ package io.swagger.api;
 import io.swagger.Service.TransactionService;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;
+import io.swagger.model.DepositBody;
 import io.swagger.model.Transaction;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
@@ -39,10 +40,15 @@ public class TransactionsApiController implements TransactionsApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> depositTransaction(@ApiParam(value = "") @Valid @RequestBody Body2 body
+    public ResponseEntity depositTransaction(@Valid @RequestBody DepositBody body
     ) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        Transaction transaction = new Transaction();
+        transaction.setAccountFrom("NL01INHO0000000001");
+        transaction.setAccountTo(body.getAccountTo());
+        transaction.setAmount(body.getAmount());
+        transaction.setTransactionType(Transaction.TransactionTypeEnum.DEPOSIT);
+        transactionService.addTransaction(transaction);
+        return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
     }
 
     /*

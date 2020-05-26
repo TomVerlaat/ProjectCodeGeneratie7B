@@ -8,6 +8,7 @@ package io.swagger.api;
 //import io.swagger.Service.TransactionService;
 import io.swagger.model.Body2;
 import io.swagger.model.Body3;
+import io.swagger.model.DepositBody;
 import io.swagger.model.Transaction;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ import java.util.List;
 @Api(value = "Transactions", description = "the Transactions API")
 public interface TransactionsApi {
 
-    @ApiOperation(value = "Deposit", nickname = "depositTransaction", notes = "Creates new transaction", authorizations = {
+    @ApiOperation(value = "Deposit", nickname = "depositTransaction", notes = "Creates new deposit", authorizations = {
         @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "item created"),
@@ -32,7 +33,7 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions/deposit",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> depositTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body2 body
+    ResponseEntity<Void> depositTransaction(@Valid @RequestBody DepositBody body
 );
 
 
