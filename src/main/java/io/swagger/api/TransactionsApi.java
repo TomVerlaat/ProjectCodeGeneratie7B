@@ -6,9 +6,7 @@
 package io.swagger.api;
 
 //import io.swagger.Service.TransactionService;
-import io.swagger.model.Body2;
-import io.swagger.model.Body3;
-import io.swagger.model.Transaction;
+import io.swagger.model.*;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +21,7 @@ import java.util.List;
 @Api(value = "Transactions", description = "the Transactions API")
 public interface TransactionsApi {
 
-    @ApiOperation(value = "Deposit", nickname = "depositTransaction", notes = "Creates new transaction", authorizations = {
+    @ApiOperation(value = "Deposit", nickname = "depositTransaction", notes = "Creates new deposit", authorizations = {
         @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
     @ApiResponses(value = {
         @ApiResponse(code = 201, message = "item created"),
@@ -32,33 +30,32 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions/deposit",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> depositTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body2 body
+    ResponseEntity<Void> depositTransaction(@Valid @RequestBody DepositBody body
 );
 
-
-    /*
-    @ApiOperation(value = "Create New Transaction", nickname = "newTransaction", notes = "Creates new transaction", authorizations = {
-        @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
-    @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "item created"),
-        @ApiResponse(code = 400, message = "invalid input, object invalid"),
-        @ApiResponse(code = 409, message = "an existing item already exists") })
-    @RequestMapping(value = "/Transactions/new",
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    ResponseEntity<Void> newTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body1 body
-);
-     */
-    @ApiOperation(value = "Create New Transaction", nickname = "newTransaction", notes = "Creates new transaction", authorizations = {
+    @ApiOperation(value = "Withdraw", nickname = "witdhrawTransaction", notes = "Creates new withdraw", authorizations = {
             @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "item created"),
             @ApiResponse(code = 400, message = "invalid input, object invalid"),
             @ApiResponse(code = 409, message = "an existing item already exists") })
-    @RequestMapping(value = "/Transactions/new",
+    @RequestMapping(value = "/Transactions/withdraw",
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity newTransaction(@RequestBody Transaction transaction
+    ResponseEntity WithdrawTransaction(@Valid @RequestBody WithdrawBody body
+    );
+
+
+    @ApiOperation(value = "Create New payment", nickname = "payTransaction", notes = "Creates new payment", authorizations = {
+            @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "item created"),
+            @ApiResponse(code = 400, message = "invalid input, object invalid"),
+            @ApiResponse(code = 409, message = "an existing item already exists") })
+    @RequestMapping(value = "/Transactions/pay",
+            consumes = { "application/json" },
+            method = RequestMethod.POST)
+    ResponseEntity payTransaction(@RequestBody Transaction transaction
     );
 
 
@@ -73,7 +70,6 @@ public interface TransactionsApi {
             method = RequestMethod.GET)
     ResponseEntity<List<Transaction>> getAllTransactions(
     );
-
 
 
     @ApiOperation(value = "Get Transaction details", nickname = "getTransactionById", notes = "Gets particular transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
@@ -99,18 +95,5 @@ public interface TransactionsApi {
             method = RequestMethod.GET)
     ResponseEntity<List<Transaction>> getTransactionByIBAN(@PathVariable("iban") String iban
     );
-
-
-    @ApiOperation(value = "Withdraw", nickname = "witdhrawTransaction", notes = "Creates new transaction", authorizations = {
-        @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "item created"),
-        @ApiResponse(code = 400, message = "invalid input, object invalid"),
-        @ApiResponse(code = 409, message = "an existing item already exists") })
-    @RequestMapping(value = "/Transactions/withdraw",
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
-);
 
 }
