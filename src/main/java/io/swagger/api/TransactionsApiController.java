@@ -53,7 +53,7 @@ public class TransactionsApiController implements TransactionsApi {
     }
      */
 
-    public ResponseEntity newTransaction(@RequestBody Transaction transaction)
+    public ResponseEntity newTransaction(@Valid @RequestBody Transaction transaction)
     {
         transactionService.addTransaction(transaction);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
