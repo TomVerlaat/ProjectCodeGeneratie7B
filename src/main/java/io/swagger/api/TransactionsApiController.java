@@ -62,6 +62,14 @@ public class TransactionsApiController implements TransactionsApi {
 
     public ResponseEntity payTransaction(@Valid @RequestBody Transaction transaction)
     {
+        transaction.setTransactionType(Transaction.TransactionTypeEnum.PAYMENT);
+        transactionService.addTransaction(transaction);
+        return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+    }
+
+    public ResponseEntity TransferTransaction(@Valid @RequestBody Transaction transaction)
+    {
+        transaction.setTransactionType(Transaction.TransactionTypeEnum.TRANSFER);
         transactionService.addTransaction(transaction);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
     }
@@ -90,5 +98,5 @@ public class TransactionsApiController implements TransactionsApi {
                 .status(200)
                 .body(transactions);
     }
-    
+
 }
