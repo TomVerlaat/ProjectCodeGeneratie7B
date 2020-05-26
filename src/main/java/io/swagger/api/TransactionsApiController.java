@@ -59,23 +59,8 @@ public class TransactionsApiController implements TransactionsApi {
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
     }
 
-    /*
-    public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
-    ) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
-     */
 
-    /*
-    public ResponseEntity<Void> newTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body1 body
-) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
-     */
-
-    public ResponseEntity newTransaction(@Valid @RequestBody Transaction transaction)
+    public ResponseEntity payTransaction(@Valid @RequestBody Transaction transaction)
     {
         transactionService.addTransaction(transaction);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
@@ -88,25 +73,6 @@ public class TransactionsApiController implements TransactionsApi {
                             .status(200)
                             .body(transactions);
     }
-
-
-    /*
-    public ResponseEntity<List<Transaction>> getTransactionById(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("transactionid") Integer transactionid
-) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Transaction>>(objectMapper.readValue("[ {\n  \"transactionType\" : \"Deposit\",\n  \"accountTo\" : \"NL01INHO0000000000\",\n  \"amount\" : 100,\n  \"userPerformingId\" : 10000000001,\n  \"description\" : \"Money for your new RB-17\",\n  \"id\" : 10000000001,\n  \"accountFrom\" : \"NL01INHO0000000000\",\n  \"timestamp\" : \"2020-05-07T12:32:28Z\"\n}, {\n  \"transactionType\" : \"Deposit\",\n  \"accountTo\" : \"NL01INHO0000000000\",\n  \"amount\" : 100,\n  \"userPerformingId\" : 10000000001,\n  \"description\" : \"Money for your new RB-17\",\n  \"id\" : 10000000001,\n  \"accountFrom\" : \"NL01INHO0000000000\",\n  \"timestamp\" : \"2020-05-07T12:32:28Z\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Transaction>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_IMPLEMENTED);
-    }
-     */
-
 
 
     public ResponseEntity<Transaction> getTransactionById(@ApiParam(value = "Transaction ID",required=true) @PathVariable("id") Long id)
@@ -124,9 +90,5 @@ public class TransactionsApiController implements TransactionsApi {
                 .status(200)
                 .body(transactions);
     }
-
-
-
-
-
+    
 }

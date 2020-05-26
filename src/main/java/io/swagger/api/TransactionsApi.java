@@ -46,29 +46,16 @@ public interface TransactionsApi {
     );
 
 
-    /*
-    @ApiOperation(value = "Create New Transaction", nickname = "newTransaction", notes = "Creates new transaction", authorizations = {
-        @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
-    @ApiResponses(value = {
-        @ApiResponse(code = 201, message = "item created"),
-        @ApiResponse(code = 400, message = "invalid input, object invalid"),
-        @ApiResponse(code = 409, message = "an existing item already exists") })
-    @RequestMapping(value = "/Transactions/new",
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    ResponseEntity<Void> newTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body1 body
-);
-     */
-    @ApiOperation(value = "Create New Transaction", nickname = "newTransaction", notes = "Creates new transaction", authorizations = {
+    @ApiOperation(value = "Create New payment", nickname = "payTransaction", notes = "Creates new payment", authorizations = {
             @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "item created"),
             @ApiResponse(code = 400, message = "invalid input, object invalid"),
             @ApiResponse(code = 409, message = "an existing item already exists") })
-    @RequestMapping(value = "/Transactions/new",
+    @RequestMapping(value = "/Transactions/pay",
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity newTransaction(@RequestBody Transaction transaction
+    ResponseEntity payTransaction(@RequestBody Transaction transaction
     );
 
 
@@ -108,8 +95,5 @@ public interface TransactionsApi {
             method = RequestMethod.GET)
     ResponseEntity<List<Transaction>> getTransactionByIBAN(@PathVariable("iban") String iban
     );
-
-
-
 
 }
