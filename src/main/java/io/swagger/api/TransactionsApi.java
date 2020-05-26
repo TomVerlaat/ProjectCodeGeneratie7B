@@ -6,10 +6,7 @@
 package io.swagger.api;
 
 //import io.swagger.Service.TransactionService;
-import io.swagger.model.Body2;
-import io.swagger.model.Body3;
-import io.swagger.model.DepositBody;
-import io.swagger.model.Transaction;
+import io.swagger.model.*;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +32,18 @@ public interface TransactionsApi {
         method = RequestMethod.POST)
     ResponseEntity<Void> depositTransaction(@Valid @RequestBody DepositBody body
 );
+
+    @ApiOperation(value = "Withdraw", nickname = "witdhrawTransaction", notes = "Creates new withdraw", authorizations = {
+            @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "item created"),
+            @ApiResponse(code = 400, message = "invalid input, object invalid"),
+            @ApiResponse(code = 409, message = "an existing item already exists") })
+    @RequestMapping(value = "/Transactions/withdraw",
+            consumes = { "application/json" },
+            method = RequestMethod.POST)
+    ResponseEntity WithdrawTransaction(@Valid @RequestBody WithdrawBody body
+    );
 
 
     /*
@@ -76,7 +85,6 @@ public interface TransactionsApi {
     );
 
 
-
     @ApiOperation(value = "Get Transaction details", nickname = "getTransactionById", notes = "Gets particular transaction", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Transaction", response = Transaction.class, responseContainer = "List"),
@@ -102,16 +110,6 @@ public interface TransactionsApi {
     );
 
 
-    @ApiOperation(value = "Withdraw", nickname = "witdhrawTransaction", notes = "Creates new transaction", authorizations = {
-        @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "item created"),
-        @ApiResponse(code = 400, message = "invalid input, object invalid"),
-        @ApiResponse(code = 409, message = "an existing item already exists") })
-    @RequestMapping(value = "/Transactions/withdraw",
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
-);
+
 
 }

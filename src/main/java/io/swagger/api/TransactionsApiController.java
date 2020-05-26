@@ -2,10 +2,7 @@ package io.swagger.api;
 
 //import io.swagger.Service.TransactionService;
 import io.swagger.Service.TransactionService;
-import io.swagger.model.Body2;
-import io.swagger.model.Body3;
-import io.swagger.model.DepositBody;
-import io.swagger.model.Transaction;
+import io.swagger.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -50,6 +47,25 @@ public class TransactionsApiController implements TransactionsApi {
         transactionService.addTransaction(transaction);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
     }
+
+    public ResponseEntity WithdrawTransaction(@Valid @RequestBody WithdrawBody body
+    ) {
+        Transaction transaction = new Transaction();
+        transaction.setAccountFrom(body.getAccountFrom());
+        transaction.setAccountTo("NL01INHO0000000001");
+        transaction.setAmount(body.getAmount());
+        transaction.setTransactionType(Transaction.TransactionTypeEnum.WITHDRAWAL);
+        transactionService.addTransaction(transaction);
+        return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+    }
+
+    /*
+    public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
+    ) {
+        String accept = request.getHeader("Accept");
+        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    }
+     */
 
     /*
     public ResponseEntity<Void> newTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body1 body
@@ -111,10 +127,6 @@ public class TransactionsApiController implements TransactionsApi {
 
 
 
-    public ResponseEntity<Void> witdhrawTransaction(@ApiParam(value = ""  )  @Valid @RequestBody Body3 body
-) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
+
 
 }
