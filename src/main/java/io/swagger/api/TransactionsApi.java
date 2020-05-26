@@ -58,6 +58,18 @@ public interface TransactionsApi {
     ResponseEntity payTransaction(@RequestBody Transaction transaction
     );
 
+    @ApiOperation(value = "Create New transfer", nickname = "transferTransaction", notes = "Creates new transfer", authorizations = {
+            @Authorization(value = "ApiKeyAuth")    }, tags={ "Transactions", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "item created"),
+            @ApiResponse(code = 400, message = "invalid input, object invalid"),
+            @ApiResponse(code = 409, message = "an existing item already exists") })
+    @RequestMapping(value = "/Transactions/transfer",
+            consumes = { "application/json" },
+            method = RequestMethod.POST)
+    ResponseEntity TransferTransaction(@RequestBody Transaction transaction
+    );
+
 
     @ApiOperation(value = "Get all Transactions", nickname = "Get all transactions", notes = "gets transactions", response = Transaction.class, responseContainer = "List", tags={ "Transactions", })
     @ApiResponses(value = {

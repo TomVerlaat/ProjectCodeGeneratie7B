@@ -165,6 +165,7 @@ public class Transaction   {
    * @return accountTo
   **/
   @ApiModelProperty(example = "NL01INHO0000000000", value = "")
+      @NotNull
   
     public String getAccountTo() {
     return accountTo;
@@ -223,7 +224,7 @@ public class Transaction   {
    * @return userPerformingId
   **/
   @ApiModelProperty(example = "10000000001", required = true, value = "")
-      @NotNull
+      //@NotNull
 
     public Long getUserPerformingId() {
     return userPerformingId;
@@ -243,7 +244,7 @@ public class Transaction   {
    * @return transactionType
   **/
   @ApiModelProperty(example = "Deposit", required = true, value = "")
-      @NotNull
+      //@NotNull
 
     public TransactionTypeEnum getTransactionType() {
     return transactionType;
