@@ -16,10 +16,14 @@ public class AccountService {
     public AccountService() {
     }
 
-    public List<Account> getAllAccounts() { return (List<Account>) accountRepository.findAll();
+    public List<Account> getAllAccounts()
+    {
+        return (List<Account>) accountRepository.findAll();
     }
 
-    public List<Account> getAccountsById(long userId) { return (List<Account>) accountRepository.getAccountsById(userId);
+    public List<Account> getAccountsByUserId(Long userId)
+    {
+        return accountRepository.getAccountByUserId(userId);
     }
 
     public Account getAccountByIban(String iban)
@@ -27,6 +31,8 @@ public class AccountService {
         return accountRepository.getAccountByIban(iban);
     }
 
-    public void deactivateAccount(String iban) { accountRepository.deleteAccountBy(iban);
+    public void deactivateAccount(String iban)
+    {
+        accountRepository.deleteAccountBy(iban);
     }
 }

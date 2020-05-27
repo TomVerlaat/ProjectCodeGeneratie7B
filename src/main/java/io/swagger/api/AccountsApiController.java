@@ -61,17 +61,6 @@ public class AccountsApiController implements AccountsApi {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    /*
-    public ResponseEntity getAccountByIBAN(@ApiParam(value = "IBAN to get account",required=true) @PathVariable("iban") String iban
-) {
-        Account account = accountService.getAccountByIban("NL01INHO00000000001");
-        return ResponseEntity
-                .status(200)
-                .body(account);
-    }
-
-     */
-
     public ResponseEntity <Account> getAccountByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
         Account accounts = accountService.getAccountByIban(iban);
@@ -80,43 +69,14 @@ public class AccountsApiController implements AccountsApi {
                 .body(accounts);
     }
 
-
-
-    public ResponseEntity<List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
-) {
-       /* String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Account>>(objectMapper.readValue("[ {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n}, {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Account>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED); */
-        List<Account> accounts = accountService.getAccountsById(userid);
+    public ResponseEntity <List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid)
+    {
+        List<Account> accounts = accountService.getAccountsByUserId(userid);
         return ResponseEntity
                 .status(200)
                 .body(accounts);
     }
 
-    /*
-    public ResponseEntity<List<Account>> getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Integer limit
-,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName
-) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Account>>(objectMapper.readValue("[ {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n}, {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Account>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);
-    }*/
 
     public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit
             ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){

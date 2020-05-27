@@ -76,7 +76,7 @@ public interface AccountsApi {
     @RequestMapping(value = "/Accounts/GetByUserId/{userid}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
+    ResponseEntity getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
 );
 
 
