@@ -50,14 +50,19 @@ public class AccountsApiController implements AccountsApi {
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") Integer iban
+    public ResponseEntity<Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
 ) {
+        /*
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        */
+        accountService.deactivateAccount(iban);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Account>> getAccountByIBAN(@ApiParam(value = "IBAN to get account",required=true) @PathVariable("iban") Integer iban
+    public ResponseEntity getAccountByIBAN(@ApiParam(value = "IBAN to get account",required=true) @PathVariable("iban") String iban
 ) {
+        /*
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
@@ -68,12 +73,16 @@ public class AccountsApiController implements AccountsApi {
             }
         }
 
-        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);*/
+        Account account = accountService.getAccountByIban("NL01INHO00000000001");
+        return ResponseEntity
+                .status(200)
+                .body(account);
     }
 
-    public ResponseEntity<List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Integer userid
+    public ResponseEntity<List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
 ) {
-        String accept = request.getHeader("Accept");
+       /* String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
                 return new ResponseEntity<List<Account>>(objectMapper.readValue("[ {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n}, {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
@@ -83,7 +92,11 @@ public class AccountsApiController implements AccountsApi {
             }
         }
 
-        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED); */
+        List<Account> accounts = accountService.getAccountsById(userid);
+        return ResponseEntity
+                .status(200)
+                .body(accounts);
     }
 
     /*
@@ -103,7 +116,7 @@ public class AccountsApiController implements AccountsApi {
         return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);
     }*/
 
-    public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Integer limit
+    public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit
             ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){
         List<Account> accounts = accountService.getAllAccounts();
         return ResponseEntity
