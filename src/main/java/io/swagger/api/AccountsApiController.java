@@ -72,9 +72,9 @@ public class AccountsApiController implements AccountsApi {
 
      */
 
-    public ResponseEntity <List<Account>> getAccountByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
+    public ResponseEntity <Account> getAccountByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
-        List <Account> accounts = accountService.getAccountByIban(iban);
+        Account accounts = accountService.getAccountByIban(iban);
         return ResponseEntity
                 .status(200)
                 .body(accounts);

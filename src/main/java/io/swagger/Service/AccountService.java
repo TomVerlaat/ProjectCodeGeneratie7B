@@ -22,7 +22,7 @@ public class AccountService {
     public List<Account> getAccountsById(long userId) { return (List<Account>) accountRepository.getAccountsById(userId);
     }
 
-    public List<Account> getAccountByIban(String iban)
+    public Account getAccountByIban(String iban)
     {
         return accountRepository.getAccountByIban(iban);
     }
