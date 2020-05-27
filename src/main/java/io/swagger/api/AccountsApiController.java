@@ -5,6 +5,7 @@ import io.swagger.model.Account;
 import io.swagger.model.Body;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
+import io.swagger.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,25 +61,26 @@ public class AccountsApiController implements AccountsApi {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    /*
     public ResponseEntity getAccountByIBAN(@ApiParam(value = "IBAN to get account",required=true) @PathVariable("iban") String iban
 ) {
-        /*
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Account>>(objectMapper.readValue("[ {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n}, {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Account>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);*/
         Account account = accountService.getAccountByIban("NL01INHO00000000001");
         return ResponseEntity
                 .status(200)
                 .body(account);
     }
+
+     */
+
+    public ResponseEntity <List<Account>> getAccountByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
+    {
+        List <Account> accounts = accountService.getAccountByIban(iban);
+        return ResponseEntity
+                .status(200)
+                .body(accounts);
+    }
+
+
 
     public ResponseEntity<List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
 ) {
