@@ -8,6 +8,7 @@ package io.swagger.api;
 import io.swagger.model.Account;
 import io.swagger.model.Body;
 import io.swagger.annotations.*;
+import io.swagger.model.NewAccount;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public interface AccountsApi {
     @RequestMapping(value = "/Accounts/new",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> addAccount(@ApiParam(value = ""  )  @Valid @RequestBody Body body
+    ResponseEntity<Void> addAccount(@ApiParam(value = ""  )  @Valid @RequestBody NewAccount account
 );
 
 
@@ -50,13 +51,14 @@ public interface AccountsApi {
     @RequestMapping(value = "/Accounts/deactivate/{iban}",
         produces = { "application/json" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
+    ResponseEntity deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
 );
 
 
     @ApiOperation(value = "Get Account by IBAN", nickname = "getAccountByIBAN", notes = "Get Account that matches IBAN", response = Account.class, responseContainer = "List", tags={ "Accounts", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Account", response = Account.class, responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No account with this Iban"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
@@ -70,13 +72,14 @@ public interface AccountsApi {
     @ApiOperation(value = "Get all Accounts that a user has by the UserID", nickname = "getAccountByUserID", notes = "Get all Accounts that a user has by the UserID", response = Account.class, responseContainer = "List", tags={ "Accounts", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Account", response = Account.class, responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No accounts for this user"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
     @RequestMapping(value = "/Accounts/GetByUserId/{userid}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
+    ResponseEntity getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
 );
 
 

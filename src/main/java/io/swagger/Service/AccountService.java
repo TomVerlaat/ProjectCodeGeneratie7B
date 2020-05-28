@@ -2,8 +2,10 @@ package io.swagger.Service;
 
 import io.swagger.dao.AccountRepository;
 import io.swagger.model.Account;
+import io.swagger.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -16,10 +18,14 @@ public class AccountService {
     public AccountService() {
     }
 
-    public List<Account> getAllAccounts() { return (List<Account>) accountRepository.findAll();
+    public List<Account> getAllAccounts()
+    {
+        return (List<Account>) accountRepository.findAll();
     }
 
-    public List<Account> getAccountsById(long userId) { return (List<Account>) accountRepository.getAccountsById(userId);
+    public List<Account> getAccountsByUserId(Long userId)
+    {
+        return accountRepository.getAccountByUserId(userId);
     }
 
     public Account getAccountByIban(String iban)
@@ -27,6 +33,25 @@ public class AccountService {
         return accountRepository.getAccountByIban(iban);
     }
 
-    public void deactivateAccount(String iban) { accountRepository.deleteAccountBy(iban);
+    @PutMapping
+    public void deactivateAccount(String iban)
+    {
+        Account accountToDeactivate = accountRepository.getAccountByIban(iban);
+        accountToDeactivate.setActive(false);
+        accountRepository.save(accountToDeactivate);
     }
+
+    public boolean addAccount(Account account)
+    {
+        Account checkIfIbanExists = getAccountByIban(account.getIban());
+        if (checkIfIbanExists == null){
+            accountRepository.save(account);
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
 }

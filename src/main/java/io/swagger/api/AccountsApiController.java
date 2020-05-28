@@ -5,6 +5,7 @@ import io.swagger.model.Account;
 import io.swagger.model.Body;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
+import io.swagger.model.NewAccount;
 import io.swagger.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,85 +46,80 @@ public class AccountsApiController implements AccountsApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> addAccount(@ApiParam(value = ""  )  @Valid @RequestBody Body body
-) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    public ResponseEntity addAccount(@Valid @RequestBody NewAccount body)
+    {
+        Account account = new Account();
+        account.setBalance(0);
+        account.setActive(true);
+        account.setCurrency(body.getCurrency());
+        account.setIban(body.getIban());
+        account.setType(body.getType());
+
+        account.setUserId(body.getUserId());
+        if (accountService.addAccount(account)){
+            return ResponseEntity.status(HttpStatus.CREATED).body(account.getId());
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(account.getIban());
+        }
     }
 
-    public ResponseEntity<Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
-) {
-        /*
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-        */
-        accountService.deactivateAccount(iban);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+    public ResponseEntity <Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban)
+    {
+        Account accountToDeactivate = accountService.getAccountByIban(iban);
+        if (accountToDeactivate == null){
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        else {
+            accountService.deactivateAccount(iban);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
     }
-
-    /*
-    public ResponseEntity getAccountByIBAN(@ApiParam(value = "IBAN to get account",required=true) @PathVariable("iban") String iban
-) {
-        Account account = accountService.getAccountByIban("NL01INHO00000000001");
-        return ResponseEntity
-                .status(200)
-                .body(account);
-    }
-
-     */
 
     public ResponseEntity <Account> getAccountByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
-        Account accounts = accountService.getAccountByIban(iban);
-        return ResponseEntity
-                .status(200)
-                .body(accounts);
+        Account account = accountService.getAccountByIban(iban);
+        if (account == null){
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .body(account);
+        }
+        else{
+            return ResponseEntity
+                    .status(200)
+                    .body(account);
+        }
     }
 
-
-
-    public ResponseEntity<List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid
-) {
-       /* String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Account>>(objectMapper.readValue("[ {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n}, {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Account>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+    public ResponseEntity <List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid)
+    {
+        List<Account> accounts = accountService.getAccountsByUserId(userid);
+        if (accounts.size() > 0) {
+            return ResponseEntity
+                    .status(200)
+                    .body(accounts);
         }
-
-        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED); */
-        List<Account> accounts = accountService.getAccountsById(userid);
-        return ResponseEntity
-                .status(200)
-                .body(accounts);
+        else{
+            return ResponseEntity
+                    .status(204)
+                    .body(accounts);
+        }
     }
 
-    /*
-    public ResponseEntity<List<Account>> getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Integer limit
-,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName
-) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<Account>>(objectMapper.readValue("[ {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n}, {\n  \"balance\" : {\n    \"accountId\" : 10000000001,\n    \"balance\" : 99.95,\n    \"id\" : 10000000001\n  },\n  \"iban\" : \"NLxxINHO0xxxxxxxxx\",\n  \"active\" : true,\n  \"currency\" : \"EUR\",\n  \"id\" : 10000000001,\n  \"type\" : \"Savings\",\n  \"userId\" : 10000000002\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<Account>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<List<Account>>(HttpStatus.NOT_IMPLEMENTED);
-    }*/
 
     public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit
             ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){
         List<Account> accounts = accountService.getAllAccounts();
-        return ResponseEntity
-                .status(200)
-                .body(accounts);
+        if (accounts.size() > 0) {
+            return ResponseEntity
+                    .status(200)
+                    .body(accounts);
+        }
+        else{
+            return ResponseEntity
+                    .status(204)
+                    .body(accounts);
+        }
     }
 
 }
