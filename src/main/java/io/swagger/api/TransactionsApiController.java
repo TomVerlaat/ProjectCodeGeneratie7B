@@ -1,6 +1,7 @@
 package io.swagger.api;
 
 //import io.swagger.Service.TransactionService;
+import io.swagger.Service.AccountService;
 import io.swagger.Service.TransactionService;
 import io.swagger.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +26,9 @@ public class TransactionsApiController implements TransactionsApi {
     @Autowired
     private TransactionService transactionService;
 
+    @Autowired
+    private AccountService accountService;
+
     private static final Logger log = LoggerFactory.getLogger(TransactionsApiController.class);
 
     private final ObjectMapper objectMapper;
@@ -45,6 +49,11 @@ public class TransactionsApiController implements TransactionsApi {
         transaction.setAmount(body.getAmount());
         transaction.setTransactionType(Transaction.TransactionTypeEnum.DEPOSIT);
         transactionService.addTransaction(transaction);
+
+        Account account = accountService.getAccountByIban(body.getAccountTo());
+        account.setBalance(account.getBalance() + body.getAmount());
+        accountService.updateAccount(account);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
     }
 
@@ -60,8 +69,13 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
-    public ResponseEntity payTransaction(@Valid @RequestBody Transaction transaction)
+    public ResponseEntity payTransaction(@Valid @RequestBody PaymentBody body)
     {
+        Transaction transaction = new Transaction();
+        transaction.setAccountFrom(body.getAccountFrom());
+        transaction.setAccountTo(body.getAccountTo());
+        transaction.setAmount(body.getAmount());
+
         transaction.setTransactionType(Transaction.TransactionTypeEnum.PAYMENT);
         transactionService.addTransaction(transaction);
         return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());

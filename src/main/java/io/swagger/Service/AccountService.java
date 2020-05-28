@@ -54,4 +54,9 @@ public class AccountService {
 
     }
 
+    public void updateAccount(Account account)
+    {
+        accountRepository.save(account);
+    }
+
 }
