@@ -107,9 +107,16 @@ public class AccountsApiController implements AccountsApi {
     public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit
             ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){
         List<Account> accounts = accountService.getAllAccounts();
-        return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
-                .body(accounts);
+        if (accounts.size() > 0) {
+            return ResponseEntity
+                    .status(200)
+                    .body(accounts);
+        }
+        else{
+            return ResponseEntity
+                    .status(204)
+                    .body(accounts);
+        }
     }
 
 }
