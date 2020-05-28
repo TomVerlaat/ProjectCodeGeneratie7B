@@ -13,6 +13,4 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
 
     Account getAccountByIban(String value);
 
-    void deleteAccountBy(String value);
-
 }

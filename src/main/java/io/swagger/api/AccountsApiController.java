@@ -5,6 +5,7 @@ import io.swagger.model.Account;
 import io.swagger.model.Body;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
+import io.swagger.model.NewAccount;
 import io.swagger.model.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,13 +46,27 @@ public class AccountsApiController implements AccountsApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> addAccount(@ApiParam(value = ""  )  @Valid @RequestBody Body body
+    public ResponseEntity addAccount(@Valid @RequestBody NewAccount body
 ) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        Account newAccount = new Account();
+        newAccount.setBalance(0);
+        newAccount.setCurrency(Account.CurrencyEnum.EUR);
+        newAccount.setIban(body.getIban());
+
+        //Convert enum of NewAccount to Account
+        Account.TypeEnum typeOfNewAccount = newAccount.getType();
+        newAccount.setType(typeOfNewAccount);
+
+        newAccount.setUserId(body.getUserId());
+        if (accountService.addAccount(newAccount)){
+            return ResponseEntity.status(HttpStatus.CREATED).body(newAccount.getId());
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(newAccount.getIban());
+        }
     }
 
-    public ResponseEntity<Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
+    public ResponseEntity <Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
 ) {
         /*
         String accept = request.getHeader("Accept");

@@ -8,6 +8,7 @@ package io.swagger.api;
 import io.swagger.model.Account;
 import io.swagger.model.Body;
 import io.swagger.annotations.*;
+import io.swagger.model.NewAccount;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public interface AccountsApi {
     @RequestMapping(value = "/Accounts/new",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> addAccount(@ApiParam(value = ""  )  @Valid @RequestBody Body body
+    ResponseEntity<Void> addAccount(@ApiParam(value = ""  )  @Valid @RequestBody NewAccount account
 );
 
 
@@ -50,7 +51,7 @@ public interface AccountsApi {
     @RequestMapping(value = "/Accounts/deactivate/{iban}",
         produces = { "application/json" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
+    ResponseEntity deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
 );
 
 
