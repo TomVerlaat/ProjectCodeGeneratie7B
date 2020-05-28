@@ -39,38 +39,6 @@ public class Account   {
   @JsonProperty("userId")
   private Long userId = null;
 
-  /**
-   * Gets or Sets type
-   */
-  public enum TypeEnum {
-    SAVINGS("Savings"),
-    
-    CURRENT("Current");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
-  @JsonProperty("type")
-  private TypeEnum type = null;
 
   /**
    * Gets or Sets currency
@@ -160,10 +128,44 @@ public class Account   {
    * Get type
    * @return type
   **/
+
+  /**
+   * Gets or Sets type
+   */
+  public enum TypeEnum {
+    SAVINGS("Savings"),
+
+    CURRENT("Current");
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String text) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+  @JsonProperty("type")
+  private TypeEnum type = null;
+
   @ApiModelProperty(example = "Savings", required = true, value = "")
       @NotNull
 
-    public TypeEnum getType() {
+    private TypeEnum getType() {
     return type;
   }
 

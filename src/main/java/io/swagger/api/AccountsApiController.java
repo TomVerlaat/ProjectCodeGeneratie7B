@@ -46,32 +46,29 @@ public class AccountsApiController implements AccountsApi {
         this.request = request;
     }
 
-    public ResponseEntity addAccount(@Valid @RequestBody NewAccount body
-) {
-        Account newAccount = new Account();
-        newAccount.setBalance(0);
-        newAccount.setCurrency(Account.CurrencyEnum.EUR);
-        newAccount.setIban(body.getIban());
+    public ResponseEntity addAccount(@Valid @RequestBody NewAccount body)
+    {
+        Account account = new Account();
+        account.setBalance(0);
+        account.setActive(true);
+        account.setCurrency(Account.CurrencyEnum.EUR);
+        account.setIban(body.getIban());
 
         //Convert enum of NewAccount to Account
-        Account.TypeEnum typeOfNewAccount = newAccount.getType();
-        newAccount.setType(typeOfNewAccount);
+        Account.TypeEnum typeOfNewAccount = body.getType();
+        account.setType(typeOfNewAccount);
 
-        newAccount.setUserId(body.getUserId());
-        if (accountService.addAccount(newAccount)){
-            return ResponseEntity.status(HttpStatus.CREATED).body(newAccount.getId());
+        account.setUserId(body.getUserId());
+        if (accountService.addAccount(account)){
+            return ResponseEntity.status(HttpStatus.CREATED).body(account.getId());
         }
         else{
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(newAccount.getIban());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(account.getIban());
         }
     }
 
-    public ResponseEntity <Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban
-) {
-        /*
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-        */
+    public ResponseEntity <Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban)
+    {
         accountService.deactivateAccount(iban);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
