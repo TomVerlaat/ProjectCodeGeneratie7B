@@ -50,6 +50,7 @@ public class TransactionsApiController implements TransactionsApi {
         transaction.setTransactionType(Transaction.TransactionTypeEnum.DEPOSIT);
         transactionService.addTransaction(transaction);
 
+        // Deposit money into account
         Account account = accountService.getAccountByIban(body.getAccountTo());
         account.setBalance(account.getBalance() + body.getAmount());
         accountService.updateAccount(account);
@@ -59,26 +60,51 @@ public class TransactionsApiController implements TransactionsApi {
 
     public ResponseEntity WithdrawTransaction(@Valid @RequestBody WithdrawBody body
     ) {
-        Transaction transaction = new Transaction();
-        transaction.setAccountFrom(body.getAccountFrom());
-        transaction.setAccountTo("NL01INHO0000000001");
-        transaction.setAmount(body.getAmount());
-        transaction.setTransactionType(Transaction.TransactionTypeEnum.WITHDRAWAL);
-        transactionService.addTransaction(transaction);
-        return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+        // Withdraw money from account
+        Account account = accountService.getAccountByIban(body.getAccountFrom());
+        if(account.getBalance() >= body.getAmount()) {
+
+            Transaction transaction = new Transaction();
+            transaction.setAccountFrom(body.getAccountFrom());
+            transaction.setAccountTo("NL01INHO0000000001");
+            transaction.setAmount(body.getAmount());
+            transaction.setTransactionType(Transaction.TransactionTypeEnum.WITHDRAWAL);
+            transactionService.addTransaction(transaction);
+
+            account.setBalance(account.getBalance() - body.getAmount());
+            accountService.updateAccount(account);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
 
     public ResponseEntity payTransaction(@Valid @RequestBody PaymentBody body)
     {
-        Transaction transaction = new Transaction();
-        transaction.setAccountFrom(body.getAccountFrom());
-        transaction.setAccountTo(body.getAccountTo());
-        transaction.setAmount(body.getAmount());
+        Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
+        if(accountFrom.getBalance() >= body.getAmount()) {
 
-        transaction.setTransactionType(Transaction.TransactionTypeEnum.PAYMENT);
-        transactionService.addTransaction(transaction);
-        return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+            Transaction transaction = new Transaction();
+            transaction.setAccountFrom(body.getAccountFrom());
+            transaction.setAccountTo(body.getAccountTo());
+            transaction.setAmount(body.getAmount());
+            transaction.setDescription(body.getDescription());
+
+            // Retrieve money
+            accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
+            accountService.updateAccount(accountFrom);
+
+            // Add money
+            Account accountTo = accountService.getAccountByIban(body.getAccountTo());
+            accountTo.setBalance(accountTo.getBalance() + body.getAmount());
+            accountService.updateAccount(accountTo);
+
+            transaction.setTransactionType(Transaction.TransactionTypeEnum.PAYMENT);
+            transactionService.addTransaction(transaction);
+            return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     public ResponseEntity TransferTransaction(@Valid @RequestBody Transaction transaction)
