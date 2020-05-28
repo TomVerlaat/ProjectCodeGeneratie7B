@@ -55,7 +55,7 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions/pay",
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity payTransaction(@RequestBody Transaction transaction
+    ResponseEntity payTransaction(@RequestBody PaymentBody body
     );
 
     @ApiOperation(value = "Create New transfer", nickname = "transferTransaction", notes = "Creates new transfer", authorizations = {
