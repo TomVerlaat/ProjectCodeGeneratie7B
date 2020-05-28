@@ -44,7 +44,14 @@ public class Account   {
    * Gets or Sets currency
    */
   public enum CurrencyEnum {
-    EUR("EUR");
+    AUD("AUD"),
+    CAD("CAD"),
+    CHF("CHF"),
+    EUR("EUR"),
+    GBP("GBP"),
+    JPY("JPY"),
+    NZD("NZD"),
+    USD("USD");
 
     private String value;
 

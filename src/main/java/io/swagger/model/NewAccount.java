@@ -21,7 +21,7 @@ import javax.validation.constraints.*;
 public class NewAccount   {
     public NewAccount(){}
 
-    public NewAccount(CurrencyEnum currency, String iban, Account.TypeEnum type, Long userId){
+    public NewAccount(Account.CurrencyEnum currency, String iban, Account.TypeEnum type, Long userId){
         //Static properties
         setActive(true);
         setBalance(0);
@@ -78,7 +78,7 @@ public class NewAccount   {
 
     /**
      * Gets or Sets currency
-     */
+
     public enum CurrencyEnum {
         EUR("EUR");
 
@@ -103,9 +103,9 @@ public class NewAccount   {
             }
             return null;
         }
-    }
+    }*/
     @JsonProperty("currency")
-    private CurrencyEnum currency = null;
+    private Account.CurrencyEnum currency = null;
 
     @JsonProperty("balance")
     private Double balance = null;
@@ -175,7 +175,7 @@ public class NewAccount   {
         this.type = type;
     }
 
-    public NewAccount currency(CurrencyEnum currency) {
+    public NewAccount currency(Account.CurrencyEnum currency) {
         this.currency = currency;
         return this;
     }
@@ -187,11 +187,11 @@ public class NewAccount   {
     @ApiModelProperty(example = "EUR", required = true, value = "")
     @NotNull
 
-    public CurrencyEnum getCurrency() {
+    public Account.CurrencyEnum getCurrency() {
         return currency;
     }
 
-    public void setCurrency(CurrencyEnum currency) {
+    public void setCurrency(Account.CurrencyEnum currency) {
         this.currency = currency;
     }
 
