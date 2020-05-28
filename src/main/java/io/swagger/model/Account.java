@@ -172,7 +172,7 @@ public class Account   {
   @ApiModelProperty(example = "Savings", required = true, value = "")
       @NotNull
 
-    private TypeEnum getType() {
+  public TypeEnum getType() {
     return type;
   }
 

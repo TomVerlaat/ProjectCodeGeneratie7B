@@ -51,17 +51,9 @@ public class AccountsApiController implements AccountsApi {
         Account account = new Account();
         account.setBalance(0);
         account.setActive(true);
-        Account.CurrencyEnum currencyOfNewAccount = body.getCurrency();
         account.setCurrency(body.getCurrency());
         account.setIban(body.getIban());
-        try{
-            //Convert enum of NewAccount to Account
-            Account.TypeEnum typeOfNewAccount = body.getType();
-            account.setType(typeOfNewAccount);
-        }
-            catch (Exception e){
-            account.setType(Account.TypeEnum.SAVINGS);
-        }
+        account.setType(body.getType());
 
         account.setUserId(body.getUserId());
         if (accountService.addAccount(account)){
