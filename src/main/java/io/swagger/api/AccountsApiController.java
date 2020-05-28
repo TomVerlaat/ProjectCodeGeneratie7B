@@ -66,8 +66,14 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity <Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban)
     {
-        accountService.deactivateAccount(iban);
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        Account accountToDeactivate = accountService.getAccountByIban(iban);
+        if (accountToDeactivate == null){
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        else {
+            accountService.deactivateAccount(iban);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
     }
 
     public ResponseEntity <Account> getAccountByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
