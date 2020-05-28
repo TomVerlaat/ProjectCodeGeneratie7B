@@ -58,6 +58,7 @@ public interface AccountsApi {
     @ApiOperation(value = "Get Account by IBAN", nickname = "getAccountByIBAN", notes = "Get Account that matches IBAN", response = Account.class, responseContainer = "List", tags={ "Accounts", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Account", response = Account.class, responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No account with this Iban"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
@@ -71,6 +72,7 @@ public interface AccountsApi {
     @ApiOperation(value = "Get all Accounts that a user has by the UserID", nickname = "getAccountByUserID", notes = "Get all Accounts that a user has by the UserID", response = Account.class, responseContainer = "List", tags={ "Accounts", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Account", response = Account.class, responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No accounts for this user"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })

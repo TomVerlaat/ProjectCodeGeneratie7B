@@ -75,18 +75,32 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity <Account> getAccountByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
-        Account accounts = accountService.getAccountByIban(iban);
-        return ResponseEntity
-                .status(200)
-                .body(accounts);
+        Account account = accountService.getAccountByIban(iban);
+        if (account == null){
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .body(account);
+        }
+        else{
+            return ResponseEntity
+                    .status(200)
+                    .body(account);
+        }
     }
 
     public ResponseEntity <List<Account>> getAccountByUserID(@ApiParam(value = "UserID to get accounts",required=true) @PathVariable("userid") Long userid)
     {
         List<Account> accounts = accountService.getAccountsByUserId(userid);
-        return ResponseEntity
-                .status(200)
-                .body(accounts);
+        if (accounts.size() > 0) {
+            return ResponseEntity
+                    .status(200)
+                    .body(accounts);
+        }
+        else{
+            return ResponseEntity
+                    .status(204)
+                    .body(accounts);
+        }
     }
 
 
@@ -94,7 +108,7 @@ public class AccountsApiController implements AccountsApi {
             ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){
         List<Account> accounts = accountService.getAllAccounts();
         return ResponseEntity
-                .status(200)
+                .status(HttpStatus.NO_CONTENT)
                 .body(accounts);
     }
 
