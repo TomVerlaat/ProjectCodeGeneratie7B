@@ -71,8 +71,7 @@ public interface UsersApi {
     @RequestMapping(value = "/Users/new",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> newUser(@ApiParam(value = ""  )  @Valid @RequestBody NewUserBody body
-);
+    ResponseEntity newUser( @Valid @RequestBody NewUserBody body);
 
 
     @ApiOperation(value = "Update user information", nickname = "updateUser", notes = "Update an User", tags={ "Users", })

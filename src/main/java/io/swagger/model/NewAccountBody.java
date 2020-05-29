@@ -2,9 +2,6 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.validation.annotation.Validated;
 
@@ -18,10 +15,10 @@ import javax.validation.constraints.*;
 @Entity
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
-public class NewAccount   {
-    public NewAccount(){}
+public class NewAccountBody {
+    public NewAccountBody(){}
 
-    public NewAccount(Account.CurrencyEnum currency, String iban, Account.TypeEnum type, Long userId){
+    public NewAccountBody(Account.CurrencyEnum currency, String iban, Account.TypeEnum type, Long userId){
         //Static properties
         setActive(true);
         setBalance(0);
@@ -116,7 +113,7 @@ public class NewAccount   {
     @JsonProperty("iban")
     private String iban = null;
 
-    public NewAccount id(Long id) {
+    public NewAccountBody id(Long id) {
         this.id = id;
         return this;
     }
@@ -135,7 +132,7 @@ public class NewAccount   {
         this.id = id;
     }
 
-    public NewAccount userId(Long userId) {
+    public NewAccountBody userId(Long userId) {
         this.userId = userId;
         return this;
     }
@@ -155,7 +152,7 @@ public class NewAccount   {
         this.userId = userId;
     }
 
-    public NewAccount type(Account.TypeEnum type) {
+    public NewAccountBody type(Account.TypeEnum type) {
         this.type = type;
         return this;
     }
@@ -175,7 +172,7 @@ public class NewAccount   {
         this.type = type;
     }
 
-    public NewAccount currency(Account.CurrencyEnum currency) {
+    public NewAccountBody currency(Account.CurrencyEnum currency) {
         this.currency = currency;
         return this;
     }
@@ -195,7 +192,7 @@ public class NewAccount   {
         this.currency = currency;
     }
 
-    public NewAccount balance(double balance) {
+    public NewAccountBody balance(double balance) {
         this.balance = balance;
         return this;
     }
@@ -215,7 +212,7 @@ public class NewAccount   {
         this.balance = balance;
     }
 
-    public NewAccount active(Boolean active) {
+    public NewAccountBody active(Boolean active) {
         this.active = active;
         return this;
     }
@@ -235,7 +232,7 @@ public class NewAccount   {
         this.active = active;
     }
 
-    public NewAccount iban(String iban) {
+    public NewAccountBody iban(String iban) {
         this.iban = iban;
         return this;
     }
@@ -263,7 +260,7 @@ public class NewAccount   {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        NewAccount account = (NewAccount) o;
+        NewAccountBody account = (NewAccountBody) o;
         return Objects.equals(this.id, account.id) &&
                 Objects.equals(this.userId, account.userId) &&
                 Objects.equals(this.type, account.type) &&

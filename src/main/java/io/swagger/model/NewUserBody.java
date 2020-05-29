@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  * Body4
@@ -48,35 +49,9 @@ public class NewUserBody {
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    CUSTOMER("Customer"),
-    
-    EMPLOYEE("Employee");
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
   @JsonProperty("type")
-  private TypeEnum type = null;
+  private User.TypeEnum type = null;
 
   public NewUserBody username(String username) {
     this.username = username;
@@ -88,6 +63,7 @@ public class NewUserBody {
    * @return username
   **/
   @ApiModelProperty(example = "MaxVerstappen", value = "")
+  @NotNull
   
     public String getUsername() {
     return username;
@@ -107,6 +83,7 @@ public class NewUserBody {
    * @return password
   **/
   @ApiModelProperty(example = "Password123", value = "")
+  @NotNull
   
     public String getPassword() {
     return password;
@@ -126,6 +103,7 @@ public class NewUserBody {
    * @return firstName
   **/
   @ApiModelProperty(example = "Max", value = "")
+  @NotNull
   
     public String getFirstName() {
     return firstName;
@@ -145,6 +123,7 @@ public class NewUserBody {
    * @return lastName
   **/
   @ApiModelProperty(example = "Verstappen", value = "")
+  @NotNull
   
     public String getLastName() {
     return lastName;
@@ -164,6 +143,7 @@ public class NewUserBody {
    * @return email
   **/
   @ApiModelProperty(example = "verstappen@jumbo.nl", value = "")
+  @NotNull
   
     public String getEmail() {
     return email;
@@ -183,6 +163,7 @@ public class NewUserBody {
    * @return birthdate
   **/
   @ApiModelProperty(example = "Sun Nov 16 00:00:00 GMT 10", value = "")
+  @NotNull
   
     @Valid
     public LocalDate getBirthdate() {
@@ -203,6 +184,7 @@ public class NewUserBody {
    * @return address
   **/
   @ApiModelProperty(example = "Alphenlaat 42", value = "")
+  @NotNull
   
     public String getAddress() {
     return address;
@@ -222,6 +204,7 @@ public class NewUserBody {
    * @return postalcode
   **/
   @ApiModelProperty(example = "2041 KP", value = "")
+  @NotNull
   
     public String getPostalcode() {
     return postalcode;
@@ -241,6 +224,7 @@ public class NewUserBody {
    * @return city
   **/
   @ApiModelProperty(example = "Zandvoort", value = "")
+  @NotNull
   
     public String getCity() {
     return city;
@@ -260,6 +244,7 @@ public class NewUserBody {
    * @return phoneNumber
   **/
   @ApiModelProperty(example = "069876543210", value = "")
+  @NotNull
   
     public String getPhoneNumber() {
     return phoneNumber;
@@ -269,7 +254,7 @@ public class NewUserBody {
     this.phoneNumber = phoneNumber;
   }
 
-  public NewUserBody type(TypeEnum type) {
+  public NewUserBody type(User.TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -279,12 +264,13 @@ public class NewUserBody {
    * @return type
   **/
   @ApiModelProperty(example = "Customer", value = "")
+  @NotNull
   
-    public TypeEnum getType() {
+    public User.TypeEnum getType() {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  public void setType(User.TypeEnum type) {
     this.type = type;
   }
 
