@@ -2,10 +2,12 @@ package io.swagger.Service;
 
 import io.swagger.dao.TransactionRepository;
 import io.swagger.dao.UserRepository;
+import io.swagger.model.Account;
 import io.swagger.model.Transaction;
 import io.swagger.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -24,5 +26,21 @@ public UserService() {
     public void addUser(User user)
     {
         userRepository.save(user);
+    }
+
+    public User getUserByUserId(Long id) { return userRepository.getUserById(id); }
+
+    @PutMapping
+    public void deactivateUser(Long id)
+    {
+        User userToDeactivate = userRepository.getUserById(id);
+        userToDeactivate.setActive(false);
+        userRepository.save(userToDeactivate);
+    }
+
+    @PutMapping
+    public User updateUser(User newUser){
+        userRepository.save(newUser);
+        return newUser;
     }
 }
