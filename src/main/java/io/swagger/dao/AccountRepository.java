@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Long> {
 
-    List<Account> getAccountByUserId(Long value);
-
     Account getAccountByIban(String value);
+
+    List<Account> getAccountByUserId(Long value);
 
 }

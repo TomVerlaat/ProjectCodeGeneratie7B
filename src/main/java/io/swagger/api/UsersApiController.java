@@ -39,10 +39,16 @@ public class UsersApiController implements UsersApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> deactivateUser(@ApiParam(value = ""  )  @Valid @RequestBody Body6 body
-) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    public ResponseEntity <Void> deactivateUser(@ApiParam(value = "userId to deactivate",required=true) @PathVariable("userid") Long id)
+    {
+        User userToDeactivate = userService.getUserByUserId(id);
+        if (userToDeactivate == null){
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        else {
+            userService.deactivateUser(id);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
     }
 
     public ResponseEntity getAllUsers() {
@@ -52,19 +58,19 @@ public class UsersApiController implements UsersApi {
                 .body(users);
     }
 
-    public ResponseEntity<List<User>> getUser(@ApiParam(value = "user to retrieve",required=true) @PathVariable("userid") Integer userid
+    public ResponseEntity<User> getUser(@ApiParam(value = "user to retrieve",required=true) @PathVariable("userid") Long id
 ) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<List<User>>(objectMapper.readValue("[ {\n  \"lastName\" : \"Verstappen\",\n  \"birthdate\" : \"0010-11-16T00:00:00.000+0000\",\n  \"address\" : \"Alphenlaat 42\",\n  \"city\" : \"Zandvoort\",\n  \"active\" : true,\n  \"type\" : \"Customer\",\n  \"firstName\" : \"Max\",\n  \"password\" : \"Password123\",\n  \"phoneNumber\" : \"069876543210\",\n  \"postalcode\" : \"2041 KP\",\n  \"id\" : 10000000001,\n  \"email\" : \"verstappen@jumbo.nl\",\n  \"username\" : \"MaxVerstappen\"\n}, {\n  \"lastName\" : \"Verstappen\",\n  \"birthdate\" : \"0010-11-16T00:00:00.000+0000\",\n  \"address\" : \"Alphenlaat 42\",\n  \"city\" : \"Zandvoort\",\n  \"active\" : true,\n  \"type\" : \"Customer\",\n  \"firstName\" : \"Max\",\n  \"password\" : \"Password123\",\n  \"phoneNumber\" : \"069876543210\",\n  \"postalcode\" : \"2041 KP\",\n  \"id\" : 10000000001,\n  \"email\" : \"verstappen@jumbo.nl\",\n  \"username\" : \"MaxVerstappen\"\n} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<User>>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+        User user = userService.getUserByUserId(id);
+        if (user == null){
+            return ResponseEntity
+                    .status(HttpStatus.NO_CONTENT)
+                    .body(user);
         }
-
-        return new ResponseEntity<List<User>>(HttpStatus.NOT_IMPLEMENTED);
+        else{
+            return ResponseEntity
+                    .status(200)
+                    .body(user);
+        }
     }
 
     public ResponseEntity newUser(@Valid @RequestBody NewUserBody body

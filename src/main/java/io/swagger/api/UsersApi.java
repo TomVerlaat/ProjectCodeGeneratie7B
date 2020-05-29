@@ -29,11 +29,10 @@ public interface UsersApi {
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
-    @RequestMapping(value = "/Users/deactivate",
+    @RequestMapping(value = "/Users/deactivate/{userid}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity<Void> deactivateUser(@ApiParam(value = ""  )  @Valid @RequestBody Body6 body
+    ResponseEntity<Void> deactivateUser(@ApiParam(value = "user to deactivate",required=true) @PathVariable("userid") Long id
 );
 
 
@@ -58,7 +57,7 @@ public interface UsersApi {
     @RequestMapping(value = "/Users/{userid}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<User>> getUser(@ApiParam(value = "user to retrieve",required=true) @PathVariable("userid") Integer userid
+    ResponseEntity<User> getUser(@ApiParam(value = "user to retrieve",required=true) @PathVariable("userid") Long id
 );
 
 
