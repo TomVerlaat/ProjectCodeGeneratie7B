@@ -93,10 +93,33 @@ public class UsersApiController implements UsersApi {
         return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
     }
 
-    public ResponseEntity<Void> updateUser(@ApiParam(value = ""  )  @Valid @RequestBody Body5 body
+    public ResponseEntity <Void> updateUser(@ApiParam(value = ""  )  @Valid @RequestBody User user
 ) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        User checkUser = userService.getUserByUserId(user.getId());
+        if (checkUser == null){
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            User newUser = new User();
+            // Fill updated user with filled in parameters
+            newUser.setId(user.getId());
+            newUser.setUsername(user.getUsername());
+            newUser.setPassword(user.getPassword());
+            newUser.setFirstName(user.getFirstName());
+            newUser.setLastName(user.getLastName());
+            newUser.setEmail(user.getEmail());
+            newUser.setBirthdate(LocalDate.now());
+            newUser.setAddress(user.getAddress());
+            newUser.setPostalcode(user.getPostalcode());
+            newUser.setCity(user.getCity());
+            newUser.setPhoneNumber(user.getPhoneNumber());
+            newUser.setActive(true);
+            newUser.setType(user.getType());
+
+            // Save updated user
+            userService.updateUser(newUser);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
     }
 
 }

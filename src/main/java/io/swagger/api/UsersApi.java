@@ -74,16 +74,17 @@ public interface UsersApi {
 
 
     @ApiOperation(value = "Update user information", nickname = "updateUser", notes = "Update an User", tags={ "Users", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "item created"),
+    @ApiResponses(value = {
+        @ApiResponse(code = 201, message = "item updated", response = String.class),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
+        @ApiResponse(code = 500, message = "Prima call"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
     @RequestMapping(value = "/Users/update",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity<Void> updateUser(@ApiParam(value = ""  )  @Valid @RequestBody Body5 body
+    ResponseEntity updateUser(@ApiParam(value = ""  )  @Valid @RequestBody User user
 );
 
 }

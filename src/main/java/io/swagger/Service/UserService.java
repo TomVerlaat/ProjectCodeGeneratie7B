@@ -37,4 +37,10 @@ public UserService() {
         userToDeactivate.setActive(false);
         userRepository.save(userToDeactivate);
     }
+
+    @PutMapping
+    public User updateUser(User newUser){
+        userRepository.save(newUser);
+        return newUser;
+    }
 }
