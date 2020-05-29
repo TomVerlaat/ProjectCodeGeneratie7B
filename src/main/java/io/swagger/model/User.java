@@ -8,16 +8,21 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
+
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
  * User
  */
+@Entity
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 public class User   {
-  
+  @Id
+  @SequenceGenerator(name = "transaction_seq", initialValue = 1000001)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
   @JsonProperty("id")
   private Long id = null;
 
@@ -50,6 +55,25 @@ public class User   {
 
   @JsonProperty("phoneNumber")
   private String phoneNumber = null;
+
+  public User() {
+  }
+
+  public User(TypeEnum type,String username, String password, String firstName, String lastName, String email, LocalDate birthdate, String address, String postalcode, String city, String phoneNumber)
+  {
+    setType(type);
+    setUsername(username);
+    setPassword(password);
+    setFirstName(firstName);
+    setLastName(lastName);
+    setEmail(email);
+    setBirthdate(birthdate);
+    setAddress(address);
+    setPostalcode(postalcode);
+    setCity(city);
+    setPhoneNumber(phoneNumber);
+    setActive(true);
+  }
 
   /**
    * Gets or Sets type

@@ -4,19 +4,17 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * Body4
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
-public class Body4   {
+public class NewUserBody {
   @JsonProperty("username")
   private String username = null;
 
@@ -80,7 +78,7 @@ public class Body4   {
   @JsonProperty("type")
   private TypeEnum type = null;
 
-  public Body4 username(String username) {
+  public NewUserBody username(String username) {
     this.username = username;
     return this;
   }
@@ -99,7 +97,7 @@ public class Body4   {
     this.username = username;
   }
 
-  public Body4 password(String password) {
+  public NewUserBody password(String password) {
     this.password = password;
     return this;
   }
@@ -118,7 +116,7 @@ public class Body4   {
     this.password = password;
   }
 
-  public Body4 firstName(String firstName) {
+  public NewUserBody firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -137,7 +135,7 @@ public class Body4   {
     this.firstName = firstName;
   }
 
-  public Body4 lastName(String lastName) {
+  public NewUserBody lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -156,7 +154,7 @@ public class Body4   {
     this.lastName = lastName;
   }
 
-  public Body4 email(String email) {
+  public NewUserBody email(String email) {
     this.email = email;
     return this;
   }
@@ -175,7 +173,7 @@ public class Body4   {
     this.email = email;
   }
 
-  public Body4 birthdate(LocalDate birthdate) {
+  public NewUserBody birthdate(LocalDate birthdate) {
     this.birthdate = birthdate;
     return this;
   }
@@ -195,7 +193,7 @@ public class Body4   {
     this.birthdate = birthdate;
   }
 
-  public Body4 address(String address) {
+  public NewUserBody address(String address) {
     this.address = address;
     return this;
   }
@@ -214,7 +212,7 @@ public class Body4   {
     this.address = address;
   }
 
-  public Body4 postalcode(String postalcode) {
+  public NewUserBody postalcode(String postalcode) {
     this.postalcode = postalcode;
     return this;
   }
@@ -233,7 +231,7 @@ public class Body4   {
     this.postalcode = postalcode;
   }
 
-  public Body4 city(String city) {
+  public NewUserBody city(String city) {
     this.city = city;
     return this;
   }
@@ -252,7 +250,7 @@ public class Body4   {
     this.city = city;
   }
 
-  public Body4 phoneNumber(String phoneNumber) {
+  public NewUserBody phoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -271,7 +269,7 @@ public class Body4   {
     this.phoneNumber = phoneNumber;
   }
 
-  public Body4 type(TypeEnum type) {
+  public NewUserBody type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -299,7 +297,7 @@ public class Body4   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Body4 body4 = (Body4) o;
+    NewUserBody body4 = (NewUserBody) o;
     return Objects.equals(this.username, body4.username) &&
         Objects.equals(this.password, body4.password) &&
         Objects.equals(this.firstName, body4.firstName) &&
