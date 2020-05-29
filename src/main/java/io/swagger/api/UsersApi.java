@@ -5,27 +5,20 @@
  */
 package io.swagger.api;
 
-import io.swagger.model.Body4;
+import io.swagger.model.NewUserBody;
 import io.swagger.model.Body5;
 import io.swagger.model.Body6;
 import io.swagger.model.User;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.CookieValue;
 
 import javax.validation.Valid;
-import javax.validation.constraints.*;
 import java.util.List;
-import java.util.Map;
+
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 @Api(value = "Users", description = "the Users API")
 public interface UsersApi {
@@ -78,7 +71,7 @@ public interface UsersApi {
     @RequestMapping(value = "/Users/new",
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> newUser(@ApiParam(value = ""  )  @Valid @RequestBody Body4 body
+    ResponseEntity<Void> newUser(@ApiParam(value = ""  )  @Valid @RequestBody NewUserBody body
 );
 
 

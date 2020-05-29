@@ -3,8 +3,10 @@ package io.swagger;
 //import io.swagger.dao.TransactionRepository;
 import io.swagger.dao.AccountRepository;
 import io.swagger.dao.TransactionRepository;
+import io.swagger.dao.UserRepository;
 import io.swagger.model.Account;
 import io.swagger.model.Transaction;
+import io.swagger.model.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -25,12 +28,21 @@ import java.util.List;
 public class Swagger2SpringBoot implements CommandLineRunner {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private TransactionRepository transactionRepository;
     @Autowired
     private AccountRepository accountRepository;
 
     @Override
     public void run(String... arg0) throws Exception {
+
+        List<User> users = new ArrayList<>();
+        User user1 = new User(User.TypeEnum.CUSTOMER,"TomVerlaat","Welom01","Tom","Verlaat","TomVerlaat@gmail.com", LocalDate.of(1998,12,10),"Twijver 9","1606BT","Venhuizen","0681165360");
+        users.add(user1);
+        users.forEach(userRepository::save);
+        userRepository.findAll().forEach(System.out::println);
 
 
         List<Transaction> transactions = new ArrayList<>();
@@ -60,6 +72,10 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
         accounts.forEach(accountRepository::save);
         accountRepository.findAll().forEach(System.out::println);
+
+
+
+
 
         if (arg0.length > 0 && arg0[0].equals("exitcode")) {
             throw new ExitException();
