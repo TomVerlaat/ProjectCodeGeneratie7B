@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.threeten.bp.LocalDate;
 
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
@@ -66,10 +67,24 @@ public class UsersApiController implements UsersApi {
         return new ResponseEntity<List<User>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> newUser(@ApiParam(value = ""  )  @Valid @RequestBody NewUserBody body
+    public ResponseEntity newUser(@Valid @RequestBody NewUserBody body
 ) {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        User user = new User();
+        user.setUsername(body.getUsername());
+        user.setPassword(body.getPassword());
+        user.setFirstName(body.getFirstName());
+        user.setLastName(body.getLastName());
+        user.setEmail(body.getEmail());
+        user.setBirthdate(LocalDate.now());
+        user.setAddress(body.getAddress());
+        user.setPostalcode(body.getPostalcode());
+        user.setCity(body.getCity());
+        user.setPhoneNumber(body.getPhoneNumber());
+        user.setActive(true);
+        user.setType(body.getType());
+
+        userService.addUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
     }
 
     public ResponseEntity<Void> updateUser(@ApiParam(value = ""  )  @Valid @RequestBody Body5 body

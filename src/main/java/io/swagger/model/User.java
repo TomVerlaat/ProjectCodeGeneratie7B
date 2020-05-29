@@ -72,7 +72,6 @@ public class User   {
     setPostalcode(postalcode);
     setCity(city);
     setPhoneNumber(phoneNumber);
-    setActive(true);
   }
 
   /**
@@ -111,7 +110,7 @@ public class User   {
   private TypeEnum type = null;
 
   @JsonProperty("active")
-  private Boolean active = null;
+  private Boolean active = true;
 
   public User id(Long id) {
     this.id = id;
