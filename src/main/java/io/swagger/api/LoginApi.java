@@ -22,7 +22,7 @@ public interface LoginApi {
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
     @RequestMapping(value = "/Login",
-        consumes = { "application/json" },
+        consumes = { "application/x-www-form-urlencoded" },
         method = RequestMethod.POST)
     ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username
 , @ApiParam(value = "") @RequestParam(value="password", required=false)  String password
