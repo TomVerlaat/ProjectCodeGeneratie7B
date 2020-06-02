@@ -26,7 +26,7 @@ public class LoginApiController implements LoginApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username
+        public ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username
 ,@ApiParam(value = "") @RequestParam(value="password", required=false)  String password
 ) {
         return new ResponseEntity<Void>(HttpStatus.OK);

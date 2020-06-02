@@ -1,14 +1,13 @@
 package io.swagger.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.LocalDate;
 import org.springframework.validation.annotation.Validated;
+import org.threeten.bp.LocalDate;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * Body4
@@ -51,7 +50,7 @@ public class NewUserBody {
    */
 
   @JsonProperty("type")
-  private User.TypeEnum type = null;
+  private User.Type type = null;
 
   public NewUserBody username(String username) {
     this.username = username;
@@ -254,7 +253,7 @@ public class NewUserBody {
     this.phoneNumber = phoneNumber;
   }
 
-  public NewUserBody type(User.TypeEnum type) {
+  public NewUserBody type(User.Type type) {
     this.type = type;
     return this;
   }
@@ -266,11 +265,11 @@ public class NewUserBody {
   @ApiModelProperty(example = "Customer", value = "")
   @NotNull
   
-    public User.TypeEnum getType() {
+    public User.Type getType() {
     return type;
   }
 
-  public void setType(User.TypeEnum type) {
+  public void setType(User.Type type) {
     this.type = type;
   }
 

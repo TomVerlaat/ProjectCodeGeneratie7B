@@ -7,19 +7,16 @@ import io.swagger.dao.UserRepository;
 import io.swagger.model.Account;
 import io.swagger.model.Transaction;
 import io.swagger.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.threeten.bp.LocalDate;
-import org.threeten.bp.OffsetDateTime;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -39,7 +36,7 @@ public class Swagger2SpringBoot implements CommandLineRunner {
     public void run(String... arg0) throws Exception {
 
         List<User> users = new ArrayList<>();
-        User user1 = new User(User.TypeEnum.CUSTOMER,"TomVerlaat","Welom01","Tom","Verlaat","TomVerlaat@gmail.com", LocalDate.of(1998,12,10),"Twijver 9","1606BT","Venhuizen","0681165360");
+        User user1 = new User(User.Type.CUSTOMER,"TomVerlaat","Welom01","Tom","Verlaat","TomVerlaat@gmail.com", LocalDate.of(1998,12,10),"Twijver 9","1606BT","Venhuizen","0681165360");
         users.add(user1);
         users.forEach(userRepository::save);
         userRepository.findAll().forEach(System.out::println);

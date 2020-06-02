@@ -1,8 +1,6 @@
 package io.swagger.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
@@ -22,9 +20,9 @@ import java.util.Objects;
 public class User   {
   @Id
   @SequenceGenerator(name = "transaction_seq", initialValue = 1000001)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonProperty("id")
-  private Long id = null;
+  private long id;
 
   @JsonProperty("username")
   private String username = null;
@@ -56,6 +54,9 @@ public class User   {
   @JsonProperty("phoneNumber")
   private String phoneNumber = null;
 
+  @JsonProperty("type")
+  private Type type = null;
+
   private boolean isAccountNonExpired = true;
   private boolean isAccountNonLocked = true;
   private boolean isCredentialsNonExpired = true;
@@ -64,7 +65,7 @@ public class User   {
   public User() {
   }
 
-  public User(TypeEnum type,String username, String password, String firstName, String lastName, String email, LocalDate birthdate, String address, String postalcode, String city, String phoneNumber)
+  public User(Type type,String username, String password, String firstName, String lastName, String email, LocalDate birthdate, String address, String postalcode, String city, String phoneNumber)
   {
     setType(type);
     setUsername(username);
@@ -82,37 +83,9 @@ public class User   {
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    CUSTOMER("Customer"),
-    
-    EMPLOYEE("Employee"),
-    
-    BANK("Bank");
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String text) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
+  public enum Type {
+    CUSTOMER, EMPLOYEE, BANK;
   }
-  @JsonProperty("type")
-  private TypeEnum type = null;
 
   @JsonProperty("active")
   private Boolean active = true;
@@ -128,7 +101,7 @@ public class User   {
   **/
   @ApiModelProperty(example = "10000000001", value = "")
   
-    public Long getId() {
+    public long getId() {
     return id;
   }
 
@@ -336,7 +309,7 @@ public class User   {
     this.phoneNumber = phoneNumber;
   }
 
-  public User type(TypeEnum type) {
+  public User type(Type type) {
     this.type = type;
     return this;
   }
@@ -348,11 +321,11 @@ public class User   {
   @ApiModelProperty(example = "Customer", required = true, value = "")
       @NotNull
 
-    public TypeEnum getType() {
+    public Type getType() {
     return type;
   }
 
-  public void setType(TypeEnum type) {
+  public void setType(Type type) {
     this.type = type;
   }
 
