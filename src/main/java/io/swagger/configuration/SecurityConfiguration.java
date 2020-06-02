@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/Users/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/Users/**").hasAuthority("EMPLOYEE")
                 .antMatchers(HttpMethod.GET, "/Transactions/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/Transactions/**").hasAuthority("EMPLOYEE")
+                //.antMatchers(HttpMethod.POST, "/Transactions/**").hasAuthority("EMPLOYEE")
                 .antMatchers(HttpMethod.GET, "/Accounts/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/Accounts/**").hasAuthority("EMPLOYEE")
                 .antMatchers("/**").permitAll()

@@ -46,9 +46,9 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
 
         List<Transaction> transactions = new ArrayList<>();
-        Transaction transaction1 = new Transaction("NL01INHO00000000001","NL01INHO00000000002",100.00,"Money for Fiat Multipla",1L, Transaction.TransactionTypeEnum.PAYMENT);
-        Transaction transaction2 = new Transaction("NL01INHO00000000001","NL01INHO00000000002",49.95,"Benzine Fiat multipla",1L, Transaction.TransactionTypeEnum.PAYMENT);
-        Transaction transaction3 = new Transaction("NL01INHO00000000002","NL01INHO00000000001",175.00,"Nieuwe Game",2L, Transaction.TransactionTypeEnum.PAYMENT);
+        Transaction transaction1 = new Transaction("NL01INHO00000000010","NL01INHO00000000002",100.00,"Money for Fiat Multipla",1L, Transaction.TransactionTypeEnum.PAYMENT);
+        Transaction transaction2 = new Transaction("NL01INHO00000000010","NL01INHO00000000002",49.95,"Benzine Fiat multipla",1L, Transaction.TransactionTypeEnum.PAYMENT);
+        Transaction transaction3 = new Transaction("NL01INHO00000000002","NL01INHO00000000010",175.00,"Nieuwe Game",2L, Transaction.TransactionTypeEnum.PAYMENT);
         transactions.add(transaction1);
         transactions.add(transaction2);
         transactions.add(transaction3);
@@ -63,12 +63,12 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
 
         List<Account> accounts = new ArrayList<>();
-        Account account1 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO00000000001", Account.TypeEnum.CURRENT,1);
-        Account account2 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO03119837070", Account.TypeEnum.SAVINGS,2);
-        Account account3 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO00000000003", Account.TypeEnum.CURRENT,3);
-        Account account4 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO00000000033", Account.TypeEnum.CURRENT,1);
-        Account account5 = new Account(0, Account.CurrencyEnum.CAD, "NL01INHO00000000043", Account.TypeEnum.SAVINGS,1);
-        Account account6 = new Account(0, Account.CurrencyEnum.AUD, "NL01INHO00000000845", Account.TypeEnum.CURRENT,2);
+        Account account1 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000010", Account.TypeEnum.CURRENT,1);
+        Account account2 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO03119837070", Account.TypeEnum.SAVINGS,2);
+        Account account3 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000003", Account.TypeEnum.CURRENT,2);
+        Account account4 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000033", Account.TypeEnum.CURRENT,1);
+        Account account5 = new Account(500, Account.CurrencyEnum.CAD, "NL01INHO00000000043", Account.TypeEnum.SAVINGS,1);
+        Account account6 = new Account(500, Account.CurrencyEnum.AUD, "NL01INHO00000000845", Account.TypeEnum.CURRENT,2);
         accounts.add(account1);
         accounts.add(account2);
         accounts.add(account3);
