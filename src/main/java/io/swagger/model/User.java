@@ -1,17 +1,17 @@
 package io.swagger.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.threeten.bp.LocalDate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
+import org.threeten.bp.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * User
@@ -56,6 +56,11 @@ public class User   {
   @JsonProperty("phoneNumber")
   private String phoneNumber = null;
 
+  private boolean isAccountNonExpired = true;
+  private boolean isAccountNonLocked = true;
+  private boolean isCredentialsNonExpired = true;
+  private boolean isEnabled = true;
+
   public User() {
   }
 
@@ -63,7 +68,7 @@ public class User   {
   {
     setType(type);
     setUsername(username);
-    setPassword(password);
+    setPassword(new BCryptPasswordEncoder().encode(password));
     setFirstName(firstName);
     setLastName(lastName);
     setEmail(email);
@@ -371,6 +376,37 @@ public class User   {
     this.active = active;
   }
 
+  public boolean isAccountNonExpired() {
+    return isAccountNonExpired;
+  }
+
+  public void setAccountNonExpired(boolean accountNonExpired) {
+    isAccountNonExpired = accountNonExpired;
+  }
+
+  public boolean isAccountNonLocked() {
+    return isAccountNonLocked;
+  }
+
+  public void setAccountNonLocked(boolean accountNonLocked) {
+    isAccountNonLocked = accountNonLocked;
+  }
+
+  public boolean isCredentialsNonExpired() {
+    return isCredentialsNonExpired;
+  }
+
+  public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+    isCredentialsNonExpired = credentialsNonExpired;
+  }
+
+  public boolean isEnabled() {
+    return isEnabled;
+  }
+
+  public void setEnabled(boolean enabled) {
+    isEnabled = enabled;
+  }
 
   @Override
   public boolean equals(java.lang.Object o) {
