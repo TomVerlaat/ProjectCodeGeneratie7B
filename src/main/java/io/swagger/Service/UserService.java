@@ -1,9 +1,6 @@
 package io.swagger.Service;
 
-import io.swagger.dao.TransactionRepository;
 import io.swagger.dao.UserRepository;
-import io.swagger.model.Account;
-import io.swagger.model.Transaction;
 import io.swagger.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +39,10 @@ public UserService() {
     public User updateUser(User newUser){
         userRepository.save(newUser);
         return newUser;
+    }
+
+    public long getUserByUsername(String username) {
+        User tempUser = userRepository.getUserByUsername(username);
+        return tempUser.getId();
     }
 }
