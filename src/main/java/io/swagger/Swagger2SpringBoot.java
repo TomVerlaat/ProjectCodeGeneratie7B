@@ -38,6 +38,9 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         List<User> users = new ArrayList<>();
         User user1 = new User(User.Type.CUSTOMER,"TomVerlaat","Welom01","Tom","Verlaat","TomVerlaat@gmail.com", LocalDate.of(1998,12,10),"Twijver 9","1606BT","Venhuizen","0681165360");
         users.add(user1);
+
+        User user2 = new User(User.Type.EMPLOYEE,"ChrisvanRoode","Welkom01!","Chris","van Roode","cbvroode@gmail.com", LocalDate.of(2001,05,30),"Heerenweg 253","1851KR","Heiloo","0643182173");
+        users.add(user2);
         users.forEach(userRepository::save);
         userRepository.findAll().forEach(System.out::println);
 
@@ -60,19 +63,21 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
 
         List<Account> accounts = new ArrayList<>();
-        Account account1 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000001", Account.TypeEnum.CURRENT,1);
-        Account account2 = new Account(600, Account.CurrencyEnum.EUR, "NL01INHO03119837070", Account.TypeEnum.SAVINGS,2);
-        Account account3 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000003", Account.TypeEnum.CURRENT,3);
+        Account account1 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO00000000001", Account.TypeEnum.CURRENT,1);
+        Account account2 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO03119837070", Account.TypeEnum.SAVINGS,2);
+        Account account3 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO00000000003", Account.TypeEnum.CURRENT,3);
+        Account account4 = new Account(0, Account.CurrencyEnum.EUR, "NL01INHO00000000033", Account.TypeEnum.CURRENT,1);
+        Account account5 = new Account(0, Account.CurrencyEnum.CAD, "NL01INHO00000000043", Account.TypeEnum.SAVINGS,1);
+        Account account6 = new Account(0, Account.CurrencyEnum.AUD, "NL01INHO00000000845", Account.TypeEnum.CURRENT,2);
         accounts.add(account1);
         accounts.add(account2);
         accounts.add(account3);
+        accounts.add(account4);
+        accounts.add(account5);
+        accounts.add(account6);
 
         accounts.forEach(accountRepository::save);
         accountRepository.findAll().forEach(System.out::println);
-
-
-
-
 
         if (arg0.length > 0 && arg0[0].equals("exitcode")) {
             throw new ExitException();

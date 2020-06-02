@@ -2,6 +2,7 @@ package io.swagger.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.Service.AccountService;
+import io.swagger.Service.UserService;
 import io.swagger.annotations.ApiParam;
 import io.swagger.model.Account;
 import io.swagger.model.NewAccountBody;
@@ -29,6 +30,9 @@ public class AccountsApiController implements AccountsApi {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private UserService userService;
 
     private static final Logger log = LoggerFactory.getLogger(AccountsApiController.class);
 
@@ -87,10 +91,10 @@ public class AccountsApiController implements AccountsApi {
         }
     }
 
-    public ResponseEntity <List<Account>> getAccountByUserID(@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId)
+    public ResponseEntity <List<Account>> getAccountByUserID(/*@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId*/)
     {
         System.out.println("Current user: " + getUserId());
-        List<Account> accounts = accountService.getAccountsByUserId((long)2);
+        List<Account> accounts = accountService.getAccountsByUserId(getUserId());
 
         if (accounts.size() > 0) {
             return ResponseEntity
@@ -120,8 +124,8 @@ public class AccountsApiController implements AccountsApi {
         }
     }
 
-    private String getUserId() {
+    private long getUserId() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        return loggedInUser.getName();
+        return userService.getUserByUsername(loggedInUser.getName());
     }
 }

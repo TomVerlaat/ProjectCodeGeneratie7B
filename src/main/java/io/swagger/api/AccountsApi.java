@@ -70,10 +70,10 @@ public interface AccountsApi {
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
-    @RequestMapping(value = "/Accounts/GetByUserId/{userId}",
+    @RequestMapping(value = "/Accounts/GetByUserId",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity getAccountByUserID(@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId);
+    ResponseEntity getAccountByUserID(/*@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId*/);
 
 
     @ApiOperation(value = "Get All Accounts", nickname = "getAllAccounts", notes = "Get all accounts in the system", response = Account.class, responseContainer = "List", tags={ "Accounts", })
