@@ -29,7 +29,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/Users/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/Users").hasAuthority("EMPLOYEE")
+                .antMatchers(HttpMethod.GET, "/Users/{userid}").permitAll()
+                .antMatchers(HttpMethod.PUT, "/Users/**").hasAuthority("EMPLOYEE")
                 .antMatchers(HttpMethod.POST, "/Users/**").hasAuthority("EMPLOYEE")
                 .antMatchers(HttpMethod.GET, "/Transactions/**").permitAll()
                 //.antMatchers(HttpMethod.POST, "/Transactions/**").hasAuthority("EMPLOYEE")
