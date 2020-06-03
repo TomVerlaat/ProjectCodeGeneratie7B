@@ -41,6 +41,10 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
         User user2 = new User(User.Type.EMPLOYEE,"ChrisvanRoode","Welkom01!","Chris","van Roode","cbvroode@gmail.com", LocalDate.of(2001,05,30),"Heerenweg 253","1851KR","Heiloo","0643182173");
         users.add(user2);
+
+        User user3 = new User(User.Type.CUSTOMER,"JanSmit","Welkom01!","Jan","Smit","jansmit@gmail.com", LocalDate.of(1985,05,30),"Palinglaan 3","2020KR","Volendam","0643182162");
+        users.add(user3);
+
         users.forEach(userRepository::save);
         userRepository.findAll().forEach(System.out::println);
 

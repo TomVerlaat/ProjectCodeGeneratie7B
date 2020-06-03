@@ -8,11 +8,11 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * PaymentBody
+ * TransferBody
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
-public class PaymentBody {
+public class TransferBody {
 
   @JsonProperty("accountTo")
   private String accountTo = null;
@@ -41,7 +41,7 @@ public class PaymentBody {
     this.accountTo = accountTo;
   }
 
-  public PaymentBody amount(Double amount) {
+  public TransferBody amount(Double amount) {
     this.amount = amount;
     return this;
   }
@@ -102,7 +102,7 @@ public class PaymentBody {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PaymentBody depositBody = (PaymentBody) o;
+    TransferBody depositBody = (TransferBody) o;
     return
         Objects.equals(this.accountTo, depositBody.accountTo) &&
         Objects.equals(this.amount, depositBody.amount);

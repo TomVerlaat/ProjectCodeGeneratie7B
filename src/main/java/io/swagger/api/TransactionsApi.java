@@ -67,7 +67,7 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions/transfer",
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity TransferTransaction(@RequestBody Transaction transaction
+    ResponseEntity TransferTransaction(@RequestBody TransferBody body
     );
 
 
