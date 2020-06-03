@@ -65,7 +65,7 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         List<Account> accounts = new ArrayList<>();
         Account account1 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000010", Account.TypeEnum.CURRENT,1);
         Account account2 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO03119837070", Account.TypeEnum.SAVINGS,2);
-        Account account3 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000003", Account.TypeEnum.CURRENT,2);
+        Account account3 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000002", Account.TypeEnum.CURRENT,2);
         Account account4 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000033", Account.TypeEnum.CURRENT,1);
         Account account5 = new Account(500, Account.CurrencyEnum.CAD, "NL01INHO00000000043", Account.TypeEnum.SAVINGS,1);
         Account account6 = new Account(500, Account.CurrencyEnum.AUD, "NL01INHO00000000845", Account.TypeEnum.CURRENT,2);

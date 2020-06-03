@@ -52,8 +52,10 @@ public class TransactionsApiController implements TransactionsApi {
         return userService.getUserByUsername(loggedInUser.getName());
     }
 
+    // WERKT!
     public ResponseEntity depositTransaction(@Valid @RequestBody DepositBody body
     ) {
+        // Only User with account has access
         List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
         boolean access = false;
         for (Account account:userAccounts) {
@@ -85,8 +87,10 @@ public class TransactionsApiController implements TransactionsApi {
         }
     }
 
+    // WERKT!
     public ResponseEntity WithdrawTransaction(@Valid @RequestBody WithdrawBody body
     ) {
+        // Only User with account has access
         List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
         boolean access = false;
         for (Account account:userAccounts) {
@@ -120,8 +124,10 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
+    //WERKT!
     public ResponseEntity payTransaction(@Valid @RequestBody PaymentBody body)
     {
+        // Only user with account has access.
         List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
         boolean access = false;
         for (Account account:userAccounts) {
@@ -160,6 +166,7 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
+    // Nog beveiligen
     public ResponseEntity TransferTransaction(@Valid @RequestBody Transaction transaction)
     {
         transaction.setTransactionType(Transaction.TransactionTypeEnum.TRANSFER);
@@ -168,28 +175,64 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
+    // WERKT!
     public ResponseEntity getAllTransactions() {
-                    List<Transaction> transactions = transactionService.getAllTransactions();
-                    return ResponseEntity
-                            .status(200)
-                            .body(transactions);
+        // Only for employees
+        User user = userService.getUserByUserId(getUserId());
+        if(user.getType().equals(User.Type.EMPLOYEE))
+        {
+            List<Transaction> transactions = transactionService.getAllTransactions();
+            return ResponseEntity
+                    .status(200)
+                    .body(transactions);
+        }
+        else {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
     }
 
-
+    // Nog beveiligen
     public ResponseEntity<Transaction> getTransactionById(@ApiParam(value = "Transaction ID",required=true) @PathVariable("id") Long id)
     {
+        //alleen eigenaar van transaction en employee
         Transaction transactions = transactionService.getTransactionById(id);
         return ResponseEntity
                 .status(200)
                 .body(transactions);
     }
 
-    public ResponseEntity <List<Transaction>> getTransactionByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
+
+    // WERKT!
+    public ResponseEntity <List<Transaction>> getTransactionsByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
-        List <Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
-        return ResponseEntity
-                .status(200)
-                .body(transactions);
+        // Owner of account and employee have access
+        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
+        boolean access = false;
+
+        // Owner of IBAN account
+        for (Account account:userAccounts) {
+            if(account.getIban().equals(iban))
+            {
+                access = true;
+                break;
+            }
+        }
+        //Employee
+        User user = userService.getUserByUserId(getUserId());
+        if(user.getType().equals(User.Type.EMPLOYEE))
+        {
+            access = true;
+        }
+
+        if(access) {
+            List<Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
+            return ResponseEntity
+                    .status(200)
+                    .body(transactions);
+        }
+        else {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
     }
 
 }
