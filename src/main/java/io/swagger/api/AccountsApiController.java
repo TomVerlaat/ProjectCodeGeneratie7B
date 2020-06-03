@@ -126,6 +126,6 @@ public class AccountsApiController implements AccountsApi {
 
     private long getUserId() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByUsername(loggedInUser.getName());
+        return userService.getUserIDByUsername(loggedInUser.getName());
     }
 }

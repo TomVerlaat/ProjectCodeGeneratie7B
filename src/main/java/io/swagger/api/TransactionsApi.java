@@ -67,7 +67,7 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions/transfer",
             consumes = { "application/json" },
             method = RequestMethod.POST)
-    ResponseEntity TransferTransaction(@RequestBody Transaction transaction
+    ResponseEntity TransferTransaction(@RequestBody TransferBody body
     );
 
 
@@ -105,7 +105,7 @@ public interface TransactionsApi {
     @RequestMapping(value = "/Transactions/all/{iban}",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List<Transaction>> getTransactionByIBAN(@PathVariable("iban") String iban
+    ResponseEntity<List<Transaction>> getTransactionsByIBAN(@PathVariable("iban") String iban
     );
 
 }

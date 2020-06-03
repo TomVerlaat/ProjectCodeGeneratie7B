@@ -25,7 +25,13 @@ public class AccountService {
 
     public List<Account> getAccountsByUserId(Long userId)
     {
-        return accountRepository.getAccountByUserId(userId);
+        try {
+            return accountRepository.getAccountByUserId(userId);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     public Account getAccountByIban(String iban)

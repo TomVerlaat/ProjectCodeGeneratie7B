@@ -48,12 +48,14 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
     private long getUserId() {
-        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserByUsername(loggedInUser.getName());
+            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+            return userService.getUserIDByUsername(loggedInUser.getName());
     }
 
+    // WERKT!
     public ResponseEntity depositTransaction(@Valid @RequestBody DepositBody body
     ) {
+        // Only User with account has access
         List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
         boolean access = false;
         for (Account account:userAccounts) {
@@ -85,8 +87,10 @@ public class TransactionsApiController implements TransactionsApi {
         }
     }
 
+    // WERKT!
     public ResponseEntity WithdrawTransaction(@Valid @RequestBody WithdrawBody body
     ) {
+        // Only User with account has access
         List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
         boolean access = false;
         for (Account account:userAccounts) {
@@ -120,8 +124,10 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
+    //WERKT!
     public ResponseEntity payTransaction(@Valid @RequestBody PaymentBody body)
     {
+        // Only user with account has access.
         List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
         boolean access = false;
         for (Account account:userAccounts) {
@@ -160,36 +166,142 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
-    public ResponseEntity TransferTransaction(@Valid @RequestBody Transaction transaction)
+    // WERKT!
+    public ResponseEntity TransferTransaction(@Valid @RequestBody TransferBody body)
     {
-        transaction.setTransactionType(Transaction.TransactionTypeEnum.TRANSFER);
-        transactionService.addTransaction(transaction);
-        return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+        // Check if user has acces to AccountFrom
+        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
+        boolean accessToAccountFrom = false;
+        for (Account account:userAccounts) {
+            if(account.getIban().equals(body.getAccountFrom()))
+            {
+                accessToAccountFrom = true;
+                break;
+            }
+        }
+
+        // Check if user hass access to AccountTo
+        boolean accessToAccountTo= false;
+        for (Account account:userAccounts) {
+            if(account.getIban().equals(body.getAccountFrom()))
+            {
+                accessToAccountTo = true;
+                break;
+            }
+        }
+
+        // Check if account has enough funds
+        Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
+        boolean enoughFunds = false;
+        if (accountFrom.getBalance() >= body.getAmount()) {
+            enoughFunds = true;
+        }
+
+        // Execute transaction
+        if (accessToAccountFrom & accessToAccountTo && enoughFunds) {
+            // Widthdraw funds
+            accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
+            accountService.updateAccount(accountFrom);
+
+            // Add funds
+            Account accountTo = accountService.getAccountByIban(body.getAccountTo());
+            accountTo.setBalance(accountTo.getBalance() + body.getAmount());
+            accountService.updateAccount(accountTo);
+
+            // Save transaction
+            Transaction transaction = new Transaction();
+            transaction.setAccountFrom(body.getAccountFrom());
+            transaction.setAccountTo(body.getAccountTo());
+            transaction.setAmount(body.getAmount());
+            transaction.setDescription(body.getDescription());
+
+            transaction.setTransactionType(Transaction.TransactionTypeEnum.TRANSFER);
+            transactionService.addTransaction(transaction);
+            return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+        }
+        else {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
     }
 
 
+    // WERKT!
     public ResponseEntity getAllTransactions() {
-                    List<Transaction> transactions = transactionService.getAllTransactions();
-                    return ResponseEntity
-                            .status(200)
-                            .body(transactions);
+        // Only for employees
+        User user = userService.getUserByUserId(getUserId());
+        if(user.getType().equals(User.Type.EMPLOYEE))
+        {
+            List<Transaction> transactions = transactionService.getAllTransactions();
+            return ResponseEntity
+                    .status(200)
+                    .body(transactions);
+        }
+        else {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
     }
 
-
+    // Nog beveiligen
     public ResponseEntity<Transaction> getTransactionById(@ApiParam(value = "Transaction ID",required=true) @PathVariable("id") Long id)
     {
-        Transaction transactions = transactionService.getTransactionById(id);
-        return ResponseEntity
-                .status(200)
-                .body(transactions);
+        //Only creator of transaction and employee have access
+
+        //Check if user has access to transaction
+        Transaction transaction = transactionService.getTransactionById(id);
+        boolean access = false;
+        if(transaction.getUserPerformingId().equals(getUserId()))
+        {
+            access = true;
+        }
+
+        // Check if logged in user is employee
+        User user = userService.getUserByUserId(getUserId());
+        if(user.getType().equals(User.Type.EMPLOYEE))
+        {
+            access = true;
+        }
+
+
+        if(access) {
+            return ResponseEntity
+                    .status(200)
+                    .body(transaction);
+        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
-    public ResponseEntity <List<Transaction>> getTransactionByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
+
+    // WERKT!
+    public ResponseEntity <List<Transaction>> getTransactionsByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
-        List <Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
-        return ResponseEntity
-                .status(200)
-                .body(transactions);
+        // Owner of account and employee have access
+        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
+        boolean access = false;
+
+        // Owner of IBAN account
+        for (Account account:userAccounts) {
+            if(account.getIban().equals(iban))
+            {
+                access = true;
+                break;
+            }
+        }
+        //Employee
+        User user = userService.getUserByUserId(getUserId());
+        if(user.getType().equals(User.Type.EMPLOYEE))
+        {
+            access = true;
+        }
+
+        if(access) {
+            List<Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
+            return ResponseEntity
+                    .status(200)
+                    .body(transactions);
+        }
+        else {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
     }
 
 }
