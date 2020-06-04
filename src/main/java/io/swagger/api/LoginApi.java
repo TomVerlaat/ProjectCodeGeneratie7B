@@ -25,7 +25,6 @@ public interface LoginApi {
         consumes = { "application/x-www-form-urlencoded" },
         method = RequestMethod.POST)
     ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username
-, @ApiParam(value = "") @RequestParam(value="password", required=false)  String password
+                             , @ApiParam(value = "") @RequestParam(value="password", required=false)  String password
 );
-
 }
