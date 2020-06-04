@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/edit.css">
+    <title>
+        Edit users
+    </title>
+</head>
+<body>
+<form method="post" class="editform" autocomplete="off">
+    <h1 class="pagetitle">
+        <button name="backBtn" class="button" style='float: left; margin-top: 0vw; margin-left: 1vw;' href="home.html"><-- Terug</button>
+        Wijzig de opgeslagen gegevens
+    </h1>
+    <div class='left wholepart'>
+        <h2 class='title'>
+            Wat wij van jou weten:
+        </h2>
+        <h3>
+
+        </h3>
+        <h2 class='title'>
+            Kies gebruiker:
+        </h2>
+        <select name='selectUser'>
+
+        </select>
+    </div>
+    <div class="right wholepart">
+        <form method="post" class="loginform" action="/user/update" autocomplete="off">
+            <article class="pagetitle">
+                Vul in wat er veranderd dient te worden
+            </article>
+            <input autocomplete="off" type="text" name="name" placeholder="Naam" />
+            <input autocomplete="off" type="email" name="email" placeholder="E-mail"/>
+            <input autocomplete="off" type="password" name="password" placeholder="Wachtwoord"/>
+
+            <select name="registerRoleselect">
+                <option value="Customer">Customer</option>
+                <option value="Employee">Employee</option>
+            </select>
+
+            <input type="submit" name="changeBtn" class="button changeBtn" value="Geef veranderingen door" />
+        </form>
+
+    </div>
+    <div class='left wholepart'>
+        <form method="post" class="loginform" action="/user/new" autocomplete="off">
+            <article class="pagetitle">
+                Of registreer nieuwe gebruiker
+            </article>
+            <input autocomplete="off" type="text" name="registerName" placeholder="Volledige naam:" />
+
+            <input autocomplete="off" type="email" name="registerEmail" placeholder="Email:" />
+
+            <input autocomplete="off" type="password" name="registerPass" placeholder="Wachtwoord:" />
+
+            <input autocomplete="off" type="password" name="registerConfpass" placeholder="Bevestig wachtwoord:" />
+
+            <select name="registerRoleselect">
+                <option value="Customer">Customer</option>
+                <option value="Employee">Employee</option>
+            </select>
+
+            <input type="submit" name="registerBtn" class="button" value="Registreer" />
+        </form>
+    </div>
+
+
+</form>
+</body>
+</html>
