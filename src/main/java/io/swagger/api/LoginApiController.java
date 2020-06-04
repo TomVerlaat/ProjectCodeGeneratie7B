@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,16 +21,15 @@ public class LoginApiController implements LoginApi {
 
     private final HttpServletRequest request;
 
-    @org.springframework.beans.factory.annotation.Autowired
+    @Autowired
     public LoginApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
         this.request = request;
     }
 
-        public ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username
-,@ApiParam(value = "") @RequestParam(value="password", required=false)  String password
-) {
+    public ResponseEntity<Void> login(@ApiParam(value = "") @RequestParam(value="username", required=false)  String username,
+                                      @ApiParam(value = "") @RequestParam(value="password", required=false)  String password)
+    {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-
 }
