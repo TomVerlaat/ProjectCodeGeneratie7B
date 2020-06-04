@@ -41,8 +41,14 @@ public UserService() {
         return newUser;
     }
 
-    public long getUserByUsername(String username) {
-        User tempUser = userRepository.getUserByUsername(username);
-        return tempUser.getId();
+    public long getUserIDByUsername(String username) {
+        try {
+            User tempUser = userRepository.getUserByUsername(username);
+            return tempUser.getId();
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
     }
 }

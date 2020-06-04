@@ -84,7 +84,7 @@ public class User   {
    * Gets or Sets type
    */
   public enum Type {
-    CUSTOMER, EMPLOYEE, BANK;
+    CUSTOMER, EMPLOYEE;
   }
 
   @JsonProperty("active")
