@@ -102,6 +102,7 @@
       <workItem from="1591173441087" duration="1910000" />
       <workItem from="1591175664397" duration="3473000" />
       <workItem from="1591183446795" duration="6266000" />
+      <workItem from="1591270131796" duration="8897000" />
     </task>
     <servers />
   </component>
@@ -129,21 +130,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="311" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591124718367" />
-    <state width="1878" height="252" key="GridCell.Tab.0.bottom" timestamp="1591189842141">
+    <state width="1878" height="294" key="GridCell.Tab.0.bottom" timestamp="1591279049069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591189842141" />
-    <state width="1878" height="252" key="GridCell.Tab.0.center" timestamp="1591189842141">
+    <state width="1878" height="294" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591279049069" />
+    <state width="1878" height="294" key="GridCell.Tab.0.center" timestamp="1591279049069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="252" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591189842141" />
-    <state width="1878" height="252" key="GridCell.Tab.0.left" timestamp="1591189842141">
+    <state width="1878" height="294" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591279049069" />
+    <state width="1878" height="294" key="GridCell.Tab.0.left" timestamp="1591279049069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="252" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591189842141" />
-    <state width="1878" height="252" key="GridCell.Tab.0.right" timestamp="1591189842141">
+    <state width="1878" height="294" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591279049069" />
+    <state width="1878" height="294" key="GridCell.Tab.0.right" timestamp="1591279049069">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="252" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591189842141" />
+    <state width="1878" height="294" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591279049069" />
+    <state x="670" y="209" width="579" height="620" key="find.popup" timestamp="1591273199421">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="670" y="209" width="579" height="620" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591273199421" />
   </component>
 </project>
