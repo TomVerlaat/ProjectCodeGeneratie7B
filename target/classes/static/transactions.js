@@ -33,8 +33,22 @@ function appendData(data) {
     var mainContainer = document.getElementById("transactionsData");
     for (var i = 0; i < data.length; i++) {
         var div = document.createElement("div");
-        //var transactionlink = url+"/transactions.html?account="+encodeURI(data[i].iban);
-        div.innerHTML = "Transaction id: " + data[i].id + "<br>" + "Amount " + data[i].amount + "<br>Description: " + data[i].description + "<br>" + "Type: " + data[i].transactionType + "<br>" +"Date: " + data[i].timestamp + "<br><br>"
+
+        var accountTo = data[i].accountTo;
+        var transactionOutgoing = accountTo.localeCompare(account);
+
+        if(transactionOutgoing)
+        {
+            showDirection = '<p style="color:red">Outgoing</p>';
+            amount = '<div style="color:red">' +  data[i].amount + '</div>';
+        }
+        else
+        {
+            showDirection = '<p style="color:green">Incoming</p>';
+            amount = '<div style="color:green">' +  data[i].amount + '</div>';
+        }
+
+        div.innerHTML =  showDirection + "Transaction id: " + data[i].id + "<br>" + "Amount: " + amount + "Description: " + data[i].description + "<br>" + "Type: " + data[i].transactionType + "<br>" +"Date: " + data[i].timestamp + "<br><br>"
         mainContainer.appendChild(div);
     }
 }
