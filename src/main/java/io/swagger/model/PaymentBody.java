@@ -82,7 +82,6 @@ public class PaymentBody {
    * @return description
    **/
   @ApiModelProperty(example = "Money for your new RB-17", value = "")
-      @NotNull
 
   public String getDescription() {
     return description;

@@ -36,7 +36,7 @@ public class Swagger2SpringBoot implements CommandLineRunner {
     public void run(String... arg0) throws Exception {
 
         List<User> users = new ArrayList<>();
-        User user1 = new User(User.Type.CUSTOMER,"TomVerlaat","Welkom01","Tom","Verlaat","TomVerlaat@gmail.com", LocalDate.of(1998,12,10),"Twijver 9","1606BT","Venhuizen","0681165360");
+        User user1 = new User(User.Type.CUSTOMER,"TomVerlaat","Welkom01!","Tom","Verlaat","TomVerlaat@gmail.com", LocalDate.of(1998,12,10),"Twijver 9","1606BT","Venhuizen","0681165360");
         users.add(user1);
 
         User user2 = new User(User.Type.EMPLOYEE,"ChrisvanRoode","Welkom01!","Chris","van Roode","cbvroode@gmail.com", LocalDate.of(2001,05,30),"Heerenweg 253","1851KR","Heiloo","0643182173");

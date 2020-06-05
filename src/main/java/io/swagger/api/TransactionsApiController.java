@@ -183,7 +183,7 @@ public class TransactionsApiController implements TransactionsApi {
         // Check if user hass access to AccountTo
         boolean accessToAccountTo= false;
         for (Account account:userAccounts) {
-            if(account.getIban().equals(body.getAccountFrom()))
+            if(account.getIban().equals(body.getAccountTo()))
             {
                 accessToAccountTo = true;
                 break;
