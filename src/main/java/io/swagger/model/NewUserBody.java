@@ -2,6 +2,7 @@ package io.swagger.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.threeten.bp.LocalDate;
 
@@ -70,11 +71,6 @@ public class NewUserBody {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public NewUserBody password(String password) {
-    this.password = password;
-    return this;
   }
 
   /**
