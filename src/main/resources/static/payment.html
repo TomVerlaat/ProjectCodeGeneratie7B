@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
     <script src="config.js"></script>
-    <!-- <script src="payment.js"></script> -->
     <title>
         Payment
     </title>
@@ -25,10 +24,12 @@
             <input type="text" id="accountTo" name="accountTo">
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" name="amount">
-            <label for="description">Account To:</label><br>
+            <label for="description">Description:</label><br>
             <input type="text" id="description" name="description">
             <input id="postSubmit" type="submit" value="Send Me!">
         </form>
+
+        <div id="feedback"> </div>
 
     </div>
 
@@ -37,14 +38,26 @@
         thisForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const formData = new FormData(thisForm).entries()
-            const response = await fetch(url + '/Transactions/pay', {
+
+            fetch(url + '/Transactions/pay', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.fromEntries(formData))
-            });
-
-            const result = await response.json();
-            console.log(result)
+            })  .then(response => {
+                if (!response.ok) {
+                    console.log("Failed")
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">Something went wrong </p>";
+                }
+                else
+                {
+                    console.log("Succesfull!");
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Transaction succesfull</p>";
+                    document.getElementById("payment-form").reset();
+                }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     </script>
 
