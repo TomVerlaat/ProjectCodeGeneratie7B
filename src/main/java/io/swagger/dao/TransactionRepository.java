@@ -13,6 +13,6 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 
     Transaction getById(Long value);
 
-    List<Transaction> getByAccountFrom(String value);
+    List<Transaction> getByAccountFromOrAccountToOrderByTimestampDesc(String value1,String value2);
 }
 
