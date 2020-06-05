@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
     <script src="config.js"></script>
+    <script src="selectaccount.js"></script>
     <title>
         Transfer
     </title>
@@ -19,19 +20,48 @@
 
         <form id="payment-form">
             <label for="accountFrom">Account From:</label><br>
-            <input type="text" id="accountFrom" name="accountFrom"><br>
+            <select id="select" id="accountFrom" name="accountFrom">
+                <option value="default">Kies een account</option>
+            </select>
             <label for="accountTo">Account To:</label><br>
-            <input type="text" id="accountTo" name="accountTo">
+            <select id="select2" id="accountTo" name="accountTo">
+                <option value="default">Kies een account</option>
+            </select>
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" name="amount">
             <label for="description">Description:</label><br>
             <input type="text" id="description" name="description">
-            <input id="postSubmit" type="submit" value="Send Me!">
+            <input id="postSubmit" type="submit" value="Submit">
         </form>
 
         <div id="feedback"> </div>
 
     </div>
+
+
+    <script>
+        fetch(url +'/Accounts/GetByUserId',{credentials:'include'})
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData2(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+        function appendData2(data) {
+            var select = document.getElementById("select2");
+            for (var i = 0; i < data.length; i++) {
+                var option = document.createElement("OPTION"),
+                    txt = document.createTextNode(data[i].iban + " Balance: " + data[i].balance);
+                option.appendChild(txt);
+                option.setAttribute("value", data[i].iban);
+                select.insertBefore(option, select.lastChild);
+            }
+        }
+    </script>
 
     <script>
         const thisForm = document.getElementById('payment-form');

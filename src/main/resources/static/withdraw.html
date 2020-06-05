@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
     <script src="config.js"></script>
+    <script src="selectaccount.js"></script>
     <title>
         Deposit
     </title>
@@ -19,10 +20,12 @@
 
         <form id="payment-form">
             <label for="accountFrom">Account From:</label><br>
-            <input type="text" id="accountFrom" name="accountFrom">
+            <select id="select" id="accountFrom" name="accountFrom">
+                <option value="default">Kies een account</option>
+            </select>
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" name="amount">
-            <input id="postSubmit" type="submit" value="Send Me!">
+            <input id="postSubmit" type="submit" value="Submit">
         </form>
 
         <div id="feedback"> </div>

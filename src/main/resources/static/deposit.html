@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
     <script src="config.js"></script>
+    <script src="selectaccount.js"></script>
     <title>
         Deposit
     </title>
@@ -24,37 +25,12 @@
             </select>
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" name="amount">
-            <input id="postSubmit" type="submit" value="Send Me!">
+            <input id="postSubmit" type="submit" value="Submit">
         </form>
 
         <div id="feedback"> </div>
 
     </div>
-
-    <script>
-        fetch(url +'/Accounts/GetByUserId',{credentials:'include'})
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                appendData(data);
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
-
-        function appendData(data) {
-            var select = document.getElementById("select");
-            for (var i = 0; i < data.length; i++) {
-                var option = document.createElement("OPTION"),
-                    txt = document.createTextNode(data[i].iban);
-                option.appendChild(txt);
-                option.setAttribute("value", data[i].iban);
-                select.insertBefore(option, select.lastChild);
-            }
-        }
-    </script>
-
 
 
     <script>
