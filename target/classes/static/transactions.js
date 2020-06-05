@@ -40,15 +40,18 @@ function appendData(data) {
         if(transactionOutgoing)
         {
             showDirection = '<p style="color:red">Outgoing</p>';
-            amount = '<div style="color:red">' +  data[i].amount + '</div>';
+            showAmount = '<div style="color:red">' +  data[i].amount + '</div>';
+            showIban = '<div>' +  data[i].accountTo + '</div>';
+
         }
         else
         {
             showDirection = '<p style="color:green">Incoming</p>';
-            amount = '<div style="color:green">' +  data[i].amount + '</div>';
+            showAmount = '<div style="color:green">' +  data[i].amount + '</div>';
+            showIban = '<div>' +  data[i].accountFrom + '</div>';
         }
 
-        div.innerHTML =  showDirection + "Transaction id: " + data[i].id + "<br>" + "Amount: " + amount + "Description: " + data[i].description + "<br>" + "Type: " + data[i].transactionType + "<br>" +"Date: " + data[i].timestamp + "<br><br>"
+        div.innerHTML =  showDirection + "Transaction id: " + data[i].id + showIban + "Amount: " + showAmount + "Description: " + data[i].description + "<br>" + "Type: " + data[i].transactionType + "<br>" +"Date: " + data[i].timestamp + "<br><br>"
         mainContainer.appendChild(div);
     }
 }
