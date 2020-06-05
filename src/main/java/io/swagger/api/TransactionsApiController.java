@@ -66,7 +66,7 @@ public class TransactionsApiController implements TransactionsApi {
             }
         }
 
-        if(access) {
+        if(access && body.getAmount() > 0) {
             Transaction transaction = new Transaction();
             transaction.setAccountFrom("NL01INHO0000000001");
             transaction.setAccountTo(body.getAccountTo());
@@ -101,7 +101,7 @@ public class TransactionsApiController implements TransactionsApi {
             }
         }
 
-        if(access) {
+        if(access && body.getAmount() > 0) {
             // Withdraw money from account
             Account account = accountService.getAccountByIban(body.getAccountFrom());
             if (account.getBalance() >= body.getAmount()) {
@@ -138,7 +138,7 @@ public class TransactionsApiController implements TransactionsApi {
             }
         }
 
-        if(access) {
+        if(access && body.getAmount() > 0) {
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
             if (accountFrom.getBalance() >= body.getAmount()) {
 
@@ -198,7 +198,7 @@ public class TransactionsApiController implements TransactionsApi {
         }
 
         // Execute transaction
-        if (accessToAccountFrom & accessToAccountTo && enoughFunds) {
+        if (accessToAccountFrom & accessToAccountTo && enoughFunds && body.getAmount() > 0) {
             // Widthdraw funds
             accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
             accountService.updateAccount(accountFrom);
