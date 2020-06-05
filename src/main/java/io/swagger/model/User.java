@@ -129,10 +129,6 @@ public class User   {
     this.username = username;
   }
 
-  public User password(String password) {
-    this.password = password;
-    return this;
-  }
 
   /**
    * Get password
