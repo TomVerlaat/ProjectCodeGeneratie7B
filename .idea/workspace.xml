@@ -31,14 +31,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26aa0a2e-dd60-404a-a903-cd1cba19400c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/configuration/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/NewUserBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/NewUserBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/SecurityUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/SecurityUserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/swagger-spring.iml" beforeDir="false" afterPath="$PROJECT_DIR$/swagger-spring.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/swagger/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/swagger/model/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +47,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1cre5o0BzsK4jjVtREz16lB8Avc" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -143,26 +143,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="311" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591291020891" />
-    <state x="741" y="275" key="FileChooserDialogImpl" timestamp="1591445273336">
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1591467785639">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="741" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591445273336" />
-    <state width="1878" height="230" key="GridCell.Tab.0.bottom" timestamp="1591457411479">
+    <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591467785639" />
+    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1591467785638">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="230" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591457411479" />
-    <state width="1878" height="230" key="GridCell.Tab.0.center" timestamp="1591457411478">
+    <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591467785638" />
+    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1591467785638">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="230" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591457411478" />
-    <state width="1878" height="230" key="GridCell.Tab.0.left" timestamp="1591457411478">
+    <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591467785638" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1591467785639">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="230" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591457411478" />
-    <state width="1878" height="230" key="GridCell.Tab.0.right" timestamp="1591457411478">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1878" height="230" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591457411478" />
+    <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591467785639" />
     <state width="1878" height="197" key="GridCell.Tab.1.bottom" timestamp="1591352032394">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
