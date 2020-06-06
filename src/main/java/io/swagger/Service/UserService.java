@@ -25,7 +25,13 @@ public UserService() {
         userRepository.save(user);
     }
 
-    public User getUserByUserId(Long id) { return userRepository.getUserById(id); }
+    public User getUserByUserId(Long id) {
+    try {
+        return userRepository.getUserById(id);
+    }
+    catch (Exception e) {}
+    return new User();
+    }
 
     @PutMapping
     public void deactivateUser(Long id)

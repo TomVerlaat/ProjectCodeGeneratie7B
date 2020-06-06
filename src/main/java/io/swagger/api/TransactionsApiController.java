@@ -48,8 +48,14 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
     private long getUserId() {
+        try {
             Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
             return userService.getUserIDByUsername(loggedInUser.getName());
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
     }
 
     // WERKT!
@@ -169,76 +175,73 @@ public class TransactionsApiController implements TransactionsApi {
     // WERKT!
     public ResponseEntity TransferTransaction(@Valid @RequestBody TransferBody body)
     {
-        // Check if user has acces to AccountFrom
-        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
-        boolean accessToAccountFrom = false;
-        for (Account account:userAccounts) {
-            if(account.getIban().equals(body.getAccountFrom()))
-            {
-                accessToAccountFrom = true;
-                break;
+        if(getUserId()!=0) {
+            // Check if user has acces to AccountFrom
+            List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
+            boolean accessToAccountFrom = false;
+            for (Account account : userAccounts) {
+                if (account.getIban().equals(body.getAccountFrom())) {
+                    accessToAccountFrom = true;
+                    break;
+                }
+            }
+
+            // Check if user hass access to AccountTo
+            boolean accessToAccountTo = false;
+            for (Account account : userAccounts) {
+                if (account.getIban().equals(body.getAccountTo())) {
+                    accessToAccountTo = true;
+                    break;
+                }
+            }
+
+            // Check if account has enough funds
+            Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
+            boolean enoughFunds = false;
+            if (accountFrom.getBalance() >= body.getAmount()) {
+                enoughFunds = true;
+            }
+
+            // Execute transaction
+            if (accessToAccountFrom & accessToAccountTo && enoughFunds && body.getAmount() > 0) {
+                // Widthdraw funds
+                accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
+                accountService.updateAccount(accountFrom);
+
+                // Add funds
+                Account accountTo = accountService.getAccountByIban(body.getAccountTo());
+                accountTo.setBalance(accountTo.getBalance() + body.getAmount());
+                accountService.updateAccount(accountTo);
+
+                // Save transaction
+                Transaction transaction = new Transaction();
+                transaction.setAccountFrom(body.getAccountFrom());
+                transaction.setAccountTo(body.getAccountTo());
+                transaction.setAmount(body.getAmount());
+                transaction.setDescription(body.getDescription());
+
+                transaction.setTransactionType(Transaction.TransactionTypeEnum.TRANSFER);
+                transactionService.addTransaction(transaction);
+                return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
             }
         }
-
-        // Check if user hass access to AccountTo
-        boolean accessToAccountTo= false;
-        for (Account account:userAccounts) {
-            if(account.getIban().equals(body.getAccountTo()))
-            {
-                accessToAccountTo = true;
-                break;
-            }
-        }
-
-        // Check if account has enough funds
-        Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
-        boolean enoughFunds = false;
-        if (accountFrom.getBalance() >= body.getAmount()) {
-            enoughFunds = true;
-        }
-
-        // Execute transaction
-        if (accessToAccountFrom & accessToAccountTo && enoughFunds && body.getAmount() > 0) {
-            // Widthdraw funds
-            accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
-            accountService.updateAccount(accountFrom);
-
-            // Add funds
-            Account accountTo = accountService.getAccountByIban(body.getAccountTo());
-            accountTo.setBalance(accountTo.getBalance() + body.getAmount());
-            accountService.updateAccount(accountTo);
-
-            // Save transaction
-            Transaction transaction = new Transaction();
-            transaction.setAccountFrom(body.getAccountFrom());
-            transaction.setAccountTo(body.getAccountTo());
-            transaction.setAmount(body.getAmount());
-            transaction.setDescription(body.getDescription());
-
-            transaction.setTransactionType(Transaction.TransactionTypeEnum.TRANSFER);
-            transactionService.addTransaction(transaction);
-            return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
-        }
-        else {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
-        }
     }
 
 
     // WERKT!
     public ResponseEntity getAllTransactions() {
         // Only for employees
-        User user = userService.getUserByUserId(getUserId());
-        if(user.getType().equals(User.Type.EMPLOYEE))
-        {
-            List<Transaction> transactions = transactionService.getAllTransactions();
-            return ResponseEntity
-                    .status(200)
-                    .body(transactions);
+        if(getUserId() != 0) {
+            User user = userService.getUserByUserId(getUserId());
+            if (user.getType().equals(User.Type.EMPLOYEE)) {
+                List<Transaction> transactions = transactionService.getAllTransactions();
+                return ResponseEntity
+                        .status(200)
+                        .body(transactions);
+            }
         }
-        else {
-            return new ResponseEntity(HttpStatus.FORBIDDEN);
-        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     // Nog beveiligen
@@ -247,25 +250,25 @@ public class TransactionsApiController implements TransactionsApi {
         //Only creator of transaction and employee have access
 
         //Check if user has access to transaction
-        Transaction transaction = transactionService.getTransactionById(id);
-        boolean access = false;
-        if(transaction.getUserPerformingId().equals(getUserId()))
-        {
-            access = true;
-        }
+        if(getUserId() != 0) {
+            Transaction transaction = transactionService.getTransactionById(id);
+            boolean access = false;
+            if (transaction.getUserPerformingId().equals(getUserId())) {
+                access = true;
+            }
 
-        // Check if logged in user is employee
-        User user = userService.getUserByUserId(getUserId());
-        if(user.getType().equals(User.Type.EMPLOYEE))
-        {
-            access = true;
-        }
+            // Check if logged in user is employee
+            User user = userService.getUserByUserId(getUserId());
+            if (user.getType().equals(User.Type.EMPLOYEE)) {
+                access = true;
+            }
 
 
-        if(access) {
-            return ResponseEntity
-                    .status(200)
-                    .body(transaction);
+            if (access) {
+                return ResponseEntity
+                        .status(200)
+                        .body(transaction);
+            }
         }
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
@@ -275,33 +278,31 @@ public class TransactionsApiController implements TransactionsApi {
     public ResponseEntity <List<Transaction>> getTransactionsByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
         // Owner of account and employee have access
-        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
-        boolean access = false;
+        if(getUserId() != 0) {
+            List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
+            boolean access = false;
 
-        // Owner of IBAN account
-        for (Account account:userAccounts) {
-            if(account.getIban().equals(iban))
-            {
+            // Owner of IBAN account
+            for (Account account : userAccounts) {
+                if (account.getIban().equals(iban)) {
+                    access = true;
+                    break;
+                }
+            }
+            //Employee
+            User user = userService.getUserByUserId(getUserId());
+            if (user.getType().equals(User.Type.EMPLOYEE)) {
                 access = true;
-                break;
+            }
+
+            if (access) {
+                List<Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
+                return ResponseEntity
+                        .status(200)
+                        .body(transactions);
             }
         }
-        //Employee
-        User user = userService.getUserByUserId(getUserId());
-        if(user.getType().equals(User.Type.EMPLOYEE))
-        {
-            access = true;
-        }
-
-        if(access) {
-            List<Transaction> transactions = transactionService.GetTransactionsFromIban(iban);
-            return ResponseEntity
-                    .status(200)
-                    .body(transactions);
-        }
-        else {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
-        }
     }
 
 }
