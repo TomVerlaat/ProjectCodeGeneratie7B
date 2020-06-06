@@ -82,7 +82,7 @@ public class Account   {
   private Double balance = null;
 
   @JsonProperty("active")
-  private Boolean active = null;
+  private Boolean active = true;
 
   @JsonProperty("iban")
   private String iban = null;
@@ -232,7 +232,7 @@ public class Account   {
   @ApiModelProperty(example = "true", required = true, value = "")
       @NotNull
 
-    public Boolean isActive() {
+  public Boolean isActive() {
     return active;
   }
 
