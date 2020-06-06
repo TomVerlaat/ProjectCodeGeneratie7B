@@ -8,6 +8,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ProjectId" id="1cxPoKnvdsKF2xdXxTNmYySZZnP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -23,60 +26,99 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/io/swagger" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProjectCodeGeneratie7B backup 6 juni" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\GitHubRepositories\ProjectCodeGeneratie7B\src\test\java\io\swagger" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="io.swagger.model" />
       <recent name="io.swagger" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="io.swagger.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Tom0681165360\Documents\GitHub\ProjectCodeGeneratie7B\src\test\java\io\swagger" />
       <recent name="C:\Users\Tom0681165360\Documents\GitHub\ProjectCodeGeneratie7B\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AccountsControllerTest.callingAllAccountsShouldReturnOK">
-    <configuration name="AccountsControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserTest.createUserShouldNotBeNull">
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="swagger-spring" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.swagger.controller.*" />
+          <option name="PATTERN" value="io.swagger.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.swagger.controller" />
-      <option name="MAIN_CLASS_NAME" value="io.swagger.controller.AccountsControllerTest" />
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.UserTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AccountsControllerTest.callingAllAccountsShouldReturnOK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.createUserShouldNotBeNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="swagger-spring" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.swagger.controller.*" />
+          <option name="PATTERN" value="io.swagger.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.swagger.controller" />
-      <option name="MAIN_CLASS_NAME" value="io.swagger.controller.AccountsControllerTest" />
-      <option name="METHOD_NAME" value="callingAllAccountsShouldReturnOK" />
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.UserTest" />
+      <option name="METHOD_NAME" value="createUserShouldNotBeNull" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AccountsControllerTest.getAllAccountsShouldReturnJsonArray" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserTest.invalidAddressShouldThrowIllegalArgumentException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="swagger-spring" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="io.swagger.controller.*" />
+          <option name="PATTERN" value="io.swagger.model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="io.swagger.controller" />
-      <option name="MAIN_CLASS_NAME" value="io.swagger.controller.AccountsControllerTest" />
-      <option name="METHOD_NAME" value="getAllAccountsShouldReturnJsonArray" />
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.UserTest" />
+      <option name="METHOD_NAME" value="invalidAddressShouldThrowIllegalArgumentException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.invalidEmailShouldThrowIllegalArgumentException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.UserTest" />
+      <option name="METHOD_NAME" value="invalidEmailShouldThrowIllegalArgumentException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.invalidPostalCodeShouldThrowIllegalArgumentException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.UserTest" />
+      <option name="METHOD_NAME" value="invalidPostalCodeShouldThrowIllegalArgumentException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -91,9 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AccountsControllerTest.callingAllAccountsShouldReturnOK" />
-        <item itemvalue="JUnit.AccountsControllerTest.getAllAccountsShouldReturnJsonArray" />
-        <item itemvalue="JUnit.AccountsControllerTest" />
+        <item itemvalue="JUnit.UserTest.createUserShouldNotBeNull" />
+        <item itemvalue="JUnit.UserTest.invalidAddressShouldThrowIllegalArgumentException" />
+        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.UserTest.invalidEmailShouldThrowIllegalArgumentException" />
+        <item itemvalue="JUnit.UserTest.invalidPostalCodeShouldThrowIllegalArgumentException" />
       </list>
     </recent_temporary>
   </component>
@@ -117,6 +161,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591467486118">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -130,34 +177,45 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="689" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591467484957" />
-    <state x="527" y="441" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1591469946211">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1393" y="445" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1591471284874">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state x="527" y="441" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591469946211" />
-    <state x="739" y="398" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1591469921461">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1393" y="445" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591471284874" />
+    <state x="-1177" y="394" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1591471320838">
+      <screen x="-1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="-1177" y="394" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591471320838" />
+    <state x="-1181" y="402" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1591471302163">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state x="739" y="398" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1591469921461" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1591469657057">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1181" y="402" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591471302163" />
+    <state x="-1180" y="278" key="FileChooserDialogImpl" timestamp="1591471251298">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591469657057" />
-    <state width="1877" height="338" key="GridCell.Tab.0.bottom" timestamp="1591470786406">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1180" y="278" key="FileChooserDialogImpl/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591471251298" />
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1591472997161">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
-    <state width="1877" height="338" key="GridCell.Tab.0.center" timestamp="1591470786406">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591472997161" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1591472997161">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
-    <state width="1877" height="338" key="GridCell.Tab.0.left" timestamp="1591470786405">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591472997161" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1591472997161">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786405" />
-    <state width="1877" height="338" key="GridCell.Tab.0.right" timestamp="1591470786406">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591472997161" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1591472997161">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591472997161" />
     <state width="1877" height="338" key="GridCell.Tab.1.bottom" timestamp="1591470137456">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
