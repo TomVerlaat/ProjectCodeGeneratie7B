@@ -2,6 +2,8 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
+    <script src="config.js"></script>
+    <script src="selectaccount.js"></script>
     <title>
         Transfer
     </title>
@@ -10,14 +12,85 @@
 <div class="editform">
     <h1 class="pagetitle">
         <button name="backBtn" class="button" style='float: left; margin-top: 0vw; margin-left: 1vw;'><a href="home.html"><-- Terug</a></button>
-        Maak hier een nieuwe transactie aan
+        Maak hier een nieuwe transfer aan
     </h1>
     <div class="whole wholepart">
         <h2 class="title">
-
         </h2>
 
+        <form id="payment-form">
+            <label for="accountFrom">Account From:</label><br>
+            <select id="select" id="accountFrom" name="accountFrom">
+                <option value="default">Kies een account</option>
+            </select>
+            <label for="accountTo">Account To:</label><br>
+            <select id="select2" id="accountTo" name="accountTo">
+                <option value="default">Kies een account</option>
+            </select>
+            <label for="amount">Amount:</label><br>
+            <input type="number" id="amount" name="amount">
+            <label for="description">Description:</label><br>
+            <input type="text" id="description" name="description">
+            <input id="postSubmit" type="submit" value="Submit">
+        </form>
+
+        <div id="feedback"> </div>
+
     </div>
+
+
+    <script>
+        fetch(url +'/Accounts/GetByUserId',{credentials:'include'})
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData2(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+        function appendData2(data) {
+            var select = document.getElementById("select2");
+            for (var i = 0; i < data.length; i++) {
+                var option = document.createElement("OPTION"),
+                    txt = document.createTextNode(data[i].iban + " Balance: " + data[i].balance);
+                option.appendChild(txt);
+                option.setAttribute("value", data[i].iban);
+                select.insertBefore(option, select.lastChild);
+            }
+        }
+    </script>
+
+    <script>
+        const thisForm = document.getElementById('payment-form');
+        thisForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(thisForm).entries()
+
+            fetch(url + '/Transactions/transfer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })  .then(response => {
+                if (!response.ok) {
+                    console.log("Failed")
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">Something went wrong </p>";
+                }
+                else
+                {
+                    console.log("Succesfull!");
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Transfer succesfull</p>";
+                    document.getElementById("payment-form").reset();
+                }
+            })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
 </div>
 </body>
 </html>

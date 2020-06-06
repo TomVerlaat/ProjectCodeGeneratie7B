@@ -31,7 +31,7 @@ public TransactionService() {
 
     public List<Transaction> GetTransactionsFromIban(String iban)
     {
-        return transactionRepository.getByAccountFrom(iban);
+        return transactionRepository.getByAccountFromOrAccountToOrderByTimestampDesc(iban,iban);
     }
 
     public void addTransaction(Transaction transaction)
