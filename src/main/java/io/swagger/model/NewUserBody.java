@@ -85,7 +85,7 @@ public class NewUserBody {
   }
 
   public void setPassword(String password) {
-    this.password = password;
+    this.password = new BCryptPasswordEncoder().encode(password);
   }
 
   public NewUserBody firstName(String firstName) {

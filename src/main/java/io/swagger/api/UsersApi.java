@@ -81,7 +81,7 @@ public interface UsersApi {
         @ApiResponse(code = 500, message = "Prima call"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
     @RequestMapping(value = "/Users/update",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.PUT)
     ResponseEntity updateUser(@ApiParam(value = ""  )  @Valid @RequestBody User user
