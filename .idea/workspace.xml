@@ -34,7 +34,7 @@
       <recent name="C:\Users\Tom0681165360\Documents\GitHub\ProjectCodeGeneratie7B\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Swagger2SpringBoot">
+  <component name="RunManager" selected="JUnit.AccountsControllerTest.callingAllAccountsShouldReturnOK">
     <configuration name="AccountsControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="swagger-spring" />
       <extension name="coverage">
@@ -50,6 +50,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AccountsControllerTest.callingAllAccountsShouldReturnOK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.controller" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.controller.AccountsControllerTest" />
+      <option name="METHOD_NAME" value="callingAllAccountsShouldReturnOK" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AccountsControllerTest.getAllAccountsShouldReturnJsonArray" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.controller" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.controller.AccountsControllerTest" />
+      <option name="METHOD_NAME" value="getAllAccountsShouldReturnJsonArray" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Swagger2SpringBoot" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="swagger-spring" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="io.swagger.Swagger2SpringBoot" />
@@ -59,6 +91,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AccountsControllerTest.callingAllAccountsShouldReturnOK" />
+        <item itemvalue="JUnit.AccountsControllerTest.getAllAccountsShouldReturnJsonArray" />
         <item itemvalue="JUnit.AccountsControllerTest" />
       </list>
     </recent_temporary>
@@ -76,6 +110,7 @@
       <workItem from="1591467465206" duration="1987000" />
       <workItem from="1591469515215" duration="351000" />
       <workItem from="1591469875240" duration="263000" />
+      <workItem from="1591470179459" duration="607000" />
     </task>
     <servers />
   </component>
@@ -87,6 +122,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591467486118" />
+    <state x="92" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1591470616183">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591470616183" />
     <state x="689" y="309" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1591467484957">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -103,22 +142,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591469657057" />
-    <state width="1877" height="338" key="GridCell.Tab.0.bottom" timestamp="1591470137456">
+    <state width="1877" height="338" key="GridCell.Tab.0.bottom" timestamp="1591470786406">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591470137456" />
-    <state width="1877" height="338" key="GridCell.Tab.0.center" timestamp="1591470137456">
+    <state width="1877" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
+    <state width="1877" height="338" key="GridCell.Tab.0.center" timestamp="1591470786406">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591470137456" />
-    <state width="1877" height="338" key="GridCell.Tab.0.left" timestamp="1591470137456">
+    <state width="1877" height="338" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
+    <state width="1877" height="338" key="GridCell.Tab.0.left" timestamp="1591470786405">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591470137456" />
-    <state width="1877" height="338" key="GridCell.Tab.0.right" timestamp="1591470137456">
+    <state width="1877" height="338" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786405" />
+    <state width="1877" height="338" key="GridCell.Tab.0.right" timestamp="1591470786406">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591470137456" />
+    <state width="1877" height="338" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
     <state width="1877" height="338" key="GridCell.Tab.1.bottom" timestamp="1591470137456">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

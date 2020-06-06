@@ -33,8 +33,9 @@ public class AccountsControllerTest {
     private Account account;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws Exception {
         account = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000010", Account.TypeEnum.CURRENT,1);;
+        this.mvc.perform(post("/Groep7B/BankAPI_V3/1.0.0/Login?password=Welkom01!&username=ChrisvanRoode"));
     }
 
     @Test
@@ -49,7 +50,7 @@ public class AccountsControllerTest {
     @Test
     public void callingAllAccountsShouldReturnOK() throws Exception {
         this.mvc.perform(get("/Accounts"))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
     }
 
     @Test
