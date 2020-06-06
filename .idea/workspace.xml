@@ -29,22 +29,37 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProjectCodeGeneratie7B backup 6 juni" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\GitHubRepositories\ProjectCodeGeneratie7B\src\test\java\io\swagger" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="io.swagger.model" />
       <recent name="io.swagger" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="io.swagger.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Tom0681165360\Documents\GitHub\ProjectCodeGeneratie7B\src\test\java\io\swagger" />
       <recent name="C:\Users\Tom0681165360\Documents\GitHub\ProjectCodeGeneratie7B\src" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="io.swagger.model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\GitHubRepositories\ProjectCodeGeneratie7B\src\test\java\io\swagger" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserTest.createUserShouldNotBeNull">
+  <component name="RunManager" selected="JUnit.AccountTest">
+    <configuration name="AccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.AccountTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="swagger-spring" />
       <extension name="coverage">
@@ -108,22 +123,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserTest.invalidPostalCodeShouldThrowIllegalArgumentException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="swagger-spring" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.swagger.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.swagger.model" />
-      <option name="MAIN_CLASS_NAME" value="io.swagger.model.UserTest" />
-      <option name="METHOD_NAME" value="invalidPostalCodeShouldThrowIllegalArgumentException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Swagger2SpringBoot" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="swagger-spring" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="io.swagger.Swagger2SpringBoot" />
@@ -133,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AccountTest" />
         <item itemvalue="JUnit.UserTest.createUserShouldNotBeNull" />
         <item itemvalue="JUnit.UserTest.invalidAddressShouldThrowIllegalArgumentException" />
         <item itemvalue="JUnit.UserTest" />
         <item itemvalue="JUnit.UserTest.invalidEmailShouldThrowIllegalArgumentException" />
-        <item itemvalue="JUnit.UserTest.invalidPostalCodeShouldThrowIllegalArgumentException" />
       </list>
     </recent_temporary>
   </component>
@@ -196,26 +195,26 @@
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591469657057" />
     <state x="-1180" y="278" key="FileChooserDialogImpl/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591471251298" />
-    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1591473127502">
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1591474785916">
       <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
-    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591473127502" />
-    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1591473127501">
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591474785916" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1591474785916">
       <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
-    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591473127501" />
-    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1591473127501">
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591474785916" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1591474785916">
       <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786405" />
-    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591473127501" />
-    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1591473127501">
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591474785916" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1591474785916">
       <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591470786406" />
-    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591473127501" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591474785916" />
     <state width="1877" height="338" key="GridCell.Tab.1.bottom" timestamp="1591470137456">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -82,7 +82,7 @@ public class Account   {
   private Double balance = null;
 
   @JsonProperty("active")
-  private Boolean active = null;
+  private Boolean active = true;
 
   @JsonProperty("iban")
   private String iban = null;
