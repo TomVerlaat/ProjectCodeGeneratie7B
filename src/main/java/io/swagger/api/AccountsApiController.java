@@ -93,7 +93,6 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity <List<Account>> getAccountByUserID(/*@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId*/)
     {
-        System.out.println("Current user: " + getUserId());
         List<Account> accounts = accountService.getAccountsByUserId(getUserId());
 
         if (accounts.size() > 0) {
