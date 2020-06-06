@@ -14,6 +14,7 @@ public class UserTest {
         assertNotNull(user);
     }
 
+    
     @Test
     public void invalidTypeShouldThrowIllegalArgumentException(){
         User user = new User();
