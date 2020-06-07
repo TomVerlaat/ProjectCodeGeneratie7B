@@ -75,13 +75,15 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.45747125" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\GitHubRepositories\ProjectCodeGeneratie7B\src\main\resources\static\img" />
       <recent name="C:\Users\Tom\Documents\GitHub\ProjectCodeGeneratie7B\src\main\resources\static" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager" selected="JUnit.AccountsControllerTest">
     <configuration name="Unnamed (1)" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.swagger.Swagger2SpringBoot" />
       <module name="swagger-spring" />
@@ -126,15 +128,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AccountsControllerTest.testIfTestIsWorking" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.controller" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.controller.AccountsControllerTest" />
+      <option name="METHOD_NAME" value="testIfTestIsWorking" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Unnamed (1)" />
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="JUnit.AccountsControllerTest" />
       <item itemvalue="JUnit.AccountTest" />
+      <item itemvalue="JUnit.AccountsControllerTest.testIfTestIsWorking" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.AccountsControllerTest" />
+        <item itemvalue="JUnit.AccountsControllerTest.testIfTestIsWorking" />
         <item itemvalue="JUnit.AccountTest" />
       </list>
     </recent_temporary>
@@ -163,6 +183,8 @@
       <workItem from="1591445199434" duration="7020000" />
       <workItem from="1591476818945" duration="839000" />
       <workItem from="1591477690015" duration="76000" />
+      <workItem from="1591513362835" duration="14110000" />
+      <workItem from="1591535594004" duration="1673000" />
     </task>
     <servers />
   </component>
@@ -194,22 +216,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="311" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591476882467" />
-    <state width="1878" height="173" key="GridCell.Tab.0.bottom" timestamp="1591477765213">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1591537252549">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1878" height="173" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591477765213" />
-    <state width="1878" height="173" key="GridCell.Tab.0.center" timestamp="1591477765213">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591524961289" />
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591537252549" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1591537252549">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1878" height="173" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591477765213" />
-    <state width="1878" height="173" key="GridCell.Tab.0.left" timestamp="1591477765213">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591524961288" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591537252549" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1591537252549">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1878" height="173" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591477765213" />
-    <state width="1878" height="173" key="GridCell.Tab.0.right" timestamp="1591477765213">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591524961288" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591537252549" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1591537252549">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1878" height="173" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591477765213" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591524961289" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591537252549" />
     <state width="1878" height="197" key="GridCell.Tab.1.bottom" timestamp="1591352032394">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -234,6 +264,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="670" y="242" width="579" height="554" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1591477449437" />
+    <state x="-1304" y="243" key="run.anything.popup" timestamp="1591517762093">
+      <screen x="-1920" y="0" width="1920" height="1050" />
+    </state>
+    <state x="-1304" y="243" key="run.anything.popup/0.0.1920.1050/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1591517762093" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

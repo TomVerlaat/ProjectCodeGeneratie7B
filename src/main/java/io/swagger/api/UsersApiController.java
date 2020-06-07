@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -123,4 +125,14 @@ public class UsersApiController implements UsersApi {
         }
     }
 
+    private long getUserId() {
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        return userService.getUserIDByUsername(loggedInUser.getName());
+    }
+
+    public boolean isUserAuthorized(){
+        User user = userService.getUserByUserId(getUserId());
+        if (user.getType() == User.Type.EMPLOYEE) return true;
+        else return false;
+    }
 }
