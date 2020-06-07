@@ -6,7 +6,6 @@ import io.swagger.Service.UserService;
 import io.swagger.annotations.ApiParam;
 import io.swagger.model.Account;
 import io.swagger.model.NewAccountBody;
-import io.swagger.model.SecurityUserDetails;
 import io.swagger.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +24,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2020-05-14T18:16:38.158Z[GMT]")
 @Controller
@@ -51,13 +47,15 @@ public class AccountsApiController implements AccountsApi {
         this.request = request;
     }
 
+
+
     public ResponseEntity addAccount(@Valid @RequestBody NewAccountBody body)
     {
         Account account = new Account();
         account.setBalance(0);
         account.setActive(true);
         account.setCurrency(body.getCurrency());
-        account.setIban(generateRandomIban());
+        account.setIban(body.getIban());
         account.setType(body.getType());
 
         account.setUserId(body.getUserId());
@@ -71,13 +69,17 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity <Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban)
     {
-        Account accountToDeactivate = accountService.getAccountByIban(iban);
-        if (accountToDeactivate == null){
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        if (isUserAuthorized()) {
+            Account accountToDeactivate = accountService.getAccountByIban(iban);
+            if (accountToDeactivate == null) {
+                return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+            } else {
+                accountService.deactivateAccount(iban);
+                return new ResponseEntity<Void>(HttpStatus.OK);
+            }
         }
-        else {
-            accountService.deactivateAccount(iban);
-            return new ResponseEntity<Void>(HttpStatus.OK);
+        else{
+            return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
         }
     }
 
@@ -98,17 +100,23 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity <List<Account>> getAccountByUserID(/*@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId*/)
     {
-        System.out.println("Current user: " + getUserId());
-        List<Account> accounts = accountService.getAccountsByUserId(getUserId());
-
-        if (accounts.size() > 0) {
-            return ResponseEntity
-                    .status(200)
-                    .body(accounts);
+        List<Account> accounts;
+        if (isUserAuthorized()) {
+            accounts = accountService.getAccountsByUserId(getUserId());
+            if (accounts.size() > 0) {
+                return ResponseEntity
+                        .status(200)
+                        .body(accounts);
+            } else {
+                return ResponseEntity
+                        .status(204)
+                        .body(accounts);
+            }
         }
-        else{
+        else {
+            accounts = null;
             return ResponseEntity
-                    .status(204)
+                    .status(403)
                     .body(accounts);
         }
     }
@@ -116,15 +124,23 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit
             ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){
-        List<Account> accounts = accountService.getAllAccounts();
-        if (accounts.size() > 0) {
-            return ResponseEntity
-                    .status(200)
-                    .body(accounts);
+        List<Account> accounts;
+        if (isUserAuthorized()) {
+            accounts = accountService.getAllAccounts();
+            if (accounts.size() > 0) {
+                return ResponseEntity
+                        .status(200)
+                        .body(accounts);
+            } else {
+                return ResponseEntity
+                        .status(204)
+                        .body(accounts);
+            }
         }
         else{
+            accounts = null;
             return ResponseEntity
-                    .status(204)
+                    .status(403)
                     .body(accounts);
         }
     }
@@ -134,24 +150,9 @@ public class AccountsApiController implements AccountsApi {
         return userService.getUserIDByUsername(loggedInUser.getName());
     }
 
-    public String generateRandomIban() {
-        Random random = new Random();
-        String iban = "NL";
-        int int_random = random.nextInt(100);
-        iban += Integer.toString(int_random);
-        iban += "INHO";
-        for (int i = 0; i < 11; i++) {
-            int n = random.nextInt(10);
-            iban += Integer.toString(n);
-        }
-        List<Account> accounts = accountService.getAllAccounts();
-        for (int i = 0; i < accounts.size(); i++) {
-            Account account = accounts.get(i);
-            String ibanToCheck = account.getIban();
-            if(iban == ibanToCheck){
-                generateRandomIban();
-            }
-        }
-        return iban;
+    public boolean isUserAuthorized(){
+        User user = userService.getUserByUserId(getUserId());
+        if (user.getType() == User.Type.EMPLOYEE) return true;
+        else return false;
     }
 }

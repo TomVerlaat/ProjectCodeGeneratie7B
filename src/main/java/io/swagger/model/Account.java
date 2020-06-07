@@ -31,7 +31,7 @@ public class Account   {
   }
 
   @Id
-  @SequenceGenerator(name = "account_seq", initialValue = 1000001)
+  @SequenceGenerator(name = "account_seq", initialValue = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "account_seq")
   @JsonProperty("id")
   private Long id = null;
@@ -75,7 +75,7 @@ public class Account   {
   private Double balance = null;
 
   @JsonProperty("active")
-  private Boolean active = null;
+  private Boolean active = true;
 
   @JsonProperty("iban")
   private String iban = null;
