@@ -1,1 +1,0 @@
-let url= "http://localhost:8080/Groep7B/BankAPI_V3/1.0.0";
