@@ -102,7 +102,7 @@ public class AccountsApiController implements AccountsApi {
     public ResponseEntity <List<Account>> getAccountByUserID(/*@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId*/)
     {
         List<Account> accounts;
-        if (isUserAuthorized()) {
+
             accounts = accountService.getAccountsByUserId(getUserId());
             if (accounts.size() > 0) {
                 return ResponseEntity
@@ -113,13 +113,7 @@ public class AccountsApiController implements AccountsApi {
                         .status(204)
                         .body(accounts);
             }
-        }
-        else {
-            accounts = null;
-            return ResponseEntity
-                    .status(403)
-                    .body(accounts);
-        }
+
     }
 
 
