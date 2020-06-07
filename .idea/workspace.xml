@@ -32,18 +32,7 @@
   <component name="ChangeListManager">
     <list default="true" id="26aa0a2e-dd60-404a-a903-cd1cba19400c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/Service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/Service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/Swagger2SpringBoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/Swagger2SpringBoot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/api/AccountsApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/api/AccountsApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/api/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/api/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/swagger/model/NewAccountBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/swagger/model/NewAccountBody.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/deactivateaccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/deactivateaccount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/newaccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/newaccount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/newuser.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/newuser.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +109,7 @@
       <workItem from="1591377402639" duration="6304000" />
       <workItem from="1591445686873" duration="20871000" />
       <workItem from="1591531233342" duration="7089000" />
+      <workItem from="1591538825624" duration="322000" />
     </task>
     <servers />
   </component>

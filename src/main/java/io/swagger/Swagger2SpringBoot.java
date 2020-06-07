@@ -45,6 +45,9 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         User user3 = new User(User.Type.CUSTOMER,"JanSmit","Welkom01!","Jan","Smit","jansmit@gmail.com", LocalDate.of(1985,05,30),"Palinglaan 3","2020KR","Volendam","0643182162");
         users.add(user3);
 
+        User user4 = new User(User.Type.EMPLOYEE,"Bank","Welkom01!","Bank","CTS","bankcts@gmail.com", LocalDate.of(2001,05,30),"Anna van Renesselaan 92","1911KS","HAARLEM","0634146445");
+        users.add(user4);
+
         users.forEach(userRepository::save);
         userRepository.findAll().forEach(System.out::println);
 
@@ -73,12 +76,14 @@ public class Swagger2SpringBoot implements CommandLineRunner {
         Account account4 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000033", Account.TypeEnum.CURRENT,1);
         Account account5 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000043", Account.TypeEnum.SAVINGS,1);
         Account account6 = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000845", Account.TypeEnum.CURRENT,2);
+        Account account7 = new Account(1000, Account.CurrencyEnum.EUR, "NL01INHO00000000001", Account.TypeEnum.CURRENT,4);
         accounts.add(account1);
         accounts.add(account2);
         accounts.add(account3);
         accounts.add(account4);
         accounts.add(account5);
         accounts.add(account6);
+        accounts.add(account7);
 
         accounts.forEach(accountRepository::save);
         accountRepository.findAll().forEach(System.out::println);
