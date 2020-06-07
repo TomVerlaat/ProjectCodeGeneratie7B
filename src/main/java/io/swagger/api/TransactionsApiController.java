@@ -263,22 +263,24 @@ public class TransactionsApiController implements TransactionsApi {
         //Check if user has access to transaction
         if(getUserId() != 0) {
             Transaction transaction = transactionService.getTransactionById(id);
-            boolean access = false;
-            if (transaction.getUserPerformingId().equals(getUserId())) {
-                access = true;
-            }
+            if(transaction!= null) {
+                boolean access = false;
+                if (transaction.getUserPerformingId().equals(getUserId())) {
+                    access = true;
+                }
 
-            // Check if logged in user is employee
-            User user = userService.getUserByUserId(getUserId());
-            if (user.getType().equals(User.Type.EMPLOYEE)) {
-                access = true;
-            }
+                // Check if logged in user is employee
+                User user = userService.getUserByUserId(getUserId());
+                if (user.getType().equals(User.Type.EMPLOYEE)) {
+                    access = true;
+                }
 
 
-            if (access) {
-                return ResponseEntity
-                        .status(200)
-                        .body(transaction);
+                if (access) {
+                    return ResponseEntity
+                            .status(200)
+                            .body(transaction);
+                }
             }
         }
         return new ResponseEntity(HttpStatus.FORBIDDEN);

@@ -146,9 +146,16 @@ public class AccountsApiController implements AccountsApi {
     }
 
     public boolean isUserAuthorized(){
-        User user = userService.getUserByUserId(getUserId());
-        if (user.getType() == User.Type.EMPLOYEE) return true;
-        else return false;
+        try{
+            User user = userService.getUserByUserId(getUserId());
+            if (user.getType() == User.Type.EMPLOYEE) return true;
+            else return false;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
     }
 
     public String generateRandomIban() {

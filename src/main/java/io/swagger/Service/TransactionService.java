@@ -25,7 +25,13 @@ public TransactionService() {
     }
 
     public Transaction getTransactionById(Long id) {
-        return transactionRepository.getById(id);
+        try {
+            return transactionRepository.getById(id);
+        }
+        catch (Exception e)
+        {
+            return new Transaction();
+        }
     }
 
 

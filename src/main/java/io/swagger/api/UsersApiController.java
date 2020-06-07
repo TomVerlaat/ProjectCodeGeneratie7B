@@ -63,7 +63,14 @@ public class UsersApiController implements UsersApi {
     public ResponseEntity<User> getUser(@ApiParam(value = "user to retrieve",required=true) @PathVariable("userid") Long id
 ) {
         User user = userService.getUserByUserId(id);
-        user.getType();
+
+        try {
+            user.getType();
+        }
+        catch (Exception e)
+        {
+
+        }
         if (user == null){
             return ResponseEntity
                     .status(HttpStatus.NO_CONTENT)
