@@ -1,8 +1,12 @@
 package io.swagger.model;
 
 import java.util.Objects;
+import java.util.Optional;
+import java.util.Random;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -18,14 +22,13 @@ import javax.validation.constraints.*;
 public class NewAccountBody {
     public NewAccountBody(){}
 
-    public NewAccountBody(Account.CurrencyEnum currency, String iban, Account.TypeEnum type, Long userId){
+    public NewAccountBody(Account.CurrencyEnum currency,  Account.TypeEnum type, Long userId){
         //Static properties
         setActive(true);
         setBalance(0);
 
         //Dynamic properties
         setCurrency(currency);
-        setIban(iban);
         setType(type);
         setUserId(userId);
     }
@@ -230,11 +233,6 @@ public class NewAccountBody {
 
     public void setActive(Boolean active) {
         this.active = active;
-    }
-
-    public NewAccountBody iban(String iban) {
-        this.iban = iban;
-        return this;
     }
 
     /**

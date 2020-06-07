@@ -65,4 +65,10 @@ public class AccountService {
         accountRepository.save(account);
     }
 
+    public String GetIban(String iban)
+    {
+        Account accountToCheck = accountRepository.getAccountByIban(iban);
+        return accountToCheck.getIban();
+    }
+
 }

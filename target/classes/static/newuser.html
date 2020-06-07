@@ -20,27 +20,31 @@
 
         <form id="user-form">
             <label for="username">Username:</label><br>
-            <input type="text" id="username" name="username">
+            <input type="text" id="username" name="username" placeholder="username">
             <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" placeholder="password">
             <label for="firstname">Firstname:</label><br>
-            <input type="text" id="firstname" name="firstName">
+            <input type="text" id="firstname" name="firstName" placeholder="firstname">
             <label for="lastname">lastname:</label><br>
-            <input type="text" id="lastname" name="lastName">
+            <input type="text" id="lastname" name="lastName" placeholder="lastname">
             <label for="email">email:</label><br>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" placeholder="jansmit@hotmail.com">
             <label for="birthdate">birthdate:</label><br>
-            <input type="text" id="birthdate" name="birthdate">
+            <input type="text" id="birthdate" name="birthdate" placeholder="2000-01-01">
             <label for="address">address:</label><br>
-            <input type="text" id="address" name="address">
+            <input type="text" id="address" name="address" placeholder="address">
             <label for="postalcode">postalcode:</label><br>
-            <input type="text" id="postalcode" name="postalcode">
+            <input type="text" id="postalcode" name="postalcode" placeholder="1911AA">
             <label for="city">city:</label><br>
-            <input type="text" id="city" name="city">
+            <input type="text" id="city" name="city" placeholder="Haarlem">
             <label for="phonenumber">phonenumber:</label><br>
-            <input type="text" id="phonenumber" name="phoneNumber">
+            <input type="text" id="phonenumber" name="phoneNumber" placeholder="0612345678">
             <label for="type">type:</label><br>
-            <input type="text" id="type" name="type">
+            <select id="select" id="type" name="type">
+                <option value="default">Kies een type</option>
+                <option value="Customer">Customer</option>
+                <option value="Employee">Employee</option>
+            </select>
             <input id="postSubmit" type="submit" value="Submit">
         </form>
 
