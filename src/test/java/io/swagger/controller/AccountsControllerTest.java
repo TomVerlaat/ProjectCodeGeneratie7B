@@ -41,16 +41,21 @@ public class AccountsControllerTest {
     @Test
     public void getAllAccountsShouldReturnJsonArray() throws Exception {
         given(service.getAllAccounts()).willReturn(Arrays.asList(account));
-        this.mvc.perform(get("/Groep7B/BankAPI_V3/1.0.0/Accounts")).andExpect(
+        this.mvc.perform(get("/Accounts")).andExpect(
                 status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].iban").value(account.getIban()));
     }
 
     @Test
+    public void testIfTestIsWorking() throws Exception{
+        this.mvc.perform(get("/")).andExpect(status().isOk());
+    }
+
+    @Test
     public void callingAllAccountsShouldReturnOK() throws Exception {
         this.mvc.perform(get("/Accounts"))
-                .andExpect(status().isNoContent());
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -59,7 +64,7 @@ public class AccountsControllerTest {
         Account account = new Account(500, Account.CurrencyEnum.EUR, "NL01INHO00000000010", Account.TypeEnum.CURRENT,1);
         this.mvc
                 .perform(
-                        post("/Accounts/new")
+                        post("/Accounts")
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                                 .content(mapper.writeValueAsString(account)))
                                 .andExpect(status().isCreated());

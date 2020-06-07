@@ -6,6 +6,7 @@ import io.swagger.Service.UserService;
 import io.swagger.annotations.ApiParam;
 import io.swagger.model.Account;
 import io.swagger.model.NewAccountBody;
+import io.swagger.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,8 @@ public class AccountsApiController implements AccountsApi {
         this.request = request;
     }
 
+
+
     public ResponseEntity addAccount(@Valid @RequestBody NewAccountBody body)
     {
         Account account = new Account();
@@ -66,13 +69,17 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity <Void> deactivateAccount(@ApiParam(value = "IBAN to deactivate",required=true) @PathVariable("iban") String iban)
     {
-        Account accountToDeactivate = accountService.getAccountByIban(iban);
-        if (accountToDeactivate == null){
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        if (isUserAuthorized()) {
+            Account accountToDeactivate = accountService.getAccountByIban(iban);
+            if (accountToDeactivate == null) {
+                return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+            } else {
+                accountService.deactivateAccount(iban);
+                return new ResponseEntity<Void>(HttpStatus.OK);
+            }
         }
-        else {
-            accountService.deactivateAccount(iban);
-            return new ResponseEntity<Void>(HttpStatus.OK);
+        else{
+            return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
         }
     }
 
@@ -93,17 +100,23 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity <List<Account>> getAccountByUserID(/*@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId*/)
     {
-        System.out.println("Current user: " + getUserId());
-        List<Account> accounts = accountService.getAccountsByUserId(getUserId());
-
-        if (accounts.size() > 0) {
-            return ResponseEntity
-                    .status(200)
-                    .body(accounts);
+        List<Account> accounts;
+        if (isUserAuthorized()) {
+            accounts = accountService.getAccountsByUserId(getUserId());
+            if (accounts.size() > 0) {
+                return ResponseEntity
+                        .status(200)
+                        .body(accounts);
+            } else {
+                return ResponseEntity
+                        .status(204)
+                        .body(accounts);
+            }
         }
-        else{
+        else {
+            accounts = null;
             return ResponseEntity
-                    .status(204)
+                    .status(403)
                     .body(accounts);
         }
     }
@@ -111,15 +124,23 @@ public class AccountsApiController implements AccountsApi {
 
     public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit
             ,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName){
-        List<Account> accounts = accountService.getAllAccounts();
-        if (accounts.size() > 0) {
-            return ResponseEntity
-                    .status(200)
-                    .body(accounts);
+        List<Account> accounts;
+        if (isUserAuthorized()) {
+            accounts = accountService.getAllAccounts();
+            if (accounts.size() > 0) {
+                return ResponseEntity
+                        .status(200)
+                        .body(accounts);
+            } else {
+                return ResponseEntity
+                        .status(204)
+                        .body(accounts);
+            }
         }
         else{
+            accounts = null;
             return ResponseEntity
-                    .status(204)
+                    .status(403)
                     .body(accounts);
         }
     }
@@ -127,5 +148,11 @@ public class AccountsApiController implements AccountsApi {
     private long getUserId() {
         Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserIDByUsername(loggedInUser.getName());
+    }
+
+    public boolean isUserAuthorized(){
+        User user = userService.getUserByUserId(getUserId());
+        if (user.getType() == User.Type.EMPLOYEE) return true;
+        else return false;
     }
 }
