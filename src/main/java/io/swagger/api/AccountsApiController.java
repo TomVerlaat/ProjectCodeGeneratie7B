@@ -154,10 +154,12 @@ public class AccountsApiController implements AccountsApi {
     public String generateRandomIban() {
         Random random = new Random();
         String iban = "NL";
-        int int_random = random.nextInt(100);
+        int int_random = random.nextInt(10);
         iban += Integer.toString(int_random);
-        iban += "INHO";
-        for (int i = 0; i < 11; i++) {
+        int_random = random.nextInt(10);
+        iban += Integer.toString(int_random);
+        iban += "INHO0";
+        for (int i = 0; i < 10; i++) {
             int n = random.nextInt(10);
             iban += Integer.toString(n);
         }

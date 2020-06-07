@@ -13,7 +13,7 @@ function appendData(data) {
     var select = document.getElementById("select");
     for (var i = 0; i < data.length; i++) {
         var option = document.createElement("OPTION"),
-            txt = document.createTextNode(data[i].iban + " Balance: " + data[i].balance);
+            txt = document.createTextNode(data[i].iban + " Balance: " + data[i].balance + " Type: " + data[i].type);
         option.appendChild(txt);
         option.setAttribute("value", data[i].iban);
         select.insertBefore(option, select.lastChild);
