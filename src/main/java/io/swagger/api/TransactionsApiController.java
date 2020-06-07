@@ -80,13 +80,34 @@ public class TransactionsApiController implements TransactionsApi {
         return false;
     }
 
+    private boolean validAmount(double amount)
+    {
+        final double minAmount = 0;
+        final double maxAmount = 100000;
+        if(amount > minAmount && amount <= maxAmount)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean enoughFunds(double accountBalance ,double transactionAmount)
+    {
+        final double limit = -100;
+        if(accountBalance - transactionAmount >= limit)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
     public ResponseEntity depositTransaction(@Valid @RequestBody DepositBody body
     ) {
         // Only User with account has access
         boolean access = accountAccess(body.getAccountTo());
 
-        if(access && body.getAmount() > 0) {
+        if(access && validAmount(body.getAmount())) {
             Transaction transaction = new Transaction();
             transaction.setAccountFrom("NL01INHO0000000001");
             transaction.setAccountTo(body.getAccountTo());
@@ -114,10 +135,10 @@ public class TransactionsApiController implements TransactionsApi {
         // Only User with account has access
         boolean access = accountAccess(body.getAccountFrom());
 
-        if(access && body.getAmount() > 0) {
+        if(access && validAmount(body.getAmount())) {
             // Withdraw money from account
             Account account = accountService.getAccountByIban(body.getAccountFrom());
-            if (account.getBalance() >= body.getAmount()) {
+            if (enoughFunds(account.getBalance(),body.getAmount())) {
 
                 Transaction transaction = new Transaction();
                 transaction.setAccountFrom(body.getAccountFrom());
@@ -149,9 +170,12 @@ public class TransactionsApiController implements TransactionsApi {
             ibanExists = true;
         }
 
-        if(ibanExists && access && body.getAmount() > 0) {
+        // Check prerequirements
+        if(ibanExists && access && validAmount(body.getAmount())) {
+
+            // Check account balance and status
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
-            if (accountFrom.getBalance() >= body.getAmount()) {
+            if (enoughFunds(accountFrom.getBalance(),body.getAmount()) && accountFrom.getType() == Account.TypeEnum.CURRENT) {
 
                 Transaction transaction = new Transaction();
                 transaction.setAccountFrom(body.getAccountFrom());
@@ -188,13 +212,9 @@ public class TransactionsApiController implements TransactionsApi {
 
             // Check if account has enough funds
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
-            boolean enoughFunds = false;
-            if (accountFrom.getBalance() >= body.getAmount()) {
-                enoughFunds = true;
-            }
 
             // Execute transaction
-            if (accessToAccountFrom & accessToAccountTo && enoughFunds && body.getAmount() > 0) {
+            if (accessToAccountFrom & accessToAccountTo && enoughFunds(accountFrom.getBalance(),body.getAmount()) && validAmount(body.getAmount())) {
                 // Widthdraw funds
                 accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
                 accountService.updateAccount(accountFrom);
