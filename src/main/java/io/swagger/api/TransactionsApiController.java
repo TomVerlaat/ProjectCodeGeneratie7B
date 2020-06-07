@@ -58,21 +58,56 @@ public class TransactionsApiController implements TransactionsApi {
         }
     }
 
-    // WERKT!
+    private boolean ibanExists(String Iban)
+    {
+        Account account  = accountService.getAccountByIban(Iban);
+        if(account == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean accountAccess(String accountToCheck)
+    {
+        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
+        for (Account account:userAccounts) {
+            if(account.getIban().equals(accountToCheck))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean validAmount(double amount)
+    {
+        final double minAmount = 0;
+        final double maxAmount = 100000;
+        if(amount > minAmount && amount <= maxAmount)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean enoughFunds(double accountBalance ,double transactionAmount)
+    {
+        final double limit = -100;
+        if(accountBalance - transactionAmount >= limit)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
     public ResponseEntity depositTransaction(@Valid @RequestBody DepositBody body
     ) {
         // Only User with account has access
-        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
-        boolean access = false;
-        for (Account account:userAccounts) {
-            if(account.getIban().equals(body.getAccountTo()))
-            {
-                access = true;
-                break;
-            }
-        }
+        boolean access = accountAccess(body.getAccountTo());
 
-        if(access && body.getAmount() > 0) {
+        if(access && validAmount(body.getAmount())) {
             Transaction transaction = new Transaction();
             transaction.setAccountFrom("NL01INHO0000000001");
             transaction.setAccountTo(body.getAccountTo());
@@ -93,24 +128,17 @@ public class TransactionsApiController implements TransactionsApi {
         }
     }
 
-    // WERKT!
+
     public ResponseEntity WithdrawTransaction(@Valid @RequestBody WithdrawBody body
     ) {
-        // Only User with account has access
-        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
-        boolean access = false;
-        for (Account account:userAccounts) {
-            if(account.getIban().equals(body.getAccountFrom()))
-            {
-                access = true;
-                break;
-            }
-        }
 
-        if(access && body.getAmount() > 0) {
+        // Only User with account has access
+        boolean access = accountAccess(body.getAccountFrom());
+
+        if(access && validAmount(body.getAmount())) {
             // Withdraw money from account
             Account account = accountService.getAccountByIban(body.getAccountFrom());
-            if (account.getBalance() >= body.getAmount()) {
+            if (enoughFunds(account.getBalance(),body.getAmount())) {
 
                 Transaction transaction = new Transaction();
                 transaction.setAccountFrom(body.getAccountFrom());
@@ -130,23 +158,24 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
-    //WERKT!
+
     public ResponseEntity payTransaction(@Valid @RequestBody PaymentBody body)
     {
         // Only user with account has access.
-        List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
-        boolean access = false;
-        for (Account account:userAccounts) {
-            if(account.getIban().equals(body.getAccountFrom()))
-            {
-                access = true;
-                break;
-            }
+        boolean access = accountAccess(body.getAccountFrom());
+
+        boolean ibanExists = false;
+        if(ibanExists(body.getAccountFrom()) == true && ibanExists(body.getAccountTo()) == true)
+        {
+            ibanExists = true;
         }
 
-        if(access && body.getAmount() > 0) {
+        // Check prerequirements
+        if(ibanExists && access && validAmount(body.getAmount())) {
+
+            // Check account balance and status
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
-            if (accountFrom.getBalance() >= body.getAmount()) {
+            if (enoughFunds(accountFrom.getBalance(),body.getAmount()) && accountFrom.getType() == Account.TypeEnum.CURRENT) {
 
                 Transaction transaction = new Transaction();
                 transaction.setAccountFrom(body.getAccountFrom());
@@ -172,38 +201,20 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
-    // WERKT!
+
     public ResponseEntity TransferTransaction(@Valid @RequestBody TransferBody body)
     {
         if(getUserId()!=0) {
             // Check if user has acces to AccountFrom
-            List<Account> userAccounts = accountService.getAccountsByUserId(getUserId());
-            boolean accessToAccountFrom = false;
-            for (Account account : userAccounts) {
-                if (account.getIban().equals(body.getAccountFrom())) {
-                    accessToAccountFrom = true;
-                    break;
-                }
-            }
-
+            boolean accessToAccountFrom = accountAccess(body.getAccountFrom());
             // Check if user hass access to AccountTo
-            boolean accessToAccountTo = false;
-            for (Account account : userAccounts) {
-                if (account.getIban().equals(body.getAccountTo())) {
-                    accessToAccountTo = true;
-                    break;
-                }
-            }
+            boolean accessToAccountTo = accountAccess(body.getAccountTo());
 
             // Check if account has enough funds
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
-            boolean enoughFunds = false;
-            if (accountFrom.getBalance() >= body.getAmount()) {
-                enoughFunds = true;
-            }
 
             // Execute transaction
-            if (accessToAccountFrom & accessToAccountTo && enoughFunds && body.getAmount() > 0) {
+            if (accessToAccountFrom & accessToAccountTo && enoughFunds(accountFrom.getBalance(),body.getAmount()) && validAmount(body.getAmount())) {
                 // Widthdraw funds
                 accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
                 accountService.updateAccount(accountFrom);
@@ -229,7 +240,7 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
-    // WERKT!
+
     public ResponseEntity getAllTransactions() {
         // Only for employees
         if(getUserId() != 0) {
@@ -244,7 +255,7 @@ public class TransactionsApiController implements TransactionsApi {
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
-    // Nog beveiligen
+
     public ResponseEntity<Transaction> getTransactionById(@ApiParam(value = "Transaction ID",required=true) @PathVariable("id") Long id)
     {
         //Only creator of transaction and employee have access
@@ -274,7 +285,6 @@ public class TransactionsApiController implements TransactionsApi {
     }
 
 
-    // WERKT!
     public ResponseEntity <List<Transaction>> getTransactionsByIBAN(@ApiParam(value = "Account IBAN",required=true) @PathVariable("iban") String iban)
     {
         // Owner of account and employee have access
