@@ -104,6 +104,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AccountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.AccountTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TransactionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="swagger-spring" />
       <extension name="coverage">
@@ -115,38 +130,6 @@
       <option name="PACKAGE_NAME" value="io.swagger.model" />
       <option name="MAIN_CLASS_NAME" value="io.swagger.model.TransactionTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TransactionTest.createTransactionShouldNotBeNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="swagger-spring" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.swagger.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.swagger.model" />
-      <option name="MAIN_CLASS_NAME" value="io.swagger.model.TransactionTest" />
-      <option name="METHOD_NAME" value="createTransactionShouldNotBeNull" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TransactionTest.insufficientFundsShouldReturnFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="swagger-spring" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.swagger.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="io.swagger.model" />
-      <option name="MAIN_CLASS_NAME" value="io.swagger.model.TransactionTest" />
-      <option name="METHOD_NAME" value="insufficientFundsShouldReturnFalse" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -183,22 +166,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swagger-spring" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.swagger.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="io.swagger.model" />
+      <option name="MAIN_CLASS_NAME" value="io.swagger.model.UserTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Unnamed (1)" />
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="JUnit.TransactionTest" />
-      <item itemvalue="JUnit.TransactionTest.insufficientFundsShouldReturnFalse" />
-      <item itemvalue="JUnit.TransactionTest.createTransactionShouldNotBeNull" />
       <item itemvalue="JUnit.TransactionTest.invalidAccountFromShouldReturnFalse" />
       <item itemvalue="JUnit.TransactionTest.invalidTransactionTypeShouldReturnFalse" />
+      <item itemvalue="JUnit.AccountTest" />
+      <item itemvalue="JUnit.UserTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TransactionTest" />
+        <item itemvalue="JUnit.UserTest" />
+        <item itemvalue="JUnit.AccountTest" />
         <item itemvalue="JUnit.TransactionTest.invalidTransactionTypeShouldReturnFalse" />
         <item itemvalue="JUnit.TransactionTest.invalidAccountFromShouldReturnFalse" />
-        <item itemvalue="JUnit.TransactionTest.createTransactionShouldNotBeNull" />
-        <item itemvalue="JUnit.TransactionTest.insufficientFundsShouldReturnFalse" />
       </list>
     </recent_temporary>
   </component>
@@ -230,6 +228,7 @@
       <workItem from="1591523915469" duration="3884000" />
       <workItem from="1591528273237" duration="124000" />
       <workItem from="1591542665053" duration="541000" />
+      <workItem from="1591544835596" duration="1123000" />
     </task>
     <servers />
   </component>
@@ -261,25 +260,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="311" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591476882467" />
-    <state width="1877" height="229" key="GridCell.Tab.0.bottom" timestamp="1591544817210">
+    <state width="1877" height="31" key="GridCell.Tab.0.bottom" timestamp="1591545615577">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="229" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591544817210" />
+    <state width="1877" height="31" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1591545615577" />
     <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591541168403" />
-    <state width="1877" height="229" key="GridCell.Tab.0.center" timestamp="1591544817209">
+    <state width="1877" height="31" key="GridCell.Tab.0.center" timestamp="1591545615576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="229" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591544817209" />
+    <state width="1877" height="31" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1591545615576" />
     <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591541168403" />
-    <state width="1877" height="229" key="GridCell.Tab.0.left" timestamp="1591544817209">
+    <state width="1877" height="31" key="GridCell.Tab.0.left" timestamp="1591545615576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="229" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591544817209" />
+    <state width="1877" height="31" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1591545615576" />
     <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591541168403" />
-    <state width="1877" height="229" key="GridCell.Tab.0.right" timestamp="1591544817210">
+    <state width="1877" height="31" key="GridCell.Tab.0.right" timestamp="1591545615576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="229" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591544817210" />
+    <state width="1877" height="31" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1591545615576" />
     <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591541168403" />
     <state width="1878" height="197" key="GridCell.Tab.1.bottom" timestamp="1591352032394">
       <screen x="0" y="0" width="1920" height="1040" />
