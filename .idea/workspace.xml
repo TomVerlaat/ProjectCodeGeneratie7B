@@ -66,7 +66,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/guitarshop-api-api-testing-lesson2/guitarshop-api-api-testing-lesson2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ProjectCodeGeneratie7B_CTS_BANK_FINAL/ProjectCodeGeneratie7B" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -223,6 +223,7 @@
       <workItem from="1591542665053" duration="541000" />
       <workItem from="1591544835596" duration="1123000" />
       <workItem from="1591551610977" duration="2727000" />
+      <workItem from="1591556127649" duration="48000" />
     </task>
     <servers />
   </component>
@@ -254,6 +255,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="311" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591476882467" />
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1591556172997">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1591556172997" />
     <state width="1878" height="263" key="GridCell.Tab.0.bottom" timestamp="1591554324788">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
