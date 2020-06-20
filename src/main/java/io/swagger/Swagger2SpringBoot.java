@@ -50,6 +50,7 @@ public class Swagger2SpringBoot implements CommandLineRunner {
 
 
         List<Transaction> transactions = new ArrayList<>();
+
         Transaction transaction1 = new Transaction("NL01INHO00000000010","NL01INHO00000000002",100.00,"Money for Fiat Multipla",1L, Transaction.TransactionTypeEnum.PAYMENT);
         Transaction transaction2 = new Transaction("NL01INHO00000000010","NL01INHO00000000002",49.95,"Benzine Fiat multipla",1L, Transaction.TransactionTypeEnum.PAYMENT);
         Transaction transaction3 = new Transaction("NL01INHO00000000002","NL01INHO00000000010",175.00,"Nieuwe Game",2L, Transaction.TransactionTypeEnum.PAYMENT);

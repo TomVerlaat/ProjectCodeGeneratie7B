@@ -35,111 +35,29 @@ public class UsersApiController implements UsersApi {
     @Autowired
     private UserService userService;
 
-    @org.springframework.beans.factory.annotation.Autowired
+    @Autowired
     public UsersApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
         this.request = request;
     }
 
-    public ResponseEntity <Void> deactivateUser(@ApiParam(value = "userId to deactivate",required=true) @PathVariable("userid") Long id)
-    {
-        User userToDeactivate = userService.getUserByUserId(id);
-        if (userToDeactivate == null){
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-        }
-        else {
-            userService.deactivateUser(id);
-            return new ResponseEntity<Void>(HttpStatus.OK);
-        }
+    public ResponseEntity <Void> deactivateUser(@ApiParam(value = "userId to deactivate",required=true) @PathVariable("userid") Long id) {
+        return userService.deactivateUserResponseEntity(id);
     }
 
     public ResponseEntity getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return ResponseEntity
-                .status(200)
-                .body(users);
+        return userService.getAllUsersResponseEntity();
     }
 
-    public ResponseEntity<User> getUser(@ApiParam(value = "user to retrieve",required=true) @PathVariable("userid") Long id
-) {
-        User user = userService.getUserByUserId(id);
-
-        try {
-            user.getType();
-        }
-        catch (Exception e)
-        {
-
-        }
-        if (user == null){
-            return ResponseEntity
-                    .status(HttpStatus.NO_CONTENT)
-                    .body(user);
-        }
-        else{
-            return ResponseEntity
-                    .status(200)
-                    .body(user);
-        }
+    public ResponseEntity<User> getUser(@ApiParam(value = "user to retrieve",required=true) @PathVariable("userid") Long id) {
+        return userService.getUserResponseEntity(id);
     }
 
-    public ResponseEntity newUser(@Valid @RequestBody NewUserBody body
-) {
-        User user = new User();
-        user.setUsername(body.getUsername());
-        user.setPassword(body.getPassword());
-        user.setFirstName(body.getFirstName());
-        user.setLastName(body.getLastName());
-        user.setEmail(body.getEmail());
-        user.setBirthdate(LocalDate.now());
-        user.setAddress(body.getAddress());
-        user.setPostalcode(body.getPostalcode());
-        user.setCity(body.getCity());
-        user.setPhoneNumber(body.getPhoneNumber());
-        user.setActive(true);
-        user.setType(body.getType());
-
-        userService.addUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
+    public ResponseEntity newUser(@Valid @RequestBody NewUserBody body) {
+        return userService.newUserResponseEntity(body);
     }
 
-    public ResponseEntity <Void> updateUser(@ApiParam(value = ""  )  @Valid @RequestBody User user
-) {
-        User checkUser = userService.getUserByUserId(user.getId());
-        if (checkUser == null){
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-        }
-        else{
-            User newUser = new User();
-            // Fill updated user with filled in parameters
-            newUser.setId(user.getId());
-            newUser.setUsername(user.getUsername());
-            newUser.setPassword(user.getPassword());
-            newUser.setFirstName(user.getFirstName());
-            newUser.setLastName(user.getLastName());
-            newUser.setEmail(user.getEmail());
-            newUser.setBirthdate(LocalDate.now());
-            newUser.setAddress(user.getAddress());
-            newUser.setPostalcode(user.getPostalcode());
-            newUser.setCity(user.getCity());
-            newUser.setPhoneNumber(user.getPhoneNumber());
-            newUser.setActive(true);
-            newUser.setType(user.getType());
-
-            // Save updated user
-            userService.updateUser(newUser);
-            return new ResponseEntity<Void>(HttpStatus.OK);
-        }
-    }
-
-    private long getUserId() {
-        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        return userService.getUserIDByUsername(loggedInUser.getName());
-    }
-
-    public boolean isUserAuthorized(){
-        User user = userService.getUserByUserId(getUserId());
-        if (user.getType() == User.Type.EMPLOYEE) return true;
-        else return false;
+    public ResponseEntity <Void> updateUser(@ApiParam(value = ""  )  @Valid @RequestBody User user) {
+        return userService.updateUserResponseEntity(user);
     }
 }
