@@ -2,6 +2,7 @@ package io.swagger.Service;
 
 import io.swagger.dao.TransactionRepository;
 import io.swagger.model.*;
+import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -62,6 +63,7 @@ public TransactionService() {
             transaction.setAccountFrom("NL01INHO0000000001");
             transaction.setAccountTo(body.getAccountTo());
             transaction.setAmount(body.getAmount());
+            transaction.setUserPerformingId(userService.getUserId());
             transaction.setTransactionType(Transaction.TransactionTypeEnum.DEPOSIT);
             addTransaction(transaction);
 
@@ -91,6 +93,7 @@ public TransactionService() {
                 transaction.setAccountFrom(body.getAccountFrom());
                 transaction.setAccountTo("NL01INHO0000000001");
                 transaction.setAmount(body.getAmount());
+                transaction.setUserPerformingId(userService.getUserId());
                 transaction.setTransactionType(Transaction.TransactionTypeEnum.WITHDRAWAL);
                 addTransaction(transaction);
 
@@ -119,28 +122,32 @@ public TransactionService() {
 
             // Check account balance and status
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
-            if (enoughFunds(accountFrom.getBalance(),body.getAmount()) && accountFrom.getType() == Account.TypeEnum.CURRENT) {
+            if (accountFrom.getType() == Account.TypeEnum.CURRENT) {
+                if (enoughFunds(accountFrom.getBalance(), body.getAmount())) {
 
-                Transaction transaction = new Transaction();
-                transaction.setAccountFrom(body.getAccountFrom());
-                transaction.setAccountTo(body.getAccountTo());
-                transaction.setAmount(body.getAmount());
-                transaction.setDescription(body.getDescription());
+                    Transaction transaction = new Transaction();
+                    transaction.setAccountFrom(body.getAccountFrom());
+                    transaction.setAccountTo(body.getAccountTo());
+                    transaction.setAmount(body.getAmount());
+                    transaction.setUserPerformingId(userService.getUserId());
+                    transaction.setDescription(body.getDescription());
 
-                // Retrieve money
-                accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
-                accountService.updateAccount(accountFrom);
+                    // Retrieve money
+                    accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
+                    accountService.updateAccount(accountFrom);
 
-                // Add money
-                Account accountTo = accountService.getAccountByIban(body.getAccountTo());
-                accountTo.setBalance(accountTo.getBalance() + body.getAmount());
-                accountService.updateAccount(accountTo);
+                    // Add money
+                    Account accountTo = accountService.getAccountByIban(body.getAccountTo());
+                    accountTo.setBalance(accountTo.getBalance() + body.getAmount());
+                    accountService.updateAccount(accountTo);
 
-                transaction.setTransactionType(Transaction.TransactionTypeEnum.PAYMENT);
-                addTransaction(transaction);
-                return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+                    transaction.setTransactionType(Transaction.TransactionTypeEnum.PAYMENT);
+                    addTransaction(transaction);
+                    return ResponseEntity.status(HttpStatus.CREATED).body(transaction.getId());
+                }
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Insufficient funds");
             }
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Insufficient funds");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Drawing money from savings account is prohibited");
         }
         return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
@@ -171,6 +178,7 @@ public TransactionService() {
                 transaction.setAccountFrom(body.getAccountFrom());
                 transaction.setAccountTo(body.getAccountTo());
                 transaction.setAmount(body.getAmount());
+                transaction.setUserPerformingId(userService.getUserId());
                 transaction.setDescription(body.getDescription());
 
                 transaction.setTransactionType(Transaction.TransactionTypeEnum.TRANSFER);
@@ -264,9 +272,10 @@ public TransactionService() {
     }
 
     private boolean accountAccess(String accountToCheck) {
+        User user = userService.getUserByUserId(userService.getUserId());
         List<Account> userAccounts = accountService.getAccountsByUserId(userService.getUserId());
         for (Account account:userAccounts) {
-            if(account.getIban().equals(accountToCheck))
+            if(account.getIban().equals(accountToCheck) || user.getType().equals(User.Type.EMPLOYEE))
             {
                 return true;
             }
@@ -275,9 +284,9 @@ public TransactionService() {
     }
 
     private boolean validAmount(double amount) {
-        final double minAmount = 0;
-        final double maxAmount = 100000;
-        if(amount > minAmount && amount <= maxAmount)
+        User user = userService.getUserByUserId(userService.getUserId());
+        double maxAmount = user.getTransactionLimit();
+        if(amount > 0 && amount <= maxAmount)
         {
             return true;
         }
@@ -285,8 +294,9 @@ public TransactionService() {
     }
 
     private boolean enoughFunds(double accountBalance ,double transactionAmount) {
-        final double limit = -100;
-        if(accountBalance - transactionAmount >= limit)
+        User user = userService.getUserByUserId(userService.getUserId());
+        double maximumDebt = user.getMaximumDebt();
+        if(accountBalance - transactionAmount >= maximumDebt)
         {
             return true;
         }
