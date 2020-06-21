@@ -62,6 +62,12 @@ public class User   {
   private boolean isCredentialsNonExpired = true;
   private boolean isEnabled = true;
 
+  @JsonProperty("transactionLimit")
+  private double transactionLimit;
+
+  @JsonProperty("maximumDebt")
+  private double maximumDebt;
+
   public User() {
   }
 
@@ -78,6 +84,8 @@ public class User   {
     setPostalcode(postalcode);
     setCity(city);
     setPhoneNumber(phoneNumber);
+    setTransactionLimit(10000);
+    setMaximumDebt(-100);
   }
 
   /**
@@ -107,6 +115,34 @@ public class User   {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  /**
+   * Get transactionLimit
+   * @return transactionLimit
+   **/
+  @ApiModelProperty(example = "100000", value = "")
+
+  public double getTransactionLimit() {
+    return transactionLimit;
+  }
+
+  public void setTransactionLimit(double transactionLimit) {
+    this.transactionLimit = transactionLimit;
+  }
+
+  /**
+   * Get maximumDebt
+   * @return maximumDebt
+   **/
+  @ApiModelProperty(example = "-100", value = "")
+
+  public double getMaximumDebt() {
+    return maximumDebt;
+  }
+
+  public void setMaximumDebt(double maximumDebt) {
+    this.maximumDebt = maximumDebt;
   }
 
   public User username(String username) {

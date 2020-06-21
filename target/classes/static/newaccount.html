@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/edit.css">
+    <script src="config.js"></script>
+    <title>
+        New Account
+    </title>
+</head>
+<body>
+<div class="editform">
+    <h1 class="pagetitle">
+        <button name="backBtn" class="button" style='float: left; margin-top: 0vw; margin-left: 1vw;'><a href="home.html"><-- Terug</a></button>
+        Create a new account (only employees can do this!)
+    </h1>
+    <div class="whole wholepart">
+        <h2 class="title">
+        </h2>
+
+        <form id="account-form">
+            <label for="userid">userid:</label><br>
+            <input type="text" id="userid" name="userId">
+            <label>type:</label><br>
+            <select id="select" id="type" name="type">
+                <option value="default">Kies een type</option>
+                <option value="Current">Current</option>
+                <option value="Savings">Savings</option>
+            </select>
+            <label>currency:</label><br>
+            <select id="selectCurrency" id="currency" name="currency">
+                <option value="default">Kies een currency</option>
+                <option value="EUR">EUR</option>
+            </select>
+            <input id="postSubmit" type="submit" value="Submit">
+        </form>
+
+        <div id="feedback"> </div>
+
+    </div>
+
+    <script>
+        const thisForm = document.getElementById('account-form');
+        thisForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(thisForm).entries()
+
+            fetch(url + '/Accounts/new', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })  .then(response => {
+                if (!response.ok) {
+                    console.log("Failed")
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">NOT AUTHORIZED </p>";
+                }
+                else
+                {
+                    console.log("Succesfull!");
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Succesfull</p>";
+                    document.getElementById("payment-form").reset();
+                }
+            })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
+</div>
+</body>
+</html>
