@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/Users").hasAuthority("EMPLOYEE")
                 .antMatchers(HttpMethod.GET, "/Users/{userid}").permitAll()
                 .antMatchers(HttpMethod.PUT, "/Users/**").hasAuthority("EMPLOYEE")
+                .antMatchers(HttpMethod.PUT, "/Users/update").permitAll()
                 .antMatchers(HttpMethod.POST, "/Users/**").hasAuthority("EMPLOYEE")
                 .antMatchers(HttpMethod.GET, "/Transactions").hasAuthority("EMPLOYEE")
                 .antMatchers(HttpMethod.GET, "/Transactions/**").permitAll()
@@ -55,10 +56,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .permitAll();
     }
-
-      /*
-        In order for this to work, go to https://localhost:8443/api/login
-       */
 
     @Bean
     public PasswordEncoder passwordEncoder(){
