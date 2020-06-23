@@ -15,7 +15,7 @@ function appendData(data) {
         var div = document.createElement("div");
         var updateLink= url+"/updateuser.html?userid="+encodeURI(data[i].id);
         var deactivationlink = url+"/deactivateuser.html?userid="+encodeURI(data[i].id);
-        div.innerHTML = data[i].username + "<br>" + "email: " + data[i].email + "<br>address: " + data[i].address + "<br>Active: " + data[i].active + "<br><a href=" + updateLink + ">update user</a>" + '<br><a href="' + deactivationlink + '">deactivate user</a>' + "<br><br>"
+        div.innerHTML = "userId: " + data[i].id + "<br> username: " + data[i].username + "<br>" + "email: " + data[i].email + "<br>address: " + data[i].address + "<br>Active: " + data[i].active + "<br><a href=" + updateLink + ">update user</a>" + '<br><a href="' + deactivationlink + '">deactivate user</a>' + "<br><br>"
         mainContainer.appendChild(div);
     }
 }

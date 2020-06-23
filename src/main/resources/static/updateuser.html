@@ -17,6 +17,8 @@
     <div class="whole wholepart">
 
             <form id="user-form">
+                <label for="userid">UserId:</label><br>
+                <input type="text" id="userid" name="userid">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username">
                 <label for="password">Password:</label><br>
@@ -39,7 +41,11 @@
                 <input type="text" id="phonenumber" name="phoneNumber">
                 <label for="type">type:</label><br>
                 <input type="text" id="type" name="type">
-                <input type="submit" name="changeBtn" class="button changeBtn" value="Geef veranderingen door" />
+                <label for="transactionLimit">TransactionLimit:</label><br>
+                <input type="text" id="transactionLimit" name="transactionLimit">
+                <label for="maximumDebt">maximumDebt:</label><br>
+                <input type="text" id="maximumDebt" name="maximumDebt">
+                <input id="postSubmit" type="submit" value="Submit">
             </form>
 
         <div id="feedback"> </div>
@@ -50,20 +56,20 @@
         thisForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const formData = new FormData(thisForm).entries()
-
-            fetch(url + '/Users/update', {
+            var userid = document.getElementById("userid").value;
+            fetch(url + '/Users/update/' + userid, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.fromEntries(formData))
             })  .then(response => {
                 if (!response.ok) {
                     console.log("Failed")
-                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">NOT AUTHORIZED </p>";
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">FAILED</p>";
                 }
                 else
                 {
-                    console.log("Succesfull!");
-                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Succesfull</p>";
+                    console.log("Successful!");
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Successful</p>";
                     document.getElementById("payment-form").reset();
                 }
             })

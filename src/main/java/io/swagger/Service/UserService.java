@@ -116,29 +116,29 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
     }
 
-    public ResponseEntity updateUserResponseEntity(User user) {
-        User checkUser = getUserByUserId(user.getId());
+    public ResponseEntity updateUserResponseEntity(Long id, User user) {
+        User checkUser = getUserByUserId(id);
         if (checkUser == null) {
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         } else {
-            User newUser = new User();
             // Fill updated user with filled in parameters
-            newUser.setId(user.getId());
-            newUser.setUsername(user.getUsername());
-            newUser.setPassword(user.getPassword());
-            newUser.setFirstName(user.getFirstName());
-            newUser.setLastName(user.getLastName());
-            newUser.setEmail(user.getEmail());
-            newUser.setBirthdate(LocalDate.now());
-            newUser.setAddress(user.getAddress());
-            newUser.setPostalcode(user.getPostalcode());
-            newUser.setCity(user.getCity());
-            newUser.setPhoneNumber(user.getPhoneNumber());
-            newUser.setActive(true);
-            newUser.setType(user.getType());
+            checkUser.setUsername(user.getUsername());
+            checkUser.setPassword(user.getPassword());
+            checkUser.setFirstName(user.getFirstName());
+            checkUser.setLastName(user.getLastName());
+            checkUser.setEmail(user.getEmail());
+            checkUser.setBirthdate(LocalDate.now());
+            checkUser.setAddress(user.getAddress());
+            checkUser.setPostalcode(user.getPostalcode());
+            checkUser.setCity(user.getCity());
+            checkUser.setPhoneNumber(user.getPhoneNumber());
+            checkUser.setActive(true);
+            checkUser.setType(user.getType());
+            checkUser.setTransactionLimit(user.getTransactionLimit());
+            checkUser.setMaximumDebt(user.getMaximumDebt());
 
             // Save updated user
-            updateUser(newUser);
+            updateUser(checkUser);
             return new ResponseEntity<Void>(HttpStatus.OK);
         }
     }

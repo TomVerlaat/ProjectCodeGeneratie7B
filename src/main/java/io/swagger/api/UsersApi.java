@@ -80,11 +80,10 @@ public interface UsersApi {
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 500, message = "Prima call"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
-    @RequestMapping(value = "/Users/update",
+    @RequestMapping(value = "/Users/update/{userid}",
         produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity updateUser(@ApiParam(value = ""  )  @Valid @RequestBody User user
-);
+    ResponseEntity updateUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody User user);
 
 }

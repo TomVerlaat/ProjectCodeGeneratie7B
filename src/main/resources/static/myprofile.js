@@ -30,6 +30,7 @@ if(userId!="Empty") {
 }
 
 function appendData(data) {
+    document.getElementById("userid").value = data.id;
     document.getElementById("username").value = data.username;
     document.getElementById("password").value = data.password;
     document.getElementById("firstname").value = data.firstName;
@@ -37,8 +38,11 @@ function appendData(data) {
     document.getElementById("email").value = data.email;
     document.getElementById("birthdate").value = data.birthdate;
     document.getElementById("address").value = data.address;
-    document.getElementById("postalcode").value = data.postalCode;
+    document.getElementById("postalcode").value = data.postalcode;
     document.getElementById("city").value = data.city;
     document.getElementById("phonenumber").value = data.phoneNumber;
     document.getElementById("type").value = data.type;
+    document.getElementById("transactionLimit").value = data.transactionLimit;
+    document.getElementById("maximumDebt").value = data.maximumDebt;
+
 }
