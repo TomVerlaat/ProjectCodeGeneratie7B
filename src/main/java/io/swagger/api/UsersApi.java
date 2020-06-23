@@ -5,10 +5,7 @@
  */
 package io.swagger.api;
 
-import io.swagger.model.NewUserBody;
-import io.swagger.model.Body5;
-import io.swagger.model.Body6;
-import io.swagger.model.User;
+import io.swagger.model.*;
 import io.swagger.annotations.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -84,7 +81,7 @@ public interface UsersApi {
         produces = { "application/json" },
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    ResponseEntity updateUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody User user);
+    ResponseEntity updateUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody UpdateBody body);
 
     @ApiOperation(value = "Get details of logged in user", nickname = "getLoggedInUser", notes = "User to retrieve", response = User.class, responseContainer = "List", tags={ "Users", })
     @ApiResponses(value = {
@@ -108,6 +105,6 @@ public interface UsersApi {
             produces = { "application/json" },
             consumes = { "application/json" },
             method = RequestMethod.PUT)
-    ResponseEntity updateLoggedInUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody User user);
+    ResponseEntity updateLoggedInUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody UpdateLoggedInUserBody body);
 
 }

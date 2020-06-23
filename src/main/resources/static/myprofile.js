@@ -11,7 +11,6 @@ fetch(url +'/Users/loggedInUser',{credentials:'include'})
 
 function appendData(data) {
     document.getElementById("userid").value = data.id;
-    document.getElementById("username").value = data.username;
     document.getElementById("password").value = data.password;
     document.getElementById("firstname").value = data.firstName;
     document.getElementById("lastname").value = data.lastName;
@@ -21,6 +20,4 @@ function appendData(data) {
     document.getElementById("postalcode").value = data.postalcode;
     document.getElementById("city").value = data.city;
     document.getElementById("phonenumber").value = data.phoneNumber;
-    document.getElementById("type").value = data.type;
-
 }

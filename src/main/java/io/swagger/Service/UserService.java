@@ -2,6 +2,8 @@ package io.swagger.Service;
 
 import io.swagger.dao.UserRepository;
 import io.swagger.model.NewUserBody;
+import io.swagger.model.UpdateBody;
+import io.swagger.model.UpdateLoggedInUserBody;
 import io.swagger.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -116,26 +118,26 @@ public class UserService {
         return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
     }
 
-    public ResponseEntity updateUserResponseEntity(Long id, User user) {
+    public ResponseEntity updateUserResponseEntity(Long id, UpdateBody body) {
         User checkUser = getUserByUserId(id);
         if (checkUser == null) {
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         } else {
             // Fill updated user with filled in parameters
-            checkUser.setUsername(user.getUsername());
-            checkUser.setPassword(user.getPassword());
-            checkUser.setFirstName(user.getFirstName());
-            checkUser.setLastName(user.getLastName());
-            checkUser.setEmail(user.getEmail());
-            checkUser.setBirthdate(LocalDate.now());
-            checkUser.setAddress(user.getAddress());
-            checkUser.setPostalcode(user.getPostalcode());
-            checkUser.setCity(user.getCity());
-            checkUser.setPhoneNumber(user.getPhoneNumber());
+            checkUser.setUsername(body.getUsername());
+            checkUser.setPassword(body.getPassword());
+            checkUser.setFirstName(body.getFirstName());
+            checkUser.setLastName(body.getLastName());
+            checkUser.setEmail(body.getEmail());
+            checkUser.setBirthdate(body.getBirthdate());
+            checkUser.setAddress(body.getAddress());
+            checkUser.setPostalcode(body.getPostalcode());
+            checkUser.setCity(body.getCity());
+            checkUser.setPhoneNumber(body.getPhoneNumber());
             checkUser.setActive(true);
-            checkUser.setType(user.getType());
-            checkUser.setTransactionLimit(user.getTransactionLimit());
-            checkUser.setMaximumDebt(user.getMaximumDebt());
+            checkUser.setType(body.getType());
+            checkUser.setTransactionLimit(body.getTransactionLimit());
+            checkUser.setMaximumDebt(body.getMaximumDebt());
 
             // Save updated user
             updateUser(checkUser);
@@ -166,23 +168,22 @@ public class UserService {
         }
     }
 
-    public ResponseEntity updateLoggedInUserResponseEntity(Long id, User user) {
+    public ResponseEntity updateLoggedInUserResponseEntity(Long id, UpdateLoggedInUserBody body) {
         User checkUser = getUserByUserId(id);
         if (checkUser == null) {
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         } else {
             // Fill updated user with filled in parameters
-            checkUser.setPassword(user.getPassword());
-            checkUser.setFirstName(user.getFirstName());
-            checkUser.setLastName(user.getLastName());
-            checkUser.setEmail(user.getEmail());
-            checkUser.setBirthdate(LocalDate.now());
-            checkUser.setAddress(user.getAddress());
-            checkUser.setPostalcode(user.getPostalcode());
-            checkUser.setCity(user.getCity());
-            checkUser.setPhoneNumber(user.getPhoneNumber());
+            checkUser.setPassword(body.getPassword());
+            checkUser.setFirstName(body.getFirstName());
+            checkUser.setLastName(body.getLastName());
+            checkUser.setEmail(body.getEmail());
+            checkUser.setBirthdate(body.getBirthdate());
+            checkUser.setAddress(body.getAddress());
+            checkUser.setPostalcode(body.getPostalcode());
+            checkUser.setCity(body.getCity());
+            checkUser.setPhoneNumber(body.getPhoneNumber());
             checkUser.setActive(true);
-            checkUser.setType(user.getType());
 
             // Save updated user
             updateUser(checkUser);
