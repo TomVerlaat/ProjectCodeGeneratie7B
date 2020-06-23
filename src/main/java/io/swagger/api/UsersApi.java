@@ -86,4 +86,28 @@ public interface UsersApi {
         method = RequestMethod.PUT)
     ResponseEntity updateUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody User user);
 
+    @ApiOperation(value = "Get details of logged in user", nickname = "getLoggedInUser", notes = "User to retrieve", response = User.class, responseContainer = "List", tags={ "Users", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "User", response = User.class, responseContainer = "List"),
+            @ApiResponse(code = 400, message = "bad request", response = String.class),
+            @ApiResponse(code = 401, message = "API key is missing or invalid"),
+            @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
+    @RequestMapping(value = "/Users/loggedInUser",
+            produces = { "application/json" },
+            method = RequestMethod.GET)
+    ResponseEntity<User> getLoggedInUser();
+
+    @ApiOperation(value = "Update logged in user information", nickname = "updateLoggedInUser", notes = "Update an User", tags={ "Users", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "item updated", response = String.class),
+            @ApiResponse(code = 400, message = "bad request", response = String.class),
+            @ApiResponse(code = 401, message = "API key is missing or invalid"),
+            @ApiResponse(code = 500, message = "Prima call"),
+            @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
+    @RequestMapping(value = "/Users/updateLoggedInUser/{userid}",
+            produces = { "application/json" },
+            consumes = { "application/json" },
+            method = RequestMethod.PUT)
+    ResponseEntity updateLoggedInUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody User user);
+
 }

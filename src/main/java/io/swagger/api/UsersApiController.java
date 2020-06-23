@@ -60,4 +60,12 @@ public class UsersApiController implements UsersApi {
     public ResponseEntity <Void> updateUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody User user) {
         return userService.updateUserResponseEntity(id, user);
     }
+
+    public ResponseEntity<User> getLoggedInUser() {
+        return userService.getLoggedInUserResponseEntity();
+    }
+
+    public ResponseEntity <Void> updateLoggedInUser(@ApiParam(value = ""  )  @Valid @PathVariable("userid") Long id, @RequestBody User user) {
+        return userService.updateLoggedInUserResponseEntity(id, user);
+    }
 }

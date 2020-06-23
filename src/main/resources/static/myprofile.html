@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
     <script src="config.js"></script>
-    <script src="updateuser.js"></script>
+    <script src="myprofile.js"></script>
     <title>
         Edit user
     </title>
@@ -12,7 +12,7 @@
 <div class="editform">
     <h1 class="pagetitle">
         <button name="backBtn" class="button" style='float: left; margin-top: 0vw; margin-left: 1vw;'><a href="home.html"><-- Terug</a></button>
-        Update an user (only employees can do this!)
+        Update Your Profile
     </h1>
     <div class="whole wholepart">
 
@@ -53,7 +53,7 @@
             e.preventDefault();
             const formData = new FormData(thisForm).entries()
             var userid = document.getElementById("userid").value;
-            fetch(url + '/Users/update/' + userid, {
+            fetch(url + '/Users/updateLoggedInUser/' + userid, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(Object.fromEntries(formData))

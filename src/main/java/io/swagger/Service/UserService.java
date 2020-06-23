@@ -153,4 +153,40 @@ public class UserService {
             return 0;
         }
     }
+
+    public ResponseEntity getLoggedInUserResponseEntity() {
+        try {
+            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+            Long userid = getUserIDByUsername(loggedInUser.getName());
+            return ResponseEntity.status(HttpStatus.CREATED).body(getUserByUserId(userid));
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    public ResponseEntity updateLoggedInUserResponseEntity(Long id, User user) {
+        User checkUser = getUserByUserId(id);
+        if (checkUser == null) {
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        } else {
+            // Fill updated user with filled in parameters
+            checkUser.setPassword(user.getPassword());
+            checkUser.setFirstName(user.getFirstName());
+            checkUser.setLastName(user.getLastName());
+            checkUser.setEmail(user.getEmail());
+            checkUser.setBirthdate(LocalDate.now());
+            checkUser.setAddress(user.getAddress());
+            checkUser.setPostalcode(user.getPostalcode());
+            checkUser.setCity(user.getCity());
+            checkUser.setPhoneNumber(user.getPhoneNumber());
+            checkUser.setActive(true);
+            checkUser.setType(user.getType());
+
+            // Save updated user
+            updateUser(checkUser);
+            return new ResponseEntity<Void>(HttpStatus.OK);
+        }
+    }
 }
