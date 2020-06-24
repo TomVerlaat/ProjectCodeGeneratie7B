@@ -1,5 +1,6 @@
 package io.swagger.Service;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import io.swagger.dao.TransactionRepository;
 import io.swagger.model.*;
 import org.hibernate.usertype.UserType;
@@ -10,6 +11,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.OffsetDateTime;
 import java.util.List;
 
 @Service
@@ -26,6 +29,10 @@ private AccountService accountService;
 
 public TransactionService() {
 }
+
+    public int getTransactionsToday() {
+    return transactionRepository.getTransactionsToday(OffsetDateTime.now().withHour(0));
+    };
 
     public List<Transaction> getAllTransactions() {
         return (List<Transaction>) transactionRepository.findAll();
@@ -190,6 +197,9 @@ public TransactionService() {
     }
 
     public ResponseEntity getAllTransactionsResponseEntity() {
+        int transactionsToday = getTransactionsToday();
+        System.out.println(transactionsToday);
+
         // Only for employees
         if(userService.getUserId() != 0) {
             User user = userService.getUserByUserId(userService.getUserId());
