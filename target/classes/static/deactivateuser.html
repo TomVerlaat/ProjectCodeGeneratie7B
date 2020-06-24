@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/edit.css">
+    <title>
+        Deactivate
+    </title>
+    <script src="config.js"></script>
+    <script src="deactivateuser.js"></script>
+</head>
+<body>
+<div class="editform">
+    <h1 class="pagetitle">
+        <button name="backBtn" class="button" style='float: left; margin-top: 0vw; margin-left: 1vw;'><a href="home.html"><-- Terug</a></button>
+        Deactivate user
+    </h1>
+    <div class="whole wholepart">
+        <h2 class="title">
+        </h2>
+        <div id="deactivateuserData"></div>
+        <form id="user-form">
+            <label>Are you sure you want to deactivate this user?</label><br>
+            <label>User ID: </label>
+            <input type="number" id="userid" name="userid"><br>
+            <input id="postSubmit" type="submit" value="Yes">
+        </form>
+
+        <div id="feedback"> </div>
+    </div>
+
+    <script>
+        const thisForm = document.getElementById('user-form');
+        thisForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(thisForm).entries()
+            var userid = document.getElementById("userid").value;
+            fetch(url + '/Users/deactivate/' + userid, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })  .then(response => {
+                if (!response.ok) {
+                    console.log("Failed")
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">Something went wrong </p>";
+                }
+                else
+                {
+                    console.log("Succesfull!");
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Succesfull</p>";
+                    document.getElementById("payment-form").reset();
+                }
+            })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</div>
+</body>
+</html>
