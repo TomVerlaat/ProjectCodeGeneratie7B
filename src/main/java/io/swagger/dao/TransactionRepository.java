@@ -17,8 +17,8 @@ public interface TransactionRepository extends CrudRepository<Transaction, Long>
 
     List<Transaction> getByAccountFromOrAccountToOrderByTimestampDesc(String value1,String value2);
 
-    @Query("select count(s.id) from Transaction s where s.timestamp >= ?1")
-    int getTransactionsToday(OffsetDateTime date);
+    @Query("select count(t.id) from Transaction t where (t.accountFrom = ?1 or (t.accountTo = ?1 and t.transactionType = 'DEPOSIT')) and t.timestamp >= ?2")
+    int getTransactionsToday(String iban, OffsetDateTime date);
 
 }
 

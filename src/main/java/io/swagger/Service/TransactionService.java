@@ -1,17 +1,12 @@
 package io.swagger.Service;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import io.swagger.dao.TransactionRepository;
 import io.swagger.model.*;
-import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import org.threeten.bp.LocalDate;
 import org.threeten.bp.OffsetDateTime;
 import java.util.List;
 
@@ -30,8 +25,8 @@ private AccountService accountService;
 public TransactionService() {
 }
 
-    public int getTransactionsToday() {
-    return transactionRepository.getTransactionsToday(OffsetDateTime.now().withHour(0));
+    public int getTransactionsToday(String iban) {
+    return transactionRepository.getTransactionsToday(iban,OffsetDateTime.now().withHour(0));
     };
 
     public List<Transaction> getAllTransactions() {
@@ -65,7 +60,7 @@ public TransactionService() {
         // Only User with account has access
         boolean access = accountAccess(body.getAccountTo());
 
-        if(access && validAmount(body.getAmount())) {
+        if(access && underDayLimit(body.getAccountTo()) && validAmount(body.getAmount())) {
             Transaction transaction = new Transaction();
             transaction.setAccountFrom("NL01INHO0000000001");
             transaction.setAccountTo(body.getAccountTo());
@@ -91,7 +86,7 @@ public TransactionService() {
         // Only User with account has access
         boolean access = accountAccess(body.getAccountFrom());
 
-        if(access && validAmount(body.getAmount())) {
+        if(access && underDayLimit(body.getAccountFrom()) && validAmount(body.getAmount())) {
             // Withdraw money from account
             Account account = accountService.getAccountByIban(body.getAccountFrom());
             if (enoughFunds(account.getBalance(),body.getAmount())) {
@@ -125,7 +120,7 @@ public TransactionService() {
         }
 
         // Check prerequirements
-        if(ibanExists && access && validAmount(body.getAmount())) {
+        if(ibanExists && access && underDayLimit(body.getAccountFrom()) && validAmount(body.getAmount())) {
 
             // Check account balance and status
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
@@ -170,7 +165,7 @@ public TransactionService() {
             Account accountFrom = accountService.getAccountByIban(body.getAccountFrom());
 
             // Execute transaction
-            if (accessToAccountFrom & accessToAccountTo && enoughFunds(accountFrom.getBalance(), body.getAmount()) && validAmount(body.getAmount())) {
+            if (accessToAccountFrom & accessToAccountTo && underDayLimit(body.getAccountFrom()) && enoughFunds(accountFrom.getBalance(), body.getAmount()) && validAmount(body.getAmount())) {
                 // Widthdraw funds
                 accountFrom.setBalance(accountFrom.getBalance() - body.getAmount());
                 accountService.updateAccount(accountFrom);
@@ -197,9 +192,6 @@ public TransactionService() {
     }
 
     public ResponseEntity getAllTransactionsResponseEntity() {
-        int transactionsToday = getTransactionsToday();
-        System.out.println(transactionsToday);
-
         // Only for employees
         if(userService.getUserId() != 0) {
             User user = userService.getUserByUserId(userService.getUserId());
@@ -311,5 +303,17 @@ public TransactionService() {
             return true;
         }
         return false;
+    }
+
+    private boolean underDayLimit(String iban)
+    {
+        int transactions = getTransactionsToday(iban);
+        Account account = accountService.getAccountByIban(iban);
+        if(account != null) {
+            if (transactions <= account.getMaxTransactions()) {
+                return true;
+            }
+        }
+         return false;
     }
 }

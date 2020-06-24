@@ -93,7 +93,8 @@ public class Transaction   {
       return null;
     }
   }
-  @JsonProperty("transactionType")
+  //@JsonProperty("transactionType")
+  @Enumerated(EnumType.STRING)
   private TransactionTypeEnum transactionType = null;
 
   public Transaction id(Long id) {
