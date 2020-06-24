@@ -19,6 +19,9 @@ public class UpdateBody {
     @JsonProperty("password")
     private String password = null;
 
+    @JsonProperty("confirmPassword")
+    private String confirmPassword = null;
+
     @JsonProperty("firstName")
     private String firstName = null;
 
@@ -111,7 +114,21 @@ public class UpdateBody {
     }
 
     public void setPassword(String password) {
-        this.password = new BCryptPasswordEncoder().encode(password);
+        this.password = password;
+    }
+
+    /**
+     * Get confirmpassword
+     * @return confirmpassword
+     **/
+    @ApiModelProperty(example = "Password123", value = "")
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public UpdateBody firstName(String firstName) {

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.threeten.bp.LocalDate;
@@ -125,7 +126,11 @@ public class UserService {
         } else {
             // Fill updated user with filled in parameters
             checkUser.setUsername(body.getUsername());
-            checkUser.setPassword(body.getPassword());
+            if(body.getPassword().equals(body.getConfirmPassword())){
+                checkUser.setPassword(new BCryptPasswordEncoder().encode(body.getPassword()));
+            }else{
+                checkUser.setPassword(new BCryptPasswordEncoder().encode(checkUser.getPassword()));
+            }
             checkUser.setFirstName(body.getFirstName());
             checkUser.setLastName(body.getLastName());
             checkUser.setEmail(body.getEmail());
@@ -169,25 +174,33 @@ public class UserService {
     }
 
     public ResponseEntity updateLoggedInUserResponseEntity(Long id, UpdateLoggedInUserBody body) {
-        User checkUser = getUserByUserId(id);
-        if (checkUser == null) {
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-        } else {
-            // Fill updated user with filled in parameters
-            checkUser.setPassword(body.getPassword());
-            checkUser.setFirstName(body.getFirstName());
-            checkUser.setLastName(body.getLastName());
-            checkUser.setEmail(body.getEmail());
-            checkUser.setBirthdate(body.getBirthdate());
-            checkUser.setAddress(body.getAddress());
-            checkUser.setPostalcode(body.getPostalcode());
-            checkUser.setCity(body.getCity());
-            checkUser.setPhoneNumber(body.getPhoneNumber());
-            checkUser.setActive(true);
+        if(getUserId() == id){
+            User checkUser = getUserByUserId(id);
+            if (checkUser == null) {
+                return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+            } else {
+                // Fill updated user with filled in parameters
+                if(body.getPassword().equals(body.getConfirmPassword())){
+                    checkUser.setPassword(new BCryptPasswordEncoder().encode(body.getPassword()));
+                }else{
+                    checkUser.setPassword(new BCryptPasswordEncoder().encode(checkUser.getPassword()));
+                }
+                checkUser.setFirstName(body.getFirstName());
+                checkUser.setLastName(body.getLastName());
+                checkUser.setEmail(body.getEmail());
+                checkUser.setBirthdate(body.getBirthdate());
+                checkUser.setAddress(body.getAddress());
+                checkUser.setPostalcode(body.getPostalcode());
+                checkUser.setCity(body.getCity());
+                checkUser.setPhoneNumber(body.getPhoneNumber());
+                checkUser.setActive(true);
 
-            // Save updated user
-            updateUser(checkUser);
-            return new ResponseEntity<Void>(HttpStatus.OK);
+                // Save updated user
+                updateUser(checkUser);
+                return new ResponseEntity<Void>(HttpStatus.OK);
+            }
+        }else{
+            return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
         }
     }
 }
