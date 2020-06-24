@@ -129,7 +129,7 @@ public class UserService {
             if(body.getPassword().equals(body.getConfirmPassword())){
                 checkUser.setPassword(new BCryptPasswordEncoder().encode(body.getPassword()));
             }else{
-                checkUser.setPassword(new BCryptPasswordEncoder().encode(checkUser.getPassword()));
+                checkUser.setPassword(checkUser.getPassword());
             }
             checkUser.setFirstName(body.getFirstName());
             checkUser.setLastName(body.getLastName());
@@ -183,7 +183,7 @@ public class UserService {
                 if(body.getPassword().equals(body.getConfirmPassword())){
                     checkUser.setPassword(new BCryptPasswordEncoder().encode(body.getPassword()));
                 }else{
-                    checkUser.setPassword(new BCryptPasswordEncoder().encode(checkUser.getPassword()));
+                    checkUser.setPassword(checkUser.getPassword());
                 }
                 checkUser.setFirstName(body.getFirstName());
                 checkUser.setLastName(body.getLastName());
