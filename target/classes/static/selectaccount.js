@@ -16,10 +16,9 @@ function appendData(data) {
         options+= '<option value="'+data[i].iban+'" />';
 
         var option = document.createElement("OPTION"),
-            txt = document.createTextNode(data[i].iban + " balance: " + data[i].balance);
+            txt = document.createTextNode(data[i].iban + " balance: " + data[i].balance + " type: " + data[i].type);
         option.appendChild(txt);
         option.setAttribute("value", data[i].iban);
         select.insertBefore(option, select.lastChild);
     }
-    //select.innerHtml = options;
 }
