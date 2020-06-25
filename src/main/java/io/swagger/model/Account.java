@@ -80,17 +80,6 @@ public class Account   {
   @JsonProperty("iban")
   private String iban = null;
 
-  public int getMaxTransactions() {
-    return maxTransactions;
-  }
-
-  public void setMaxTransactions(int maxTransactions) {
-    this.maxTransactions = maxTransactions;
-  }
-
-  @JsonProperty("maxTransactions")
-  private int maxTransactions = 10;
-
   public Account id(Long id) {
     this.id = id;
     return this;
