@@ -1,4 +1,4 @@
-fetch(url +'/Accounts/GetByUserId',{credentials:'include'})
+fetch(url +'/Users',{credentials:'include'})
     .then(function (response) {
         return response.json();
     })
@@ -10,15 +10,12 @@ fetch(url +'/Accounts/GetByUserId',{credentials:'include'})
     });
 
 function appendData(data) {
-    var select = document.getElementById("getAccountFrom");
-    var options = '';
+    var select = document.getElementById("select");
     for (var i = 0; i < data.length; i++) {
-        options+= '<option value="'+data[i].iban+'" />';
-
         var option = document.createElement("OPTION"),
-            txt = document.createTextNode(data[i].iban + " balance: " + data[i].balance);
+            txt = document.createTextNode( data[i].id + ": " + data[i].username);
         option.appendChild(txt);
-        option.setAttribute("value", data[i].iban);
+        option.setAttribute("value", data[i].id);
         select.insertBefore(option, select.lastChild);
     }
 }

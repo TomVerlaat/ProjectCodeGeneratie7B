@@ -21,4 +21,5 @@ function appendData(data) {
         option.setAttribute("value", data[i].iban);
         select.insertBefore(option, select.lastChild);
     }
+    //select.innerHtml = options;
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/edit.css">
+    <script src="config.js"></script>
+    <title>
+        New User
+    </title>
+</head>
+<body>
+<div class="editform">
+    <h1 class="pagetitle">
+        <button name="backBtn" class="button" style='float: left; margin-top: 0vw; margin-left: 1vw;'><a href="home.html"><-- Terug</a></button>
+        Create a new user (only employees can do this!)
+    </h1>
+    <div class="whole wholepart">
+        <h2 class="title">
+        </h2>
+
+        <form id="user-form">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" placeholder="username">
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" placeholder="password">
+            <label for="firstname">Firstname:</label><br>
+            <input type="text" id="firstname" name="firstName" placeholder="firstname">
+            <label for="lastname">lastname:</label><br>
+            <input type="text" id="lastname" name="lastName" placeholder="lastname">
+            <label for="email">email:</label><br>
+            <input type="email" id="email" name="email" placeholder="jansmit@hotmail.com">
+            <label for="birthdate">birthdate:</label><br>
+            <input type="text" id="birthdate" name="birthdate" placeholder="2000-01-01">
+            <label for="address">address:</label><br>
+            <input type="text" id="address" name="address" placeholder="address">
+            <label for="postalcode">postalcode:</label><br>
+            <input type="text" id="postalcode" name="postalcode" placeholder="1911AA">
+            <label for="city">city:</label><br>
+            <input type="text" id="city" name="city" placeholder="Haarlem">
+            <label for="phonenumber">phonenumber:</label><br>
+            <input type="text" id="phonenumber" name="phoneNumber" placeholder="0612345678">
+            <label for="type">type:</label><br>
+            <select id="select" id="type" name="type">
+                <option value="default">Kies een type</option>
+                <option value="Customer">Customer</option>
+                <option value="Employee">Employee</option>
+            </select>
+            <input id="postSubmit" type="submit" value="Submit">
+        </form>
+
+        <div id="feedback"> </div>
+
+    </div>
+
+    <script>
+        const thisForm = document.getElementById('user-form');
+        thisForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(thisForm).entries()
+
+            fetch(url + '/Users/new', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })  .then(response => {
+                if (!response.ok) {
+                    console.log("Failed")
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">NOT AUTHORIZED </p>";
+                }
+                else
+                {
+                    console.log("Succesfull!");
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Succesfull</p>";
+                    document.getElementById("payment-form").reset();
+                }
+            })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+
+</div>
+</body>
+</html>
