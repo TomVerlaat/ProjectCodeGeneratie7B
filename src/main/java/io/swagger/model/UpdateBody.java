@@ -55,8 +55,23 @@ public class UpdateBody {
     @JsonProperty("maximumDebt")
     private double maximumDebt;
 
+    @JsonProperty("maxTransactions")
+    private int maxTransactions;
+
     /**
-     * Gets or Sets type
+     * Gets or Sets maxTransactions
+     */
+
+    public int getMaxTransactions() {
+        return maxTransactions;
+    }
+
+    public void setMaxTransactions(int maxTransactions) {
+        this.maxTransactions = maxTransactions;
+    }
+
+    /**
+     * Gets or Sets transactionLimit
      */
     @ApiModelProperty(example = "100000", value = "")
 

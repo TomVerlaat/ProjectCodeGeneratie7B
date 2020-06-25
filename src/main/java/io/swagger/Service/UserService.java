@@ -143,6 +143,7 @@ public class UserService {
             checkUser.setType(body.getType());
             checkUser.setTransactionLimit(body.getTransactionLimit());
             checkUser.setMaximumDebt(body.getMaximumDebt());
+            checkUser.setMaxTransactions(body.getMaxTransactions());
 
             // Save updated user
             updateUser(checkUser);

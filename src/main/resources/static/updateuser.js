@@ -44,5 +44,6 @@ function appendData(data) {
     document.getElementById("type").value = data.type;
     document.getElementById("transactionLimit").value = data.transactionLimit;
     document.getElementById("maximumDebt").value = data.maximumDebt;
+    document.getElementById("maxTransactions").value = data.maxTransactions;
 
 }
