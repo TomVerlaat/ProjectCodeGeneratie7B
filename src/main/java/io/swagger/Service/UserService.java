@@ -37,8 +37,7 @@ public class UserService {
     public User getUserByUserId(Long id) {
         try {
             return userRepository.getUserById(id);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         return new User();
     }
 

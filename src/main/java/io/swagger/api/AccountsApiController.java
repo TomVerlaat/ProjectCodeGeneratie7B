@@ -60,8 +60,12 @@ public class AccountsApiController implements AccountsApi {
         return accountService.getAccountByIbanResponseEntity(iban);
     }
 
-    public ResponseEntity <List<Account>> getAccountByUserID() {
-        return accountService.getAccountByUserIdResponseEntity();
+    public ResponseEntity <List<Account>> getByCurrentUser() {
+        return accountService.getByCurrentUserResponseEntity();
+    }
+
+    public ResponseEntity <List<Account>> getByUserId(@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId){
+        return accountService.getByUserIdResponseEntity(userId);
     }
 
     public ResponseEntity getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit

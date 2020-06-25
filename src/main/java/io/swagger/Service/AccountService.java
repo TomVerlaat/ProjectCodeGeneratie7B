@@ -3,13 +3,10 @@ package io.swagger.Service;
 import io.swagger.dao.AccountRepository;
 import io.swagger.model.Account;
 import io.swagger.model.NewAccountBody;
-import io.swagger.model.Transaction;
 import io.swagger.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -25,8 +22,7 @@ public class AccountService {
     @Autowired
     private UserService userService;
 
-    public AccountService() {
-    }
+    public AccountService() {}
 
     public List<Account> getAllAccounts()
     {
@@ -98,7 +94,7 @@ public class AccountService {
     }
 
     public ResponseEntity deactivateAccountResponseEntity(String iban){
-        if (isUserAuthorized()) {
+        if (isUserEmployee()) {
             Account accountToDeactivate = getAccountByIban(iban);
             if (accountToDeactivate == null) {
                 return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -126,7 +122,7 @@ public class AccountService {
         }
     }
 
-    public ResponseEntity getAccountByUserIdResponseEntity(){
+    public ResponseEntity getByCurrentUserResponseEntity(){
         List<Account> accounts;
         accounts = getAccountsByUserId(userService.getUserId());
         if (accounts.size() > 0) {
@@ -140,9 +136,28 @@ public class AccountService {
         }
     }
 
+    public ResponseEntity getByUserIdResponseEntity(long userId){
+        List<Account> accounts;
+        if (isUserEmployee()) {
+            accounts = getAccountsByUserId(userId);
+            if (accounts.size() > 0) {
+                return ResponseEntity
+                        .status(200)
+                        .body(accounts);
+            } else {
+                return ResponseEntity
+                        .status(204)
+                        .body(accounts);
+            }
+        }
+        else {
+            return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+        }
+    }
+
     public ResponseEntity getAllAccountsResponseEntity() {
         List<Account> accounts = null;
-        if (isUserAuthorized()) {
+        if (isUserEmployee()) {
             accounts = getAllAccounts();
             if (accounts.size() > 0) {
                 return ResponseEntity
@@ -160,7 +175,7 @@ public class AccountService {
         }
     }
 
-    public boolean isUserAuthorized(){
+    public boolean isUserEmployee(){
         try{
             User user = userService.getUserByUserId(userService.getUserId());
             if (user.getType().equals(User.Type.EMPLOYEE)) return true;

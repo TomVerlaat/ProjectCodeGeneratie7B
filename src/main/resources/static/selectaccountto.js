@@ -1,4 +1,4 @@
-fetch(url +'/Accounts/GetByUserId',{credentials:'include'})
+fetch(url +'/Accounts/GetByCurrentUser',{credentials:'include'})
     .then(function (response) {
         return response.json();
     })

@@ -24,17 +24,12 @@ private AccountService accountService;
 
 public TransactionService() {
 }
-
     public int getTransactionsToday(String iban) {
-    return transactionRepository.getTransactionsToday(iban,OffsetDateTime.now().withHour(0));
+        return transactionRepository.getTransactionsToday(iban,OffsetDateTime.now().withHour(0));
     };
 
     public List<Transaction> getAllTransactions() {
         return (List<Transaction>) transactionRepository.findAll();
-    }
-
-    public List<Transaction> getTransactionByUserId(double userId) {
-        return (List<Transaction>) transactionRepository.getAllByUserPerformingId(userId);
     }
 
     public Transaction getTransactionById(Long id) {
@@ -83,7 +78,7 @@ public TransactionService() {
     }
 
     public ResponseEntity withdrawTransactionResponseEntity(WithdrawBody body){
-        // Only User with account has access
+        // Only User which owns the account or employees
         boolean access = accountAccess(body.getAccountFrom());
 
         if(access && underDayLimit(body.getAccountFrom()) && validAmount(body.getAmount())) {
@@ -110,7 +105,7 @@ public TransactionService() {
     }
 
     public ResponseEntity payTransactionResponseEntity(PaymentBody body){
-        // Only user with account has access.
+        // Only User which owns the account or employees
         boolean access = accountAccess(body.getAccountFrom());
 
         boolean ibanExists = false;
@@ -194,8 +189,7 @@ public TransactionService() {
     public ResponseEntity getAllTransactionsResponseEntity() {
         // Only for employees
         if(userService.getUserId() != 0) {
-            User user = userService.getUserByUserId(userService.getUserId());
-            if (user.getType().equals(User.Type.EMPLOYEE)) {
+            if (accountService.isUserEmployee()) {
                 List<Transaction> transactions = getAllTransactions();
                 return ResponseEntity
                         .status(200)
@@ -218,8 +212,7 @@ public TransactionService() {
                 }
 
                 // Check if logged in user is employee
-                User user = userService.getUserByUserId(userService.getUserId());
-                if (user.getType().equals(User.Type.EMPLOYEE)) {
+                if (accountService.isUserEmployee()) {
                     access = true;
                 }
 
@@ -248,8 +241,7 @@ public TransactionService() {
                 }
             }
             //Employee
-            User user = userService.getUserByUserId(userService.getUserId());
-            if (user.getType().equals(User.Type.EMPLOYEE)) {
+            if (accountService.isUserEmployee()) {
                 access = true;
             }
 
@@ -274,12 +266,15 @@ public TransactionService() {
     }
 
     private boolean accountAccess(String accountToCheck) {
-        User user = userService.getUserByUserId(userService.getUserId());
+        //User user = userService.getUserByUserId(userService.getUserId());
         List<Account> userAccounts = accountService.getAccountsByUserId(userService.getUserId());
-        for (Account account:userAccounts) {
-            if(account.getIban().equals(accountToCheck) || user.getType().equals(User.Type.EMPLOYEE))
-            {
-                return true;
+        //if (user.getType().equals(User.Type.EMPLOYEE)) return true;
+        if (accountService.isUserEmployee()) return true;
+        else {
+            for (Account account : userAccounts) {
+                if (account.getIban().equals(accountToCheck)) {
+                    return true;
+                }
             }
         }
         return false;

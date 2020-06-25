@@ -63,17 +63,30 @@ public interface AccountsApi {
 );
 
 
-    @ApiOperation(value = "Get all Accounts that a user has by the UserID", nickname = "getAccountByUserID", notes = "Get all Accounts that a user has by the UserID", response = Account.class, responseContainer = "List", tags={ "Accounts", })
+    @ApiOperation(value = "Get all Accounts that the current user has", nickname = "GetByCurrentUser", notes = "Get all Accounts that the current user has", response = Account.class, responseContainer = "List", tags={ "Accounts", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Account", response = Account.class, responseContainer = "List"),
             @ApiResponse(code = 204, message = "No accounts for this user"),
         @ApiResponse(code = 400, message = "bad request", response = String.class),
         @ApiResponse(code = 401, message = "API key is missing or invalid"),
         @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
-    @RequestMapping(value = "/Accounts/GetByUserId",
+    @RequestMapping(value = "/Accounts/GetByCurrentUser",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity getAccountByUserID(/*@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId*/);
+    ResponseEntity getByCurrentUser();
+
+    @ApiOperation(value = "Get all Accounts from given user id", nickname = "GetByUserId", notes = "Get all Accounts from given user id", response = Account.class, responseContainer = "List", tags={ "Accounts", })
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Account", response = Account.class, responseContainer = "List"),
+            @ApiResponse(code = 204, message = "No accounts for this user"),
+            @ApiResponse(code = 400, message = "bad request", response = String.class),
+            @ApiResponse(code = 401, message = "API key is missing or invalid"),
+            @ApiResponse(code = 404, message = "The specified resource was not found", response = String.class) })
+    @RequestMapping(value = "/Accounts/GetByUserId/{userId}",
+            produces = { "application/json" },
+            method = RequestMethod.GET)
+    ResponseEntity getByUserId(@ApiParam(value = "UserId to find account",required=true) @PathVariable("userId") long userId);
+
 
 
     @ApiOperation(value = "Get All Accounts", nickname = "getAllAccounts", notes = "Get all accounts in the system", response = Account.class, responseContainer = "List", tags={ "Accounts", })
