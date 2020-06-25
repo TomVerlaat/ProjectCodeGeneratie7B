@@ -3,7 +3,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
     <script src="config.js"></script>
-    <script src="selectaccount.js"></script>
+    <script src="selectaccountfrom.js"></script>
+    <script src="selectaccountto.js"></script>
     <title>
         Transfer
     </title>
@@ -20,13 +21,15 @@
 
         <form id="payment-form">
             <label for="accountFrom">Account From:</label><br>
-            <select id="select" id="accountFrom" name="accountFrom">
-                <option value="default">Kies een account</option>
-            </select>
+            <input list="getAccountFrom" name="accountFrom" id="accountFrom">
+            <datalist id="getAccountFrom" name="getAccountFrom">
+            </datalist>
+            <br>
             <label for="accountTo">Account To:</label><br>
-            <select id="select2" id="accountTo" name="accountTo">
-                <option value="default">Kies een account</option>
-            </select>
+            <input list="getAccountTo" name="accountTo" id="accountTo">
+            <datalist id="getAccountTo" name="getAccountTo">
+            </datalist>
+            <br>
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" name="amount">
             <label for="description">Description:</label><br>
@@ -40,27 +43,7 @@
 
 
     <script>
-        fetch(url +'/Accounts/GetByUserId',{credentials:'include'})
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                appendData2(data);
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
 
-        function appendData2(data) {
-            var select = document.getElementById("select2");
-            for (var i = 0; i < data.length; i++) {
-                var option = document.createElement("OPTION"),
-                    txt = document.createTextNode(data[i].iban + " Balance: " + data[i].balance);
-                option.appendChild(txt);
-                option.setAttribute("value", data[i].iban);
-                select.insertBefore(option, select.lastChild);
-            }
-        }
     </script>
 
     <script>

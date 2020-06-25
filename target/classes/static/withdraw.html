@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="css/edit.css">
     <script src="config.js"></script>
-    <script src="selectaccount.js"></script>
+    <script src="selectaccountfrom.js"></script>
     <title>
         Deposit
     </title>
@@ -20,9 +20,10 @@
 
         <form id="payment-form">
             <label for="accountFrom">Account From:</label><br>
-            <select id="select" id="accountFrom" name="accountFrom">
-                <option value="default">Kies een account</option>
-            </select>
+            <input list="getAccountFrom" name="accountFrom" id="accountFrom">
+            <datalist id="getAccountFrom" name="getAccountFrom">
+            </datalist>
+            <br>
             <label for="amount">Amount:</label><br>
             <input type="number" id="amount" name="amount">
             <input id="postSubmit" type="submit" value="Submit">
