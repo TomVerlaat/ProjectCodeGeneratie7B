@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/edit.css">
+    <script src="config.js"></script>
+    <script src="myprofile.js"></script>
+    <title>
+        Edit user
+    </title>
+</head>
+<body>
+<div class="editform">
+    <h1 class="pagetitle">
+        <button name="backBtn" class="button" style='float: left; margin-top: 0vw; margin-left: 1vw;'><a href="home.html"><-- Terug</a></button>
+        Update Your Profile
+    </h1>
+    <div class="whole wholepart">
+
+        <form id="user-form">
+            <label for="userid">UserId:</label><br>
+            <input type="text" id="userid" name="userid">
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password">
+            <label for="confirmPassword">Confirm Password:</label><br>
+            <input type="password" id="confirmPassword" name="confirmPassword">
+            <label for="firstname">Firstname:</label><br>
+            <input type="text" id="firstname" name="firstName">
+            <label for="lastname">Lastname:</label><br>
+            <input type="text" id="lastname" name="lastName">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email">
+            <label for="birthdate">Birthdate:</label><br>
+            <input type="text" id="birthdate" name="birthdate">
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address">
+            <label for="postalcode">Postalcode:</label><br>
+            <input type="text" id="postalcode" name="postalcode">
+            <label for="city">City:</label><br>
+            <input type="text" id="city" name="city">
+            <label for="phonenumber">Phonenumber:</label><br>
+            <input type="text" id="phonenumber" name="phoneNumber">
+            <input id="postSubmit" type="submit" value="Submit">
+        </form>
+
+        <div id="feedback"> </div>
+    </div>
+
+    <script>
+        const thisForm = document.getElementById('user-form');
+        thisForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(thisForm).entries()
+            var userid = document.getElementById("userid").value;
+            fetch(url + '/Users/updateLoggedInUser/' + userid, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })  .then(response => {
+                if (!response.ok) {
+                    console.log("Failed")
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:red\">FAILED</p>";
+                }
+                else
+                {
+                    console.log("Successful!");
+                    document.getElementById("feedback").innerHTML = "<p style=\"color:green\">Successful</p>";
+                    document.getElementById("payment-form").reset();
+                }
+            })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</div>
+</body>
+</html>
