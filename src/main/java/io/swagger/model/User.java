@@ -68,6 +68,9 @@ public class User   {
   @JsonProperty("maximumDebt")
   private double maximumDebt;
 
+  @JsonProperty("maxTransactions")
+  private int maxTransactions;
+
   public User() {
   }
 
@@ -86,6 +89,15 @@ public class User   {
     setPhoneNumber(phoneNumber);
     setTransactionLimit(10000);
     setMaximumDebt(-100);
+    setMaxTransactions(50);
+  }
+
+  public int getMaxTransactions() {
+    return maxTransactions;
+  }
+
+  public void setMaxTransactions(int maxTransactions) {
+    this.maxTransactions = maxTransactions;
   }
 
   /**

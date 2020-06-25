@@ -309,8 +309,9 @@ public TransactionService() {
     {
         int transactions = getTransactionsToday(iban);
         Account account = accountService.getAccountByIban(iban);
+        User user = userService.getUserByUserId(account.getUserId());
         if(account != null) {
-            if (transactions <= account.getMaxTransactions()) {
+            if (transactions < user.getMaxTransactions()) {
                 return true;
             }
         }
