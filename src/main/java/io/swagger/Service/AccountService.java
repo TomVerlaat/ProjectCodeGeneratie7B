@@ -78,48 +78,53 @@ public class AccountService {
 
 
     public ResponseEntity addAccountResponseEntity(NewAccountBody body) {
-        Account account = new Account();
-        account.setBalance(0);
-        account.setActive(true);
-        account.setCurrency(body.getCurrency());
-        account.setIban(generateRandomIban());
-        account.setType(body.getType());
+        if(isUserEmployee()) {
+            Account account = new Account();
+            account.setBalance(0);
+            account.setActive(true);
+            account.setCurrency(body.getCurrency());
+            account.setIban(generateRandomIban());
+            account.setType(body.getType());
 
-        account.setUserId(body.getUserId());
-        if (addAccount(account)) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(account.getId());
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(account.getIban());
+            account.setUserId(body.getUserId());
+            if (addAccount(account)) {
+                return ResponseEntity.status(HttpStatus.CREATED).body(account.getId());
+            } else {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body(account.getIban());
+            }
         }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     public ResponseEntity deactivateAccountResponseEntity(String iban){
         if (isUserEmployee()) {
             Account accountToDeactivate = getAccountByIban(iban);
             if (accountToDeactivate == null) {
-                return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+                return new ResponseEntity(HttpStatus.NO_CONTENT);
             } else {
                 deactivateAccount(iban);
-                return new ResponseEntity<Void>(HttpStatus.OK);
+                return new ResponseEntity(HttpStatus.OK);
             }
         }
         else{
-            return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
     }
 
     public ResponseEntity getAccountByIbanResponseEntity(String iban){
-        Account account = getAccountByIban(iban);
-        if (account == null){
-            return ResponseEntity
-                    .status(HttpStatus.NO_CONTENT)
-                    .body(account);
+        if(isUserEmployee()) {
+            Account account = getAccountByIban(iban);
+            if (account == null) {
+                return ResponseEntity
+                        .status(HttpStatus.NO_CONTENT)
+                        .body(account);
+            } else {
+                return ResponseEntity
+                        .status(200)
+                        .body(account);
+            }
         }
-        else{
-            return ResponseEntity
-                    .status(200)
-                    .body(account);
-        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     public ResponseEntity getByCurrentUserResponseEntity(){
@@ -151,7 +156,7 @@ public class AccountService {
             }
         }
         else {
-            return new ResponseEntity<Void>(HttpStatus.FORBIDDEN);
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
     }
 
@@ -169,9 +174,7 @@ public class AccountService {
                         .body(accounts);
             }
         } else {
-            return ResponseEntity
-                    .status(403)
-                    .body(accounts);
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
     }
 

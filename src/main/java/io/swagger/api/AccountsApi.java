@@ -98,8 +98,5 @@ public interface AccountsApi {
     @RequestMapping(value = "/Accounts",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<Account>> getAllAccounts(@Min(0) @Max(50) @ApiParam(value = "maximum number of records to return", allowableValues = "") @Valid @RequestParam(value = "limit", required = false) Long limit
-,@ApiParam(value = "filter for LastName") @Valid @RequestParam(value = "lastName", required = false) String lastName
-);
-
+    ResponseEntity<List<Account>> getAllAccounts();
 }
