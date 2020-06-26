@@ -23,6 +23,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+
     public UserService() {
     }
 
@@ -64,58 +65,65 @@ public class UserService {
     }
 
     public ResponseEntity deactivateUserResponseEntity(long id) {
-        User userToDeactivate = getUserByUserId(id);
-        if (userToDeactivate == null) {
-            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
-        } else {
-            deactivateUser(id);
-            return new ResponseEntity<Void>(HttpStatus.OK);
+        if(isUserEmployee()) {
+            User userToDeactivate = getUserByUserId(id);
+            if (userToDeactivate == null) {
+                return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+            } else {
+                deactivateUser(id);
+                return new ResponseEntity<Void>(HttpStatus.OK);
+            }
         }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     public ResponseEntity getAllUsersResponseEntity() {
-        List<User> users = getAllUsers();
-        return ResponseEntity
-                .status(200)
-                .body(users);
+        if(isUserEmployee()) {
+            List<User> users = getAllUsers();
+            return ResponseEntity
+                    .status(200)
+                    .body(users);
+        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     public ResponseEntity getUserResponseEntity(long id) {
         User user = getUserByUserId(id);
 
-        try {
-            user.getType();
-        } catch (Exception e) {
-
+        if(isUserEmployee()) {
+            if (user == null) {
+                return ResponseEntity
+                        .status(HttpStatus.NO_CONTENT)
+                        .body(user);
+            } else {
+                return ResponseEntity
+                        .status(200)
+                        .body(user);
+            }
         }
-        if (user == null) {
-            return ResponseEntity
-                    .status(HttpStatus.NO_CONTENT)
-                    .body(user);
-        } else {
-            return ResponseEntity
-                    .status(200)
-                    .body(user);
-        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     public ResponseEntity newUserResponseEntity(NewUserBody body) {
-        User user = new User();
-        user.setUsername(body.getUsername());
-        user.setPassword(body.getPassword());
-        user.setFirstName(body.getFirstName());
-        user.setLastName(body.getLastName());
-        user.setEmail(body.getEmail());
-        user.setBirthdate(LocalDate.now());
-        user.setAddress(body.getAddress());
-        user.setPostalcode(body.getPostalcode());
-        user.setCity(body.getCity());
-        user.setPhoneNumber(body.getPhoneNumber());
-        user.setActive(true);
-        user.setType(body.getType());
+        if(isUserEmployee()) {
+            User user = new User();
+            user.setUsername(body.getUsername());
+            user.setPassword(body.getPassword());
+            user.setFirstName(body.getFirstName());
+            user.setLastName(body.getLastName());
+            user.setEmail(body.getEmail());
+            user.setBirthdate(LocalDate.now());
+            user.setAddress(body.getAddress());
+            user.setPostalcode(body.getPostalcode());
+            user.setCity(body.getCity());
+            user.setPhoneNumber(body.getPhoneNumber());
+            user.setActive(true);
+            user.setType(body.getType());
 
-        addUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
+            addUser(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
+        }
+        return new ResponseEntity(HttpStatus.FORBIDDEN);
     }
 
     public ResponseEntity updateUserResponseEntity(Long id, UpdateBody body) {
@@ -158,6 +166,18 @@ public class UserService {
         catch (Exception e)
         {
             return 0;
+        }
+    }
+
+    public boolean isUserEmployee(){
+        try{
+            User user = getUserByUserId(getUserId());
+            if (user.getType().equals(User.Type.EMPLOYEE)) return true;
+            else return false;
+        }
+        catch (Exception e)
+        {
+            return false;
         }
     }
 

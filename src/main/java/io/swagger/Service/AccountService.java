@@ -78,7 +78,7 @@ public class AccountService {
 
 
     public ResponseEntity addAccountResponseEntity(NewAccountBody body) {
-        if(isUserEmployee()) {
+        if(userService.isUserEmployee()) {
             Account account = new Account();
             account.setBalance(0);
             account.setActive(true);
@@ -97,7 +97,7 @@ public class AccountService {
     }
 
     public ResponseEntity deactivateAccountResponseEntity(String iban){
-        if (isUserEmployee()) {
+        if (userService.isUserEmployee()) {
             Account accountToDeactivate = getAccountByIban(iban);
             if (accountToDeactivate == null) {
                 return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -112,7 +112,7 @@ public class AccountService {
     }
 
     public ResponseEntity getAccountByIbanResponseEntity(String iban){
-        if(isUserEmployee()) {
+        if(userService.isUserEmployee()) {
             Account account = getAccountByIban(iban);
             if (account == null) {
                 return ResponseEntity
@@ -143,7 +143,7 @@ public class AccountService {
 
     public ResponseEntity getByUserIdResponseEntity(long userId){
         List<Account> accounts;
-        if (isUserEmployee()) {
+        if (userService.isUserEmployee()) {
             accounts = getAccountsByUserId(userId);
             if (accounts.size() > 0) {
                 return ResponseEntity
@@ -162,7 +162,7 @@ public class AccountService {
 
     public ResponseEntity getAllAccountsResponseEntity() {
         List<Account> accounts = null;
-        if (isUserEmployee()) {
+        if (userService.isUserEmployee()) {
             accounts = getAllAccounts();
             if (accounts.size() > 0) {
                 return ResponseEntity
@@ -178,17 +178,7 @@ public class AccountService {
         }
     }
 
-    public boolean isUserEmployee(){
-        try{
-            User user = userService.getUserByUserId(userService.getUserId());
-            if (user.getType().equals(User.Type.EMPLOYEE)) return true;
-            else return false;
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-    }
+
 
     public String generateRandomIban() {
         Random random = new Random();

@@ -63,7 +63,7 @@
       <workItem from="1593088268186" duration="4155000" />
       <workItem from="1593096170296" duration="1246000" />
       <workItem from="1593108400403" duration="4660000" />
-      <workItem from="1593156988589" duration="3130000" />
+      <workItem from="1593156988589" duration="5456000" />
     </task>
     <servers />
   </component>
@@ -79,6 +79,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="311" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593088319967" />
+    <state x="744" y="389" width="431" height="266" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1593160655952">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="744" y="389" width="431" height="266" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1593160655952" />
+    <state x="743" y="357" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog" timestamp="1593163195490">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="357" key="#com.intellij.refactoring.move.moveInstanceMethod.MoveInstanceMethodDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1593163195490" />
     <state width="1878" height="219" key="GridCell.Tab.0.bottom" timestamp="1593158386324">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -119,9 +127,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="441" y="95" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1593088287546" />
-    <state x="2587" y="127" width="585" height="795" key="find.popup" timestamp="1593112090451">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="667" y="126" width="585" height="788" key="find.popup" timestamp="1593163148146">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="667" y="126" width="585" height="788" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1593163148146" />
     <state x="2587" y="127" width="585" height="795" key="find.popup/0.0.1920.1050/1920.0.1920.1050@1920.0.1920.1050" timestamp="1593112090451" />
     <state x="623" y="226" width="672" height="678" key="search.everywhere.popup" timestamp="1593091580237">
       <screen x="0" y="0" width="1920" height="1040" />
