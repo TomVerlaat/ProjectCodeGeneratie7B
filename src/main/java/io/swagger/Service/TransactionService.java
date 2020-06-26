@@ -267,12 +267,14 @@ public TransactionService() {
 
     private boolean accountAccess(String accountToCheck) {
         List<Account> userAccounts = accountService.getAccountsByUserId(userService.getUserId());
-        if (accountService.getAccountByIban(accountToCheck).isActive()) {
-            if (userService.isUserEmployee()) return true;
-            else {
-                for (Account account : userAccounts) {
-                    if (account.getIban().equals(accountToCheck)) {
-                        return true;
+        if (ibanExists(accountToCheck)) {
+            if (accountService.getAccountByIban(accountToCheck).isActive()) {
+                if (userService.isUserEmployee()) return true;
+                else {
+                    for (Account account : userAccounts) {
+                        if (account.getIban().equals(accountToCheck)) {
+                            return true;
+                        }
                     }
                 }
             }
@@ -310,6 +312,6 @@ public TransactionService() {
                 return true;
             }
         }
-         return false;
+        return false;
     }
 }
