@@ -225,7 +225,7 @@ public class Account   {
   @ApiModelProperty(example = "true", required = true, value = "")
       @NotNull
 
-    public Boolean isActive() {
+  public Boolean isActive() {
     return active;
   }
 
