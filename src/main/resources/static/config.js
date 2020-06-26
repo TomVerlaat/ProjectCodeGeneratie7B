@@ -1,1 +1,1 @@
-let url= "http://projectcodegeneratie7b.herokuapp.com";
+let url= "http://projectcodegeneratie7b.herokuapp.com/BankAPI_V3/1.0.0";
